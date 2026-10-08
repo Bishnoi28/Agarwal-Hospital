@@ -1,0 +1,2688 @@
+/* ============================================
+   AGARWAL HOSPITAL — Design System & Styles
+   ============================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Primary Brand — Deep Jewel Teal */
+  --primary: #0A606E;
+  --primary-dark: #053D47;
+  --primary-darker: #02242B;
+  --primary-light: #EBF6F8;
+  --primary-medium: #0D8294;
+  --primary-glow: rgba(10, 96, 110, 0.16);
+
+  /* Luxury Gold & Warm Accents */
+  --gold: #C89933;
+  --gold-hover: #B8860B;
+  --gold-light: #FAF5E8;
+  --gold-glow: rgba(200, 153, 51, 0.22);
+
+  /* Speciality Accents — Sapphire, Sage & Warm Rose */
+  --accent-dental: #197CA6;
+  --accent-dental-light: #EBF5FB;
+  --accent-dental-bg: #F0F8FD;
+  --accent-dental-glow: rgba(25, 124, 166, 0.18);
+  --accent-acupuncture: #3B8C61;
+  --accent-acupuncture-light: #EDF7F1;
+  --accent-acupuncture-bg: #F2F9F4;
+  --accent-acupuncture-glow: rgba(59, 140, 97, 0.18);
+  --accent-skin: #BA6650;
+  --accent-skin-light: #FCF1EC;
+  --accent-skin-bg: #FDF5F1;
+  --accent-skin-glow: rgba(186, 102, 80, 0.18);
+
+  /* Neutrals */
+  --white: #FFFFFF;
+  --off-white: #FAFDFE;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --gray-900: #0F172A;
+
+  /* Text */
+  --text-primary: #1A2B3C;
+  --text-body: #4A5568;
+  --text-muted: #8896A6;
+  --text-white: #FFFFFF;
+  --text-on-primary: #FFFFFF;
+
+  /* Functional */
+  --success: #25D366;
+  --whatsapp: #25D366;
+  --call-blue: #2563EB;
+  --error: #EF4444;
+  --warning: #F59E0B;
+
+  /* Borders & Shadows */
+  --border: #E2E8F0;
+  --border-light: #F1F5F9;
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm: 0 2px 8px rgba(11,110,127,0.06);
+  --shadow-md: 0 4px 16px rgba(11,110,127,0.08);
+  --shadow-lg: 0 8px 32px rgba(11,110,127,0.12);
+  --shadow-xl: 0 16px 48px rgba(11,110,127,0.16);
+  --shadow-header: 0 1px 8px rgba(0,0,0,0.06);
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-30: 120px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.25rem;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Layout */
+  --container-max: 1200px;
+  --container-wide: 1320px;
+  --header-height: 72px;
+  --section-padding: 100px;
+}
+
+/* ---------- CSS Reset / Normalize ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-body);
+  background-color: #FAFDFE;
+  background-image: 
+    radial-gradient(1200px circle at 85% 10%, rgba(14, 165, 182, 0.05) 0%, transparent 60%),
+    radial-gradient(900px circle at 10% 35%, rgba(200, 153, 51, 0.04) 0%, transparent 50%),
+    radial-gradient(1100px circle at 80% 65%, rgba(59, 140, 97, 0.04) 0%, transparent 55%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  line-height: var(--line-height-tight);
+  font-weight: 700;
+}
+
+/* ---------- Skip to Content ---------- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: 10000;
+  padding: var(--space-3) var(--space-6);
+  background: var(--primary);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: top var(--transition-fast);
+}
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* ---------- Container ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+.container-wide {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ---------- Section Base ---------- */
+.section {
+  padding: var(--section-padding) 0;
+  position: relative;
+}
+.section-alt {
+  background: linear-gradient(180deg, rgba(235, 246, 248, 0.55) 0%, rgba(250, 253, 254, 0.8) 100%);
+  position: relative;
+}
+.section-heading {
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+.section-heading h2 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, #0A606E 0%, #173652 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-heading p {
+  font-size: var(--font-size-lg);
+  color: var(--text-muted);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 96, 110, 0.06);
+  border: 1px solid rgba(10, 96, 110, 0.15);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  margin-bottom: var(--space-4);
+  backdrop-filter: blur(8px);
+}
+.section-label .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 14px 28px;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  white-space: nowrap;
+  cursor: pointer;
+  border: 2px solid transparent;
+  line-height: 1;
+  position: relative;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(10, 96, 110, 0.28);
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: rotate(25deg);
+}
+.btn-primary:hover::after {
+  animation: btnShimmer 1.2s ease;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(10, 96, 110, 0.35);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.btn-secondary:hover {
+  background: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+.btn-white {
+  background: var(--white);
+  color: var(--primary);
+  border-color: var(--white);
+}
+.btn-white:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.btn-whatsapp {
+  background: var(--whatsapp);
+  color: var(--white);
+  border-color: var(--whatsapp);
+}
+.btn-whatsapp:hover {
+  background: #1EBE5A;
+  border-color: #1EBE5A;
+  transform: translateY(-2px);
+}
+.btn-call {
+  background: var(--call-blue);
+  color: var(--white);
+  border-color: var(--call-blue);
+}
+.btn-call:hover {
+  background: #1D4ED8;
+  border-color: #1D4ED8;
+  transform: translateY(-2px);
+}
+.btn-sm {
+  padding: 10px 20px;
+  font-size: var(--font-size-sm);
+}
+.btn-lg {
+  padding: 16px 36px;
+  font-size: var(--font-size-lg);
+}
+.btn-icon {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: var(--radius-full);
+}
+.btn .arrow {
+  transition: transform var(--transition-base);
+}
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--header-height);
+  transition: all var(--transition-slow);
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226,232,240,0.5);
+  transition: all var(--transition-slow);
+}
+.header.scrolled::before {
+  background: rgba(255,255,255,0.97);
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow-header);
+}
+.header-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 700;
+  font-size: var(--font-size-xl);
+  color: var(--primary);
+  z-index: 10;
+  flex-shrink: 0;
+}
+.header-logo .logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+.header-logo .logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.header-logo .logo-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--primary-dark);
+}
+.header-logo .logo-tagline {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Desktop Nav */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.header-nav a {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-body);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+.header-nav a:hover,
+.header-nav a.active {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+.header-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  z-index: 10;
+}
+.header-cta .btn {
+  font-size: var(--font-size-sm);
+  padding: 10px 22px;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 28px;
+  cursor: pointer;
+  z-index: 10;
+  padding: 4px 0;
+}
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+}
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(5px) translateX(5px);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-5px) translateX(5px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(20px);
+  padding: calc(var(--header-height) + var(--space-8)) var(--space-6) var(--space-8);
+  flex-direction: column;
+  overflow-y: auto;
+}
+.mobile-menu.active {
+  display: flex;
+}
+.mobile-menu a {
+  display: block;
+  padding: var(--space-4) 0;
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+  transition: color var(--transition-fast);
+}
+.mobile-menu a:hover {
+  color: var(--primary);
+}
+.mobile-menu .mobile-menu-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: var(--header-height);
+  overflow: hidden;
+  background: linear-gradient(135deg, #F0F9FA 0%, #E6F3F5 30%, #F7F9FA 100%);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.12;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(240,249,250,0.92) 0%, rgba(230,243,245,0.85) 50%, rgba(247,249,250,0.9) 100%);
+}
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+  padding: var(--space-12) 0;
+}
+.hero-text {
+  max-width: 600px;
+}
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--white);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--primary);
+  margin-bottom: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--primary-light);
+}
+.hero-label .pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+.hero h1 {
+  font-size: var(--font-size-6xl);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+}
+.hero h1 .gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-medium) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subtitle {
+  font-size: var(--font-size-xl);
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+.hero-description {
+  font-size: var(--font-size-lg);
+  color: var(--text-body);
+  max-width: 520px;
+  margin-bottom: var(--space-8);
+  line-height: var(--line-height-relaxed);
+}
+.hero-ctas {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.hero-image {
+  position: relative;
+  padding: 16px;
+}
+.hero-image-blob {
+  position: absolute;
+  inset: -8px;
+  background: linear-gradient(135deg, rgba(14, 165, 182, 0.25), rgba(200, 153, 51, 0.18), rgba(59, 140, 97, 0.2));
+  filter: blur(26px);
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  animation: morphBlob 14s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-image-frame {
+  position: absolute;
+  inset: 4px;
+  border: 2px dashed rgba(10, 96, 110, 0.22);
+  border-radius: 54px 144px 54px 144px;
+  transform: rotate(-2.5deg);
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.6s ease;
+}
+.hero-image:hover .hero-image-frame {
+  transform: rotate(1deg) scale(1.02);
+}
+.hero-image-main {
+  border-radius: 48px 140px 48px 140px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -12px rgba(10, 96, 110, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.8);
+  aspect-ratio: 4/5;
+  position: relative;
+  z-index: 2;
+  transition: border-radius 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s ease;
+}
+.hero-image:hover .hero-image-main {
+  border-radius: 90px 48px 90px 48px;
+  transform: scale(1.015);
+}
+.hero-image-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.hero-image:hover .hero-image-main img {
+  transform: scale(1.05);
+}
+.hero-float-card {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: 0 16px 36px rgba(10, 96, 110, 0.12), 0 0 0 1px rgba(10, 96, 110, 0.05);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  z-index: 3;
+  animation: floatSmooth 6s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hero-float-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 22px 42px rgba(10, 96, 110, 0.2);
+}
+.hero-float-card.card-1 {
+  bottom: 40px;
+  left: -35px;
+}
+.hero-float-card.card-2 {
+  top: 40px;
+  right: -25px;
+  animation: floatReverse 7s ease-in-out infinite;
+  animation-delay: -2s;
+}
+.hero-float-card.card-3 {
+  bottom: -15px;
+  right: 25px;
+  animation: floatDiagonal 8s ease-in-out infinite;
+  animation-delay: -4s;
+  border-color: rgba(200, 153, 51, 0.3);
+}
+.hero-float-card .fc-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.hero-float-card .fc-text {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+.hero-float-card .fc-sub {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Trust Strip */
+.trust-strip {
+  margin-top: var(--space-20);
+  padding: var(--space-8) 0;
+  border-top: 1px solid var(--border);
+}
+.trust-strip-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.trust-item-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--primary);
+}
+.trust-item-text {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+
+/* ============================================
+   SPECIALITIES SECTION
+   ============================================ */
+.specialities-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+.spec-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(10, 96, 110, 0.06);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.spec-card:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 24px 48px -12px rgba(10, 96, 110, 0.16);
+}
+.spec-card.dental:hover { border-color: rgba(25, 124, 166, 0.35); }
+.spec-card.acupuncture:hover { border-color: rgba(59, 140, 97, 0.35); }
+.spec-card.skin:hover { border-color: rgba(186, 102, 80, 0.35); }
+
+.spec-card-image {
+  position: relative;
+  height: 230px;
+  overflow: hidden;
+  margin: 10px 10px 0 10px;
+  transition: border-radius 0.5s ease;
+}
+.spec-card.dental .spec-card-image {
+  border-radius: 22px 80px 22px 14px;
+}
+.spec-card.acupuncture .spec-card-image {
+  border-radius: 80px 22px 14px 22px;
+}
+.spec-card.skin .spec-card-image {
+  border-radius: 22px 22px 80px 14px;
+}
+.spec-card:hover .spec-card-image {
+  border-radius: 22px;
+}
+.spec-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.spec-card:hover .spec-card-image img {
+  transform: scale(1.08);
+}
+.spec-card-accent {
+  height: 4px;
+  margin: 8px 10px 0 10px;
+  border-radius: 2px;
+}
+.spec-card.dental .spec-card-accent { background: linear-gradient(90deg, var(--accent-dental), transparent); }
+.spec-card.acupuncture .spec-card-accent { background: linear-gradient(90deg, var(--accent-acupuncture), transparent); }
+.spec-card.skin .spec-card-accent { background: linear-gradient(90deg, var(--accent-skin), transparent); }
+
+.spec-card-body {
+  padding: var(--space-6) var(--space-6) var(--space-8);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.spec-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -38px;
+  margin-bottom: var(--space-4);
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 3px solid var(--white);
+  transition: transform 0.4s ease;
+}
+.spec-card:hover .spec-card-icon {
+  transform: scale(1.1) rotate(4deg);
+}
+.spec-card.dental .spec-card-icon { background: var(--accent-dental-light); color: var(--accent-dental); }
+.spec-card.acupuncture .spec-card-icon { background: var(--accent-acupuncture-light); color: var(--accent-acupuncture); }
+.spec-card.skin .spec-card-icon { background: var(--accent-skin-light); color: var(--accent-skin); }
+
+.spec-card h3 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-3);
+}
+.spec-card p {
+  color: var(--text-body);
+  margin-bottom: var(--space-5);
+  line-height: var(--line-height-relaxed);
+}
+.spec-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  flex: 1;
+}
+.spec-tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  border: 1px solid;
+  transition: all var(--transition-fast);
+}
+.spec-card.dental .spec-tag {
+  color: var(--accent-dental);
+  border-color: var(--accent-dental-light);
+  background: var(--accent-dental-light);
+}
+.spec-card.acupuncture .spec-tag {
+  color: var(--accent-acupuncture);
+  border-color: var(--accent-acupuncture-light);
+  background: var(--accent-acupuncture-light);
+}
+.spec-card.skin .spec-tag {
+  color: var(--accent-skin);
+  border-color: var(--accent-skin-light);
+  background: var(--accent-skin-light);
+}
+.spec-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  transition: gap var(--transition-base);
+}
+.spec-card.dental .spec-card-link { color: var(--accent-dental); }
+.spec-card.acupuncture .spec-card-link { color: var(--accent-acupuncture); }
+.spec-card.skin .spec-card-link { color: var(--accent-skin); }
+.spec-card:hover .spec-card-link {
+  gap: var(--space-3);
+}
+
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+.about-image-wrapper {
+  position: relative;
+  padding: 16px;
+}
+.about-image-blob {
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(135deg, rgba(14, 165, 182, 0.22), rgba(200, 153, 51, 0.2));
+  filter: blur(24px);
+  border-radius: 40% 60% 70% 30% / 50% 40% 60% 50%;
+  animation: morphBlob 13s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+.about-image-frame {
+  position: absolute;
+  inset: 2px;
+  border: 2px solid var(--gold);
+  opacity: 0.35;
+  border-radius: 124px 36px 124px 36px;
+  z-index: 1;
+  pointer-events: none;
+  transform: rotate(-1.5deg);
+  transition: transform 0.6s ease;
+}
+.about-image-wrapper:hover .about-image-frame {
+  transform: rotate(1deg) scale(1.02);
+}
+.about-image {
+  position: relative;
+  border-radius: 120px 32px 120px 32px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: 0 20px 48px -10px rgba(10, 96, 110, 0.2);
+  z-index: 2;
+  transition: border-radius 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s ease;
+}
+.about-image-wrapper:hover .about-image {
+  border-radius: 36px 120px 36px 120px;
+  transform: scale(1.015);
+}
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.about-image-wrapper:hover .about-image img {
+  transform: scale(1.06);
+}
+.about-image-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--accent-dental), var(--accent-acupuncture), var(--accent-skin));
+}
+.about-floating-badge {
+  position: absolute;
+  bottom: -15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 153, 51, 0.3);
+  border-radius: 20px;
+  padding: 12px 18px;
+  box-shadow: 0 16px 36px rgba(10, 96, 110, 0.14);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+  animation: floatSmooth 7s ease-in-out infinite;
+}
+.about-floating-badge .afb-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--gold-light);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-floating-badge .afb-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.about-floating-badge .afb-sub {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+.about-content h2 {
+  font-size: var(--font-size-4xl);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-5);
+}
+.about-content > p {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-6);
+  line-height: var(--line-height-relaxed);
+}
+.about-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+.about-value {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.about-value svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   WHY CHOOSE US
+   ============================================ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+.why-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+.why-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+.why-card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-xl);
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-5);
+  color: var(--primary);
+  transition: all var(--transition-base);
+}
+.why-card:hover .why-card-icon {
+  background: var(--primary);
+  color: var(--white);
+}
+.why-card h3 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-2);
+}
+.why-card p {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+
+/* ============================================
+   DENTAL SECTION
+   ============================================ */
+.dental-section {
+  background: linear-gradient(180deg, var(--accent-dental-bg) 0%, var(--white) 100%);
+}
+.dental-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+  margin-bottom: var(--space-12);
+}
+.dental-header-image-wrapper {
+  position: relative;
+  padding: 16px;
+}
+.dental-image-shape {
+  position: absolute;
+  inset: -4px;
+  background: radial-gradient(circle, rgba(25, 124, 166, 0.25) 0%, transparent 70%);
+  filter: blur(20px);
+  border-radius: 40% 60% 60% 40% / 40% 50% 50% 60%;
+  z-index: 0;
+  pointer-events: none;
+}
+.dental-header-image {
+  border-radius: 60px 24px 90px 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px -10px rgba(25, 124, 166, 0.22);
+  aspect-ratio: 16/10;
+  position: relative;
+  z-index: 1;
+  transition: border-radius 0.6s ease, transform 0.6s ease;
+}
+.dental-header-image-wrapper:hover .dental-header-image {
+  border-radius: 30px 80px 30px 80px;
+  transform: scale(1.015);
+}
+.dental-header-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.dental-header-image-wrapper:hover .dental-header-image img {
+  transform: scale(1.06);
+}
+
+.speciality-floating-chip {
+  position: absolute;
+  bottom: 0px;
+  left: 30px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  z-index: 3;
+  animation: floatSmooth 6s ease-in-out infinite;
+}
+.chip-dental {
+  border: 1px solid rgba(25, 124, 166, 0.3);
+  color: var(--accent-dental);
+}
+.chip-acu {
+  border: 1px solid rgba(59, 140, 97, 0.3);
+  color: var(--accent-acupuncture);
+}
+.chip-skin {
+  border: 1px solid rgba(186, 102, 80, 0.3);
+  color: var(--accent-skin);
+}
+
+.dental-header-text h2 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.02em;
+}
+.dental-header-text p {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-6);
+}
+.dental-categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+.dental-cat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  transition: all var(--transition-base);
+}
+.dental-cat-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-dental-light);
+}
+.dental-cat-card h3 {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-4);
+  color: var(--accent-dental);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.dental-cat-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.dental-cat-card li {
+  font-size: var(--font-size-sm);
+  color: var(--text-body);
+  padding-left: var(--space-5);
+  position: relative;
+}
+.dental-cat-card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-dental-light);
+  border: 1.5px solid var(--accent-dental);
+}
+
+
+/* ============================================
+   ACUPUNCTURE SECTION
+   ============================================ */
+.acupuncture-section {
+  background: linear-gradient(180deg, var(--accent-acupuncture-bg) 0%, var(--white) 100%);
+}
+.acu-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: start;
+  margin-bottom: var(--space-12);
+}
+.acu-image-wrapper {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-6));
+  padding: 16px;
+}
+.acu-image-shape {
+  position: absolute;
+  inset: -6px;
+  background: radial-gradient(circle, rgba(59, 140, 97, 0.25) 0%, transparent 70%);
+  filter: blur(22px);
+  border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+  z-index: 0;
+  pointer-events: none;
+}
+.acu-image {
+  border-radius: 40px 100px 40px 100px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px -10px rgba(59, 140, 97, 0.22);
+  aspect-ratio: 4/3;
+  position: relative;
+  z-index: 1;
+  transition: border-radius 0.6s ease, transform 0.6s ease;
+}
+.acu-image-wrapper:hover .acu-image {
+  border-radius: 90px 40px 90px 40px;
+  transform: scale(1.015);
+}
+.acu-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.acu-image-wrapper:hover .acu-image img {
+  transform: scale(1.06);
+}
+.acu-content h2 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.02em;
+}
+.acu-content > p {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-8);
+  line-height: var(--line-height-relaxed);
+}
+.acu-category {
+  margin-bottom: var(--space-8);
+}
+.acu-category h3 {
+  font-size: var(--font-size-lg);
+  color: var(--accent-acupuncture);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.acu-conditions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.acu-tag {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--white);
+  border: 1px solid var(--accent-acupuncture-light);
+  font-size: var(--font-size-sm);
+  color: var(--text-body);
+  transition: all var(--transition-fast);
+}
+.acu-tag:hover {
+  background: var(--accent-acupuncture-light);
+  color: var(--accent-acupuncture);
+}
+
+/* Treatment Journey Steps */
+.journey-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.journey-step {
+  text-align: center;
+  position: relative;
+}
+.journey-step::after {
+  content: '';
+  position: absolute;
+  top: 28px;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-acupuncture-light);
+}
+.journey-step:last-child::after {
+  display: none;
+}
+.journey-step-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-acupuncture-light);
+  color: var(--accent-acupuncture);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  margin: 0 auto var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+.journey-step h4 {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.medical-disclaimer {
+  background: var(--accent-acupuncture-light);
+  border-left: 3px solid var(--accent-acupuncture);
+  padding: var(--space-4) var(--space-5);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-body);
+  font-style: italic;
+  margin-bottom: var(--space-6);
+}
+
+
+/* ============================================
+   SKIN & DERMATOLOGY SECTION
+   ============================================ */
+.skin-section {
+  background: linear-gradient(180deg, var(--accent-skin-bg) 0%, var(--white) 100%);
+}
+.skin-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+  margin-bottom: var(--space-12);
+}
+.skin-header-text h2 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.02em;
+}
+.skin-header-text p {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-6);
+}
+.skin-header-image-wrapper {
+  position: relative;
+  padding: 16px;
+}
+.skin-image-shape {
+  position: absolute;
+  inset: -4px;
+  background: radial-gradient(circle, rgba(186, 102, 80, 0.25) 0%, transparent 70%);
+  filter: blur(20px);
+  border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+.skin-header-image {
+  border-radius: 90px 32px 90px 32px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px -10px rgba(186, 102, 80, 0.22);
+  aspect-ratio: 16/10;
+  position: relative;
+  z-index: 1;
+  transition: border-radius 0.6s ease, transform 0.6s ease;
+}
+.skin-header-image-wrapper:hover .skin-header-image {
+  border-radius: 32px 90px 32px 90px;
+  transform: scale(1.015);
+}
+.skin-header-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.skin-header-image-wrapper:hover .skin-header-image img {
+  transform: scale(1.06);
+}
+.skin-conditions {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-4);
+}
+.skin-condition-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+.skin-condition-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-skin-light);
+}
+.skin-condition-card .sc-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: var(--accent-skin-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-3);
+  color: var(--accent-skin);
+}
+.skin-condition-card h3 {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+
+/* ============================================
+   DOCTORS SECTION
+   ============================================ */
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.doctor-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 32px;
+  overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+  padding-top: var(--space-8);
+  box-shadow: 0 8px 24px rgba(10, 96, 110, 0.06);
+}
+.doctor-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px -10px rgba(10, 96, 110, 0.16);
+  border-color: rgba(10, 96, 110, 0.25);
+}
+.doctor-photo-wrapper {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.doctor-photo-blob {
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(135deg, rgba(14, 165, 182, 0.25), rgba(200, 153, 51, 0.2));
+  filter: blur(16px);
+  border-radius: 40% 60% 70% 30% / 40% 40% 60% 60%;
+  animation: morphDoctorBlob 10s ease-in-out infinite alternate;
+  z-index: 0;
+}
+.doctor-photo {
+  width: 160px;
+  height: 160px;
+  background: linear-gradient(135deg, #EBF6F8 0%, #FAF5E8 100%);
+  border: 3px solid rgba(10, 96, 110, 0.16);
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: morphDoctorBlob 9s ease-in-out infinite alternate;
+  box-shadow: 0 12px 28px rgba(10, 96, 110, 0.1);
+}
+.doctor-card:hover .doctor-photo {
+  border-color: var(--primary);
+  transform: scale(1.06) rotate(2deg);
+  box-shadow: 0 16px 36px rgba(10, 96, 110, 0.2);
+}
+.doctor-photo svg {
+  width: 84px;
+  height: 84px;
+  color: var(--primary);
+  opacity: 0.85;
+}
+.doctor-badge-chip {
+  position: absolute;
+  bottom: -6px;
+  background: linear-gradient(135deg, var(--gold), #A67C1E);
+  color: var(--white);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(200, 153, 51, 0.35);
+}
+.doctor-info {
+  padding: var(--space-6) var(--space-6) var(--space-8);
+}
+.doctor-info h3 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-2);
+}
+.doctor-specialization {
+  font-size: var(--font-size-base);
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+.doctor-qualifications {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-bottom: var(--space-6);
+}
+.doctor-qualifications span {
+  padding: var(--space-1) var(--space-3);
+  background: var(--gray-50);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  color: var(--text-body);
+  font-weight: 500;
+}
+.doctor-intro {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+  line-height: var(--line-height-relaxed);
+}
+
+
+/* ============================================
+   PATIENT JOURNEY
+   ============================================ */
+.patient-journey {
+  background: var(--primary);
+  color: var(--white);
+  overflow: hidden;
+}
+.patient-journey .section-heading h2 {
+  color: var(--white);
+}
+.patient-journey .section-heading p {
+  color: rgba(255,255,255,0.7);
+}
+.pj-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-4);
+  position: relative;
+}
+.pj-steps::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: rgba(255,255,255,0.2);
+}
+.pj-step {
+  text-align: center;
+  position: relative;
+}
+.pj-step-num {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-5);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+.pj-step h3 {
+  font-size: var(--font-size-base);
+  color: var(--white);
+  margin-bottom: var(--space-1);
+}
+.pj-step p {
+  font-size: var(--font-size-sm);
+  color: rgba(255,255,255,0.6);
+}
+
+
+/* ============================================
+   APPOINTMENT CTA
+   ============================================ */
+.appointment-section {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-medium) 100%);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.appointment-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+}
+.appointment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+.appointment-text h2 {
+  font-size: var(--font-size-4xl);
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-4);
+}
+.appointment-text > p {
+  font-size: var(--font-size-lg);
+  color: rgba(255,255,255,0.8);
+  margin-bottom: var(--space-8);
+}
+.appointment-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.appointment-form {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-xl);
+}
+.appointment-form h3 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-6);
+  color: var(--text-primary);
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+.form-group label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  transition: border-color var(--transition-fast);
+  background: var(--white);
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(11,110,127,0.1);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.form-group input.error,
+.form-group select.error {
+  border-color: var(--error);
+}
+.form-error {
+  font-size: var(--font-size-xs);
+  color: var(--error);
+  display: none;
+}
+.form-submit {
+  margin-top: var(--space-6);
+}
+.form-submit .btn {
+  width: 100%;
+}
+
+
+/* ============================================
+   TESTIMONIALS
+   ============================================ */
+.testimonials-carousel {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.testimonial-placeholder {
+  padding: var(--space-12) var(--space-8);
+  background: var(--gray-50);
+  border-radius: var(--radius-xl);
+  border: 2px dashed var(--border);
+}
+.testimonial-placeholder svg {
+  margin: 0 auto var(--space-4);
+  color: var(--gray-300);
+}
+.testimonial-placeholder h3 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+.testimonial-placeholder p {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+
+/* ============================================
+   FAQ SECTION
+   ============================================ */
+.faq-tabs {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
+  flex-wrap: wrap;
+}
+.faq-tab {
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--text-body);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.faq-tab:hover {
+  border-color: var(--primary-light);
+  color: var(--primary);
+}
+.faq-tab.active {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.faq-category {
+  display: none;
+}
+.faq-category.active {
+  display: block;
+}
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+.faq-item:hover {
+  border-color: var(--primary-light);
+}
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  gap: var(--space-4);
+}
+.faq-question:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+  color: var(--primary);
+}
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow), padding var(--transition-slow);
+}
+.faq-item.active .faq-answer {
+  max-height: 300px;
+}
+.faq-answer-inner {
+  padding: 0 var(--space-6) var(--space-5);
+  font-size: var(--font-size-sm);
+  color: var(--text-body);
+  line-height: var(--line-height-relaxed);
+}
+
+
+/* ============================================
+   BLOG / RESOURCES
+   ============================================ */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+.blog-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 28px;
+  overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(10, 96, 110, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+.blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px -10px rgba(10, 96, 110, 0.16);
+  border-color: rgba(10, 96, 110, 0.25);
+}
+.blog-card-image {
+  height: 200px;
+  overflow: hidden;
+  background: var(--gray-100);
+  border-radius: 22px 64px 0 0;
+  position: relative;
+  transition: border-radius 0.5s ease;
+}
+.blog-card:hover .blog-card-image {
+  border-radius: 22px 22px 0 0;
+}
+.blog-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.blog-card:hover .blog-card-image img {
+  transform: scale(1.08);
+}
+.blog-card-body {
+  padding: var(--space-6);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.blog-category-tag {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-3);
+}
+.blog-category-tag.dental { background: var(--accent-dental-light); color: var(--accent-dental); }
+.blog-category-tag.acupuncture { background: var(--accent-acupuncture-light); color: var(--accent-acupuncture); }
+.blog-category-tag.skin { background: var(--accent-skin-light); color: var(--accent-skin); }
+.blog-card h3 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-3);
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+.blog-card p {
+  font-size: var(--font-size-sm);
+  color: var(--text-body);
+  margin-bottom: var(--space-5);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: var(--line-height-relaxed);
+  flex: 1;
+}
+.blog-read-more {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  transition: gap 0.3s ease;
+}
+.blog-card:hover .blog-read-more {
+  gap: var(--space-2);
+}
+
+
+/* ============================================
+   GALLERY
+   ============================================ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 210px;
+  gap: var(--space-5);
+}
+.gallery-item {
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(10, 96, 110, 0.08);
+}
+.gallery-item:nth-child(1) { border-radius: 44px 16px 24px 44px; }
+.gallery-item:nth-child(2) { border-radius: 20px 44px 20px 28px; }
+.gallery-item:nth-child(3) { border-radius: 28px 20px 44px 20px; }
+.gallery-item:nth-child(4) { border-radius: 44px 28px 44px 28px; }
+.gallery-item:nth-child(5) { border-radius: 20px 44px 28px 44px; }
+.gallery-item:nth-child(6) { border-radius: 28px 44px 44px 20px; }
+
+.gallery-item:hover {
+  border-radius: 24px !important;
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(10, 96, 110, 0.22);
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 96, 110, 0.9) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-4);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+}
+.gallery-item:hover .gallery-item-overlay {
+  opacity: 1;
+}
+.gallery-item-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+  transform: translateY(8px);
+  transition: transform 0.35s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.gallery-item:hover .gallery-item-icon {
+  transform: translateY(0);
+}
+.gallery-item-label {
+  color: var(--white);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+.gallery-item.tall {
+  grid-row: span 2;
+}
+.gallery-item.wide {
+  grid-column: span 2;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  cursor: pointer;
+}
+.lightbox.active {
+  display: flex;
+}
+.lightbox img {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: var(--radius-lg);
+  object-fit: contain;
+}
+.lightbox-close {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  border: none;
+  transition: background var(--transition-fast);
+}
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+}
+.contact-info h2 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.02em;
+}
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.contact-card {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+.contact-card:hover {
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-sm);
+}
+.contact-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--primary);
+}
+.contact-card h3 {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-1);
+}
+.contact-card p, .contact-card a {
+  font-size: var(--font-size-sm);
+  color: var(--text-body);
+}
+.contact-card a:hover {
+  color: var(--primary);
+}
+.contact-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  flex-wrap: wrap;
+}
+.contact-map {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  height: 100%;
+  min-height: 400px;
+  border: 1px solid var(--border);
+}
+.contact-map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--primary-darker);
+  color: rgba(255,255,255,0.8);
+  padding: var(--space-16) 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: var(--space-10);
+  padding-bottom: var(--space-12);
+}
+.footer-brand .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.footer-brand .footer-logo .logo-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-brand .footer-logo .logo-name {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--white);
+}
+.footer-brand p {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-5);
+  color: rgba(255,255,255,0.6);
+}
+.footer-social {
+  display: flex;
+  gap: var(--space-3);
+}
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.6);
+  transition: all var(--transition-fast);
+}
+.footer-social a:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+.footer-col h4 {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  margin-bottom: var(--space-5);
+}
+.footer-col a {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: rgba(255,255,255,0.6);
+  padding: var(--space-1) 0;
+  transition: color var(--transition-fast);
+}
+.footer-col a:hover {
+  color: var(--white);
+}
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: var(--space-6) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+.footer-bottom p {
+  font-size: var(--font-size-xs);
+  color: rgba(255,255,255,0.4);
+}
+.footer-bottom-links {
+  display: flex;
+  gap: var(--space-6);
+}
+.footer-bottom-links a {
+  font-size: var(--font-size-xs);
+  color: rgba(255,255,255,0.4);
+  transition: color var(--transition-fast);
+}
+.footer-bottom-links a:hover {
+  color: var(--white);
+}
+
+
+/* ============================================
+   FLOATING ELEMENTS
+   ============================================ */
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: 900;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--whatsapp);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+}
+
+/* Back to Top */
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-6);
+  right: 86px;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+/* Mobile Bottom Bar */
+.mobile-bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 950;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: var(--space-2) var(--space-3);
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+.mobile-bottom-bar-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-2);
+}
+.mobile-bottom-bar a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: 11px;
+  font-weight: 600;
+  transition: background var(--transition-fast);
+}
+.mobile-bottom-bar a:active {
+  background: var(--gray-100);
+}
+.mobile-bottom-bar .mbb-call { color: var(--call-blue); }
+.mobile-bottom-bar .mbb-whatsapp { color: var(--whatsapp); }
+.mobile-bottom-bar .mbb-book {
+  background: var(--primary);
+  color: var(--white);
+  border-radius: var(--radius-md);
+}
+.mobile-bottom-bar .mbb-book:active {
+  background: var(--primary-dark);
+}
+
+
+/* ============================================
+   GLOBAL KEYFRAME ANIMATIONS
+   ============================================ */
+@keyframes morphBlob {
+  0% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+  33% { border-radius: 70% 30% 46% 54% / 30% 60% 40% 70%; }
+  66% { border-radius: 38% 62% 63% 37% / 65% 35% 65% 35%; }
+  100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+}
+
+@keyframes morphDoctorBlob {
+  0% { border-radius: 40% 60% 70% 30% / 40% 40% 60% 60%; }
+  50% { border-radius: 60% 40% 30% 70% / 55% 65% 35% 45%; }
+  100% { border-radius: 40% 60% 70% 30% / 40% 40% 60% 60%; }
+}
+
+@keyframes floatSmooth {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes floatDiagonal {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(6px, -8px); }
+}
+
+@keyframes btnShimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+@keyframes rippleWave {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  animation: rippleWave 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+.reveal-delay-5 { transition-delay: 500ms; }
+
+
+/* ============================================
+   RESPONSIVE — TABLET (≤1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  :root {
+    --section-padding: 72px;
+    --font-size-6xl: 2.5rem;
+    --font-size-5xl: 2.25rem;
+    --font-size-4xl: 2rem;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    text-align: center;
+    padding: var(--space-8) 0;
+  }
+  .hero-text { max-width: 100%; }
+  .hero-description { margin: 0 auto var(--space-8); }
+  .hero-ctas { justify-content: center; }
+  .hero-image { max-width: 440px; margin: 0 auto; }
+  .hero-float-card.card-1 { left: -10px; bottom: 30px; }
+  .hero-float-card.card-2 { right: -10px; top: 20px; }
+  .hero-float-card.card-3 { right: 10px; bottom: -15px; }
+
+  .trust-strip-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  .specialities-cards {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+  .about-image-wrapper { max-width: 520px; margin: 0 auto; }
+
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dental-header { grid-template-columns: 1fr; }
+  .dental-header-image-wrapper { max-width: 520px; margin: 0 auto; }
+  .dental-categories { grid-template-columns: repeat(2, 1fr); }
+
+  .acu-layout { grid-template-columns: 1fr; }
+  .acu-image-wrapper { position: static; max-width: 520px; margin: 0 auto; }
+
+  .skin-header { grid-template-columns: 1fr; }
+  .skin-header-image-wrapper { max-width: 520px; margin: 0 auto; }
+  .skin-conditions { grid-template-columns: repeat(3, 1fr); }
+
+  .pj-steps { grid-template-columns: repeat(5, 1fr); gap: var(--space-2); }
+
+  .appointment-grid { grid-template-columns: 1fr; }
+
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; }
+
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-map { min-height: 300px; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* ============================================
+   RESPONSIVE — MOBILE (≤768px)
+   ============================================ */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 56px;
+    --font-size-6xl: 2rem;
+    --font-size-5xl: 1.75rem;
+    --font-size-4xl: 1.6rem;
+    --font-size-3xl: 1.4rem;
+    --header-height: 64px;
+  }
+
+  body {
+    padding-bottom: 72px; /* Space for mobile bottom bar */
+  }
+
+  /* Header */
+  .header-nav { display: none; }
+  .header-cta .btn { display: none; }
+  .menu-toggle { display: flex; }
+
+  .hero {
+    min-height: auto;
+    padding-top: calc(var(--header-height) + var(--space-8));
+    padding-bottom: var(--space-8);
+  }
+  .hero-image {
+    display: block;
+    max-width: 320px;
+    margin: var(--space-8) auto 0;
+    padding: 10px;
+  }
+  .hero-image-main {
+    aspect-ratio: 1/1;
+    border-radius: 36px 90px 36px 90px;
+  }
+  .hero-float-card {
+    display: flex;
+    padding: var(--space-2) var(--space-3);
+    transform: scale(0.85);
+  }
+  .hero-float-card.card-1 {
+    left: -12px;
+    bottom: -10px;
+  }
+  .hero-float-card.card-2 {
+    right: -12px;
+    top: -10px;
+  }
+  .hero-float-card.card-3 {
+    display: none;
+  }
+
+  .hero h1 { font-size: 1.85rem; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn { width: 100%; }
+
+  .trust-strip {
+    margin-top: var(--space-10);
+  }
+  .trust-strip-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  .trust-item { font-size: var(--font-size-xs); }
+
+  .section-heading h2 { font-size: var(--font-size-3xl); }
+
+  .about-values {
+    grid-template-columns: 1fr;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dental-categories {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .journey-step::after { display: none; }
+
+  .skin-conditions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .doctors-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .pj-steps {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .pj-steps::before { display: none; }
+
+  .form-grid { grid-template-columns: 1fr; }
+
+  .blog-grid { grid-template-columns: 1fr; }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 150px;
+  }
+  .gallery-item.tall { grid-row: span 1; }
+  .gallery-item.wide { grid-column: span 1; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: var(--space-8); }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-bottom-links { justify-content: center; }
+
+  /* Floating elements */
+  .whatsapp-float { display: none; }
+  .back-to-top { right: var(--space-4); bottom: 86px; }
+
+  /* Mobile bottom bar */
+  .mobile-bottom-bar { display: block; }
+
+  .appointment-actions { flex-direction: column; }
+  .appointment-actions .btn { width: 100%; }
+
+  .contact-actions { flex-direction: column; }
+  .contact-actions .btn { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-6xl: 1.75rem;
+    --font-size-4xl: 1.4rem;
+  }
+  .container { padding: 0 var(--space-4); }
+  .spec-card-body { padding: var(--space-5); }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 130px; }
+  .speciality-floating-chip { left: 10px; font-size: 0.75rem; padding: 6px 12px; }
+}
