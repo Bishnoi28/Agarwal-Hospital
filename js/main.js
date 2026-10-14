@@ -9,6 +9,7 @@
   document.addEventListener('DOMContentLoaded', init);
 
   function init() {
+    initLanguageSystem();
     initStickyHeader();
     initMobileMenu();
     initSmoothScroll();
@@ -19,6 +20,142 @@
     initBackToTop();
     initFormValidation();
     initFormDateMin();
+  }
+
+
+  /* ============================================
+     LANGUAGE SYSTEM & WELCOME MODAL
+     ============================================ */
+  function initLanguageSystem() {
+    const STORAGE_KEY = 'agarwal_hospital_lang';
+    const langModal = document.getElementById('langModal');
+    const chooseEn = document.getElementById('chooseLangEn');
+    const chooseHi = document.getElementById('chooseLangHi');
+    const langBtns = document.querySelectorAll('.lang-btn, .mobile-lang-drawer-btn');
+
+    function applyLanguage(lang) {
+      if (typeof TRANSLATIONS === 'undefined' || !TRANSLATIONS[lang]) {
+        return;
+      }
+      const t = TRANSLATIONS[lang];
+
+      // Update html lang attribute and body class
+      document.documentElement.setAttribute('lang', lang);
+      document.body.classList.toggle('lang-hi', lang === 'hi');
+
+      // Update textContent for data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) {
+          el.textContent = t[key];
+        }
+      });
+
+      // Update innerHTML for data-i18n-html
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (t[key] !== undefined) {
+          el.innerHTML = t[key];
+        }
+      });
+
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key] !== undefined) {
+          el.setAttribute('placeholder', t[key]);
+        }
+      });
+
+      // Update aria-label where needed
+      document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        const key = el.getAttribute('data-i18n-aria');
+        if (t[key] !== undefined) {
+          el.setAttribute('aria-label', t[key]);
+        }
+      });
+
+      // Update active state on toggle buttons
+      langBtns.forEach(btn => {
+        const btnLang = btn.getAttribute('data-lang');
+        const isActive = (btnLang === lang);
+        btn.classList.toggle('active', isActive);
+        if (btn.classList.contains('lang-btn')) {
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        }
+      });
+    }
+
+    function selectLanguage(lang, fromModal) {
+      try {
+        localStorage.setItem(STORAGE_KEY, lang);
+      } catch (e) {
+        // storage disabled fallback
+      }
+      applyLanguage(lang);
+
+      if (fromModal && langModal) {
+        langModal.classList.add('closing');
+        setTimeout(() => {
+          langModal.style.display = 'none';
+          langModal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }, 300);
+      }
+    }
+
+    // Check stored preference
+    let savedLang = null;
+    try {
+      savedLang = localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      savedLang = null;
+    }
+
+    if (savedLang === 'en' || savedLang === 'hi') {
+      // User has already chosen a language
+      if (langModal) {
+        langModal.style.display = 'none';
+        langModal.setAttribute('aria-hidden', 'true');
+      }
+      applyLanguage(savedLang);
+    } else {
+      // First visit: show language selection modal
+      if (langModal) {
+        langModal.style.display = 'flex';
+        langModal.classList.remove('closing');
+        langModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      // Default to English initially
+      applyLanguage('en');
+    }
+
+    // Modal option clicks
+    if (chooseEn) {
+      chooseEn.addEventListener('click', () => selectLanguage('en', true));
+    }
+    if (chooseHi) {
+      chooseHi.addEventListener('click', () => selectLanguage('hi', true));
+    }
+
+    // Toggle button clicks (Navbar & Mobile Menu Drawer)
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetLang = btn.getAttribute('data-lang');
+        if (targetLang) {
+          selectLanguage(targetLang, false);
+        }
+      });
+    });
+
+    // Close modal on Escape if visible
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && langModal && langModal.style.display === 'flex') {
+        selectLanguage('en', true);
+      }
+    });
   }
 
 
@@ -67,6 +204,16 @@
         toggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
+    });
+
+    // Close on backdrop click
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu) {
+        menu.classList.remove('active');
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
     });
 
     // Close on Escape

@@ -22,7 +22,7 @@
   <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -47,12 +47,52 @@
       "postalCode": "335512",
       "addressCountry": "IN"
     },
-    "medicalSpecialty": ["Dentistry", "Dermatology", "Acupuncture"],
+    "medicalSpecialty": ["Acupuncture", "Dentistry", "Dermatology"],
     "openingHours": ["Mo-Sa 09:00-13:00", "Mo-Sa 15:00-19:00"]
   }
   </script>
 </head>
 <body>
+
+<!-- ============================================
+     LANGUAGE SELECTION SCREEN (FIRST VISIT)
+     ============================================ -->
+<div class="lang-modal-overlay" id="langModal" role="dialog" aria-modal="true" aria-labelledby="langModalTitle" style="display: none;">
+  <div class="lang-modal-backdrop"></div>
+  <div class="lang-modal-card">
+    <div class="lang-modal-header">
+      <div class="lang-modal-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h2 class="lang-modal-brand">Agarwal Hospital</h2>
+      <p class="lang-modal-tagline" data-i18n="logo_tagline">Acupuncture · Dental · Skin Care</p>
+      <div class="lang-modal-divider"></div>
+      <h3 id="langModalTitle" class="lang-modal-title">Select Language / भाषा चुनें</h3>
+      <p class="lang-modal-sub">Please select your preferred language to proceed<br>आगे बढ़ने के लिए अपनी पसंदीदा भाषा चुनें</p>
+    </div>
+    <div class="lang-modal-options">
+      <button type="button" class="lang-option-btn" id="chooseLangEn" data-choose-lang="en">
+        <div class="lang-option-badge">EN</div>
+        <div class="lang-option-text">
+          <span class="lang-option-title">English</span>
+          <span class="lang-option-desc">Continue website in English</span>
+        </div>
+        <span class="lang-option-arrow">→</span>
+      </button>
+      <button type="button" class="lang-option-btn" id="chooseLangHi" data-choose-lang="hi">
+        <div class="lang-option-badge">हि</div>
+        <div class="lang-option-text">
+          <span class="lang-option-title">हिन्दी (Hindi)</span>
+          <span class="lang-option-desc">हिंदी में वेबसाइट देखें</span>
+        </div>
+        <span class="lang-option-arrow">→</span>
+      </button>
+    </div>
+    <div class="lang-modal-footer">
+      <span>Hanumangarh Junction, Rajasthan</span>
+    </div>
+  </div>
+</div>
 
 <!-- Skip to Content -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -68,23 +108,28 @@
       </div>
       <div class="logo-text">
         <span class="logo-name">Agarwal Hospital</span>
-        <span class="logo-tagline">Dental · Acupuncture · Skin Care</span>
+        <span class="logo-tagline" data-i18n="logo_tagline">Acupuncture · Dental · Skin Care</span>
       </div>
     </a>
 
     <nav class="header-nav" id="desktopNav" role="navigation" aria-label="Main navigation">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#dental">Dental Care</a>
-      <a href="#acupuncture">Acupuncture</a>
-      <a href="#skin">Skin & Dermatology</a>
-      <a href="#doctors">Doctors</a>
-      <a href="#faq">FAQs</a>
-      <a href="#contact">Contact</a>
+      <a href="#home" data-i18n="nav_home">Home</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#acupuncture" data-i18n="nav_acupuncture">Acupuncture</a>
+      <a href="#dental" data-i18n="nav_dental">Dental Care</a>
+      <a href="#skin" data-i18n="nav_skin">Skin & Dermatology</a>
+      <a href="#doctors" data-i18n="nav_doctors">Doctors</a>
+      <a href="#faq" data-i18n="nav_faq">FAQs</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
 
     <div class="header-cta">
-      <a href="#appointment" class="btn btn-primary btn-sm">Book Appointment</a>
+      <!-- Desktop Language Toggle -->
+      <div class="lang-switch" role="group" aria-label="Language Selector">
+        <button type="button" class="lang-btn active" data-lang="en" aria-label="Switch to English">EN</button>
+        <button type="button" class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हिन्दी</button>
+      </div>
+      <a href="#appointment" class="btn btn-primary btn-sm" data-i18n="btn_book_appointment">Book Appointment</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -94,17 +139,26 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
-  <a href="#home" class="mobile-nav-link">Home</a>
-  <a href="#about" class="mobile-nav-link">About</a>
-  <a href="#dental" class="mobile-nav-link">Dental Care</a>
-  <a href="#acupuncture" class="mobile-nav-link">Acupuncture</a>
-  <a href="#skin" class="mobile-nav-link">Skin & Dermatology</a>
-  <a href="#doctors" class="mobile-nav-link">Doctors</a>
-  <a href="#faq" class="mobile-nav-link">FAQs</a>
-  <a href="#contact" class="mobile-nav-link">Contact</a>
+  <!-- Mobile Menu Language Toggle -->
+  <div class="mobile-lang-drawer-section">
+    <span class="mobile-lang-drawer-label" data-i18n="lang_toggle_label">Language / भाषा</span>
+    <div class="mobile-lang-drawer-options">
+      <button type="button" class="mobile-lang-drawer-btn active" data-lang="en">English</button>
+      <button type="button" class="mobile-lang-drawer-btn" data-lang="hi">हिन्दी</button>
+    </div>
+  </div>
+
+  <a href="#home" class="mobile-nav-link" data-i18n="nav_home">Home</a>
+  <a href="#about" class="mobile-nav-link" data-i18n="nav_about">About</a>
+  <a href="#acupuncture" class="mobile-nav-link" data-i18n="nav_acupuncture">Acupuncture</a>
+  <a href="#dental" class="mobile-nav-link" data-i18n="nav_dental">Dental Care</a>
+  <a href="#skin" class="mobile-nav-link" data-i18n="nav_skin">Skin & Dermatology</a>
+  <a href="#doctors" class="mobile-nav-link" data-i18n="nav_doctors">Doctors</a>
+  <a href="#faq" class="mobile-nav-link" data-i18n="nav_faq">FAQs</a>
+  <a href="#contact" class="mobile-nav-link" data-i18n="nav_contact">Contact</a>
   <div class="mobile-menu-ctas">
-    <a href="#appointment" class="btn btn-primary mobile-nav-link">Book Appointment</a>
-    <a href="tel:+919460266901" class="btn btn-call">Call Now</a>
+    <a href="#appointment" class="btn btn-primary mobile-nav-link" data-i18n="btn_book_appointment">Book Appointment</a>
+    <a href="tel:+919460266901" class="btn btn-call" data-i18n="btn_call_now">Call Now</a>
   </div>
 </div>
 
@@ -138,18 +192,18 @@
       <div class="hero-text reveal">
         <div class="hero-label">
           <span class="pulse"></span>
-          Hanumangarh's Trusted Multi-Speciality Hospital
+          <span data-i18n="hero_label">Hanumangarh's Trusted Multi-Speciality Hospital</span>
         </div>
         <h1>
-          <span class="gradient-text">Expert Care.</span><br>
-          Personalized Treatment.<br>
-          Better Health.
+          <span class="gradient-text" data-i18n="hero_title_1">Expert Care.</span><br>
+          <span data-i18n="hero_title_2">Personalized Treatment.</span><br>
+          <span data-i18n="hero_title_3">Better Health.</span>
         </h1>
-        <p class="hero-subtitle">Trusted Dental, Acupuncture and Skin & Allergy Care under one roof.</p>
-        <p class="hero-description">At Agarwal Hospital, we bring together experienced specialists in Dental Care, Acupuncture and Skin & Dermatology to provide patient-focused healthcare tailored to your needs.</p>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">Trusted Acupuncture, Dental and Skin & Allergy Care under one roof.</p>
+        <p class="hero-description" data-i18n="hero_description">At Agarwal Hospital, we bring together experienced specialists in Acupuncture, Dental Care and Skin & Dermatology to provide patient-focused healthcare tailored to your needs.</p>
         <div class="hero-ctas">
-          <a href="#appointment" class="btn btn-primary btn-lg">Book an Appointment</a>
-          <a href="#specialities" class="btn btn-secondary btn-lg">Explore Our Services</a>
+          <a href="#appointment" class="btn btn-primary btn-lg" data-i18n="btn_book_an_appointment">Book an Appointment</a>
+          <a href="#specialities" class="btn btn-secondary btn-lg" data-i18n="btn_explore_services">Explore Our Services</a>
         </div>
       </div>
       <div class="hero-image reveal reveal-delay-2">
@@ -159,21 +213,21 @@
           <img src="img/hero/hero-doctor.webp" alt="Professional healthcare at Agarwal Hospital" loading="eager">
         </div>
         <div class="hero-float-card card-1">
-          <div class="fc-icon" style="background: var(--accent-dental-light); color: var(--accent-dental);">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5.5c-1.5-2-4-2.5-5.5-1s-2 4 0 6.5L12 17l5.5-6c2-2.5 1.5-5-.0-6.5s-4-1-5.5 1z"/></svg>
-          </div>
-          <div>
-            <div class="fc-text">Dental Care</div>
-            <div class="fc-sub">Complete dental solutions</div>
-          </div>
-        </div>
-        <div class="hero-float-card card-2">
           <div class="fc-icon" style="background: var(--accent-acupuncture-light); color: var(--accent-acupuncture);">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
           <div>
-            <div class="fc-text">Acupuncture</div>
-            <div class="fc-sub">Personalized wellness care</div>
+            <div class="fc-text" data-i18n="fc_acu_title">Acupuncture</div>
+            <div class="fc-sub" data-i18n="fc_acu_sub">Personalized wellness care</div>
+          </div>
+        </div>
+        <div class="hero-float-card card-2">
+          <div class="fc-icon" style="background: var(--accent-dental-light); color: var(--accent-dental);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5.5c-1.5-2-4-2.5-5.5-1s-2 4 0 6.5L12 17l5.5-6c2-2.5 1.5-5-.0-6.5s-4-1-5.5 1z"/></svg>
+          </div>
+          <div>
+            <div class="fc-text" data-i18n="fc_dental_title">Dental Care</div>
+            <div class="fc-sub" data-i18n="fc_dental_sub">Complete dental solutions</div>
           </div>
         </div>
         <div class="hero-float-card card-3">
@@ -181,8 +235,8 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
           <div>
-            <div class="fc-text">Trusted Care</div>
-            <div class="fc-sub">Patient-Centred Focus</div>
+            <div class="fc-text" data-i18n="fc_trust_title">Trusted Care</div>
+            <div class="fc-sub" data-i18n="fc_trust_sub">Patient-Centred Focus</div>
           </div>
         </div>
       </div>
@@ -195,25 +249,25 @@
           <div class="trust-item-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <span class="trust-item-text">Experienced Specialists</span>
+          <span class="trust-item-text" data-i18n="trust_specialists">Experienced Specialists</span>
         </div>
         <div class="trust-item">
           <div class="trust-item-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
-          <span class="trust-item-text">Personalized Care</span>
+          <span class="trust-item-text" data-i18n="trust_personalized">Personalized Care</span>
         </div>
         <div class="trust-item">
           <div class="trust-item-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <span class="trust-item-text">Patient-Centred Approach</span>
+          <span class="trust-item-text" data-i18n="trust_approach">Patient-Centred Approach</span>
         </div>
         <div class="trust-item">
           <div class="trust-item-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           </div>
-          <span class="trust-item-text">Multiple Specialities</span>
+          <span class="trust-item-text" data-i18n="trust_multi">Multiple Specialities</span>
         </div>
       </div>
     </div>
@@ -227,40 +281,14 @@
 <section class="section section-alt" id="specialities" aria-label="Our Specialities">
   <div class="container">
     <div class="section-heading reveal">
-      <div class="section-label"><span class="dot"></span> Our Core Specialities</div>
-      <h2>Specialized Care. One Trusted Hospital.</h2>
-      <p>Explore our three core areas of care.</p>
+      <div class="section-label"><span class="dot"></span> <span data-i18n="spec_badge">Our Core Specialities</span></div>
+      <h2 data-i18n="spec_title">Specialized Care. One Trusted Hospital.</h2>
+      <p data-i18n="spec_subtitle">Explore our three core areas of care.</p>
     </div>
 
     <div class="specialities-cards">
-      <!-- Dental Card -->
-      <div class="spec-card dental reveal reveal-delay-1">
-        <div class="spec-card-image">
-          <img src="img/specialities/dental.webp" alt="Modern dental care and treatment" loading="lazy">
-        </div>
-        <div class="spec-card-accent"></div>
-        <div class="spec-card-body">
-          <div class="spec-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2C4.5 2 3 4 3 6.5c0 3 2 5 3 7.5 1 2.5 1 4.5 2 6s2 2 3 0 1-3.5 2-6c1-2.5 3-4.5 3-7.5C16 4 14.5 2 12 2c-1 0-2 .5-2.5 1.5C9 2.5 8 2 7 2z"/></svg>
-          </div>
-          <h3>Dental Care</h3>
-          <p>Complete dental care focused on healthy teeth, comfortable treatment and confident smiles.</p>
-          <div class="spec-card-tags">
-            <span class="spec-tag">Root Canal Treatment</span>
-            <span class="spec-tag">Dental Fillings</span>
-            <span class="spec-tag">Scaling & Cleaning</span>
-            <span class="spec-tag">Crowns & Fixed Teeth</span>
-            <span class="spec-tag">Dentures</span>
-            <span class="spec-tag">Orthodontic Care</span>
-            <span class="spec-tag">Dental X-Ray</span>
-            <span class="spec-tag">Oral Care</span>
-          </div>
-          <a href="#dental" class="spec-card-link">Explore Dental Care <span class="arrow">→</span></a>
-        </div>
-      </div>
-
-      <!-- Acupuncture Card -->
-      <div class="spec-card acupuncture reveal reveal-delay-2">
+      <!-- 1. Acupuncture Card (First) -->
+      <div class="spec-card acupuncture reveal reveal-delay-1">
         <div class="spec-card-image">
           <img src="img/specialities/acupuncture.webp" alt="Professional acupuncture treatment" loading="lazy">
         </div>
@@ -269,23 +297,49 @@
           <div class="spec-card-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>
           </div>
-          <h3>Acupuncture</h3>
-          <p>Personalized acupuncture care and supportive pain-management approaches based on individual patient needs.</p>
+          <h3 data-i18n="spec_acu_title">Acupuncture</h3>
+          <p data-i18n="spec_acu_desc">Personalized acupuncture care and supportive pain-management approaches based on individual patient needs.</p>
           <div class="spec-card-tags">
-            <span class="spec-tag">Back Pain</span>
-            <span class="spec-tag">Neck Pain</span>
-            <span class="spec-tag">Knee Pain</span>
-            <span class="spec-tag">Joint Pain</span>
-            <span class="spec-tag">Migraine</span>
-            <span class="spec-tag">Sciatica</span>
-            <span class="spec-tag">Cervical Spondylitis</span>
-            <span class="spec-tag">Stress / Sleep</span>
+            <span class="spec-tag" data-i18n="spec_acu_tag_1">Back Pain</span>
+            <span class="spec-tag" data-i18n="spec_acu_tag_2">Neck Pain</span>
+            <span class="spec-tag" data-i18n="spec_acu_tag_3">Knee Pain</span>
+            <span class="spec-tag" data-i18n="spec_acu_tag_4">Joint Pain</span>
+            <span class="spec-tag" data-i18n="spec_acu_tag_5">Migraine</span>
+            <span class="spec-tag" data-i18n="spec_acu_tag_6">Sciatica</span>
+            <span class="spec-tag" data-i18n="spec_acu_tag_7">Cervical Spondylitis</span>
+            <span class="spec-tag" data-i18n="spec_acu_tag_8">Stress / Sleep</span>
           </div>
-          <a href="#acupuncture" class="spec-card-link">Explore Acupuncture <span class="arrow">→</span></a>
+          <a href="#acupuncture" class="spec-card-link"><span data-i18n="spec_acu_link">Explore Acupuncture</span> <span class="arrow">→</span></a>
         </div>
       </div>
 
-      <!-- Skin Card -->
+      <!-- 2. Dental Card (Second) -->
+      <div class="spec-card dental reveal reveal-delay-2">
+        <div class="spec-card-image">
+          <img src="img/specialities/dental.webp" alt="Modern dental care and treatment" loading="lazy">
+        </div>
+        <div class="spec-card-accent"></div>
+        <div class="spec-card-body">
+          <div class="spec-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2C4.5 2 3 4 3 6.5c0 3 2 5 3 7.5 1 2.5 1 4.5 2 6s2 2 3 0 1-3.5 2-6c1-2.5 3-4.5 3-7.5C16 4 14.5 2 12 2c-1 0-2 .5-2.5 1.5C9 2.5 8 2 7 2z"/></svg>
+          </div>
+          <h3 data-i18n="spec_dental_title">Dental Care</h3>
+          <p data-i18n="spec_dental_desc">Complete dental care focused on healthy teeth, comfortable treatment and confident smiles.</p>
+          <div class="spec-card-tags">
+            <span class="spec-tag" data-i18n="spec_dental_tag_1">Root Canal Treatment</span>
+            <span class="spec-tag" data-i18n="spec_dental_tag_2">Dental Fillings</span>
+            <span class="spec-tag" data-i18n="spec_dental_tag_3">Scaling & Cleaning</span>
+            <span class="spec-tag" data-i18n="spec_dental_tag_4">Crowns & Fixed Teeth</span>
+            <span class="spec-tag" data-i18n="spec_dental_tag_5">Dentures</span>
+            <span class="spec-tag" data-i18n="spec_dental_tag_6">Orthodontic Care</span>
+            <span class="spec-tag" data-i18n="spec_dental_tag_7">Dental X-Ray</span>
+            <span class="spec-tag" data-i18n="spec_dental_tag_8">Oral Care</span>
+          </div>
+          <a href="#dental" class="spec-card-link"><span data-i18n="spec_dental_link">Explore Dental Care</span> <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <!-- 3. Skin Card (Third) -->
       <div class="spec-card skin reveal reveal-delay-3">
         <div class="spec-card-image">
           <img src="img/specialities/skin.webp" alt="Dermatology consultation" loading="lazy">
@@ -295,21 +349,21 @@
           <div class="spec-card-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61"/><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
           </div>
-          <h3>Skin & Dermatology</h3>
-          <p>Professional care for common skin, allergy, hair, nail and pigmentation concerns.</p>
+          <h3 data-i18n="spec_skin_title">Skin & Dermatology</h3>
+          <p data-i18n="spec_skin_desc">Professional care for common skin, allergy, hair, nail and pigmentation concerns.</p>
           <div class="spec-card-tags">
-            <span class="spec-tag">Acne</span>
-            <span class="spec-tag">Skin Allergy</span>
-            <span class="spec-tag">Psoriasis</span>
-            <span class="spec-tag">Eczema</span>
-            <span class="spec-tag">Itching & Rashes</span>
-            <span class="spec-tag">Fungal / Ringworm</span>
-            <span class="spec-tag">Pigmentation</span>
-            <span class="spec-tag">Hair Fall</span>
-            <span class="spec-tag">Vitiligo</span>
-            <span class="spec-tag">Nail Problems</span>
+            <span class="spec-tag" data-i18n="spec_skin_tag_1">Acne</span>
+            <span class="spec-tag" data-i18n="spec_skin_tag_2">Skin Allergy</span>
+            <span class="spec-tag" data-i18n="spec_skin_tag_3">Psoriasis</span>
+            <span class="spec-tag" data-i18n="spec_skin_tag_4">Eczema</span>
+            <span class="spec-tag" data-i18n="spec_skin_tag_5">Itching & Rashes</span>
+            <span class="spec-tag" data-i18n="spec_skin_tag_6">Fungal / Ringworm</span>
+            <span class="spec-tag" data-i18n="spec_skin_tag_7">Pigmentation</span>
+            <span class="spec-tag" data-i18n="spec_skin_tag_8">Hair Fall</span>
+            <span class="spec-tag" data-i18n="spec_skin_tag_9">Vitiligo</span>
+            <span class="spec-tag" data-i18n="spec_skin_tag_10">Nail Problems</span>
           </div>
-          <a href="#skin" class="spec-card-link">Explore Skin Care <span class="arrow">→</span></a>
+          <a href="#skin" class="spec-card-link"><span data-i18n="spec_skin_link">Explore Skin Care</span> <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -335,43 +389,43 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
           <div>
-            <div class="afb-title">Patient-First Care</div>
-            <div class="afb-sub">Hanumangarh Junction</div>
+            <div class="afb-title" data-i18n="about_badge_title">Patient-First Care</div>
+            <div class="afb-sub" data-i18n="about_badge_sub">Hanumangarh Junction</div>
           </div>
         </div>
       </div>
       <div class="about-content reveal reveal-delay-1">
-        <div class="section-label"><span class="dot"></span> About Us</div>
-        <h2>Compassionate Care with Clinical Expertise</h2>
-        <p>Agarwal Hospital is committed to delivering quality healthcare with a focus on patient well-being. Our experienced team combines clinical expertise with compassionate care across Dental, Acupuncture and Skin & Dermatology services.</p>
-        <p>Driven by the vision of becoming a regional leader in integrated healthcare delivery, we bring together the finest medical skills with genuine patient care — enriching lives through clinical excellence and personalized attention.</p>
+        <div class="section-label"><span class="dot"></span> <span data-i18n="about_badge">About Us</span></div>
+        <h2 data-i18n="about_title">Compassionate Care with Clinical Expertise</h2>
+        <p data-i18n="about_desc_1">Agarwal Hospital is committed to delivering quality healthcare with a focus on patient well-being. Our experienced team combines clinical expertise with compassionate care across Acupuncture, Dental and Skin & Dermatology services.</p>
+        <p data-i18n="about_desc_2">Driven by the vision of becoming a regional leader in integrated healthcare delivery, we bring together the finest medical skills with genuine patient care — enriching lives through clinical excellence and personalized attention.</p>
         <div class="about-values">
           <div class="about-value">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Patient-Centric Care
+            <span data-i18n="about_val_1">Patient-Centric Care</span>
           </div>
           <div class="about-value">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Personalized Attention
+            <span data-i18n="about_val_2">Personalized Attention</span>
           </div>
           <div class="about-value">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Clinical Excellence
+            <span data-i18n="about_val_3">Clinical Excellence</span>
           </div>
           <div class="about-value">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Integrity & Teamwork
+            <span data-i18n="about_val_4">Integrity & Teamwork</span>
           </div>
           <div class="about-value">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Innovation
+            <span data-i18n="about_val_5">Innovation</span>
           </div>
           <div class="about-value">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Compassionate Service
+            <span data-i18n="about_val_6">Compassionate Service</span>
           </div>
         </div>
-        <a href="#contact" class="btn btn-primary">Know More About Us</a>
+        <a href="#contact" class="btn btn-primary" data-i18n="btn_know_more">Know More About Us</a>
       </div>
     </div>
   </div>
@@ -384,9 +438,9 @@
 <section class="section section-alt" id="why-choose-us" aria-label="Why Choose Us">
   <div class="container">
     <div class="section-heading reveal">
-      <div class="section-label"><span class="dot"></span> Why Us</div>
-      <h2>Why Patients Choose Us</h2>
-      <p>Healthcare built on trust, expertise and genuine care.</p>
+      <div class="section-label"><span class="dot"></span> <span data-i18n="why_badge">Why Us</span></div>
+      <h2 data-i18n="why_title">Why Patients Choose Us</h2>
+      <p data-i18n="why_subtitle">Healthcare built on trust, expertise and genuine care.</p>
     </div>
 
     <div class="why-grid">
@@ -394,43 +448,43 @@
         <div class="why-card-icon">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3>Experienced Specialists</h3>
-        <p>Qualified doctors with specialized training in their fields of practice.</p>
+        <h3 data-i18n="why_c1_title">Experienced Specialists</h3>
+        <p data-i18n="why_c1_desc">Qualified doctors with specialized training in their fields of practice.</p>
       </div>
       <div class="why-card reveal reveal-delay-2">
         <div class="why-card-icon">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </div>
-        <h3>Personalized Treatment</h3>
-        <p>Treatment plans tailored to individual patient needs and health goals.</p>
+        <h3 data-i18n="why_c2_title">Personalized Treatment</h3>
+        <p data-i18n="why_c2_desc">Treatment plans tailored to individual patient needs and health goals.</p>
       </div>
       <div class="why-card reveal reveal-delay-3">
         <div class="why-card-icon">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h3>Patient-Centred Care</h3>
-        <p>Your comfort and well-being are at the heart of everything we do.</p>
+        <h3 data-i18n="why_c3_title">Patient-Centred Care</h3>
+        <p data-i18n="why_c3_desc">Your comfort and well-being are at the heart of everything we do.</p>
       </div>
       <div class="why-card reveal reveal-delay-1">
         <div class="why-card-icon">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         </div>
-        <h3>Multiple Specialities</h3>
-        <p>Dental, Acupuncture and Skin & Dermatology care under one roof.</p>
+        <h3 data-i18n="why_c4_title">Multiple Specialities</h3>
+        <p data-i18n="why_c4_desc">Acupuncture, Dental and Skin & Dermatology care under one roof.</p>
       </div>
       <div class="why-card reveal reveal-delay-2">
         <div class="why-card-icon">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h3>Professional Environment</h3>
-        <p>A clean, welcoming clinical setting designed for patient comfort.</p>
+        <h3 data-i18n="why_c5_title">Professional Environment</h3>
+        <p data-i18n="why_c5_desc">A clean, welcoming clinical setting designed for patient comfort.</p>
       </div>
       <div class="why-card reveal reveal-delay-3">
         <div class="why-card-icon">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-        <h3>Convenient Appointments</h3>
-        <p>Easy appointment booking via phone, WhatsApp or in-person visit.</p>
+        <h3 data-i18n="why_c6_title">Convenient Appointments</h3>
+        <p data-i18n="why_c6_desc">Easy appointment booking via phone, WhatsApp or in-person visit.</p>
       </div>
     </div>
   </div>
@@ -438,111 +492,7 @@
 
 
 <!-- ============================================
-     DENTAL SECTION
-     ============================================ -->
-<section class="section dental-section" id="dental" aria-label="Dental Care Services">
-  <div class="container">
-    <div class="dental-header">
-      <div class="dental-header-text reveal">
-        <div class="section-label" style="color: var(--accent-dental);"><span class="dot" style="background: var(--accent-dental);"></span> Dental Care</div>
-        <h2>Dental Care for Healthy Smiles</h2>
-        <p>From routine check-ups to advanced dental procedures, Agarwal Hospital provides a full range of dental services. Our dental specialist, Dr. Deepak Agarwal (B.D.S., MIDA, D.Ac.), brings expertise and gentle care to every treatment.</p>
-        <a href="#appointment" class="btn btn-primary" style="background: var(--accent-dental); border-color: var(--accent-dental);">Book Dental Appointment</a>
-      </div>
-      <div class="dental-header-image-wrapper reveal reveal-delay-1">
-        <div class="dental-image-shape"></div>
-        <div class="dental-header-image">
-          <img src="img/specialities/dental-clinic.webp" alt="Modern dental clinic at Agarwal Hospital" loading="lazy">
-        </div>
-        <div class="speciality-floating-chip chip-dental">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Modern Dental Suite</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="dental-categories">
-      <div class="dental-cat-card reveal reveal-delay-1">
-        <h3>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Preventive Dental Care
-        </h3>
-        <ul>
-          <li>Dental Check-up</li>
-          <li>Scaling / Ultrasonic Cleaning</li>
-          <li>Fluoride-related Care</li>
-          <li>Oral Hygiene Guidance</li>
-          <li>Gum Care & Bleeding Treatment</li>
-        </ul>
-      </div>
-
-      <div class="dental-cat-card reveal reveal-delay-2">
-        <h3>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          Restorative Dentistry
-        </h3>
-        <ul>
-          <li>Dental Fillings (Silver & Tooth-coloured)</li>
-          <li>Root Canal Treatment (RCT)</li>
-          <li>Crowns (Metal & Tooth-coloured)</li>
-          <li>Light Cure Restoration</li>
-          <li>Fixed Teeth</li>
-        </ul>
-      </div>
-
-      <div class="dental-cat-card reveal reveal-delay-3">
-        <h3>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          Orthodontic & Alignment
-        </h3>
-        <ul>
-          <li>Teeth Straightening</li>
-          <li>Orthodontic Treatment (Fixed wiring)</li>
-          <li>Night Grinding Plate</li>
-        </ul>
-      </div>
-
-      <div class="dental-cat-card reveal reveal-delay-1">
-        <h3>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          Prosthetic Care
-        </h3>
-        <ul>
-          <li>Complete Dentures</li>
-          <li>Partial Dentures</li>
-          <li>Fixed Tooth Replacement</li>
-        </ul>
-      </div>
-
-      <div class="dental-cat-card reveal reveal-delay-2">
-        <h3>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          Oral & Surgical Care
-        </h3>
-        <ul>
-          <li>Dental Cyst Removal</li>
-          <li>Jaw Fracture Treatment</li>
-          <li>Mouth Opening Problems</li>
-        </ul>
-      </div>
-
-      <div class="dental-cat-card reveal reveal-delay-3">
-        <h3>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg>
-          Diagnostics
-        </h3>
-        <ul>
-          <li>Dental X-Ray</li>
-          <li>Oral Examination</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================
-     ACUPUNCTURE SECTION
+     1. ACUPUNCTURE SECTION (FIRST)
      ============================================ -->
 <section class="section acupuncture-section" id="acupuncture" aria-label="Acupuncture Services">
   <div class="container">
@@ -554,56 +504,56 @@
         </div>
         <div class="speciality-floating-chip chip-acu">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          <span>Holistic Wellness Therapy</span>
+          <span data-i18n="acu_chip">Holistic Wellness Therapy</span>
         </div>
       </div>
       <div class="acu-content reveal reveal-delay-1">
-        <div class="section-label" style="color: var(--accent-acupuncture);"><span class="dot" style="background: var(--accent-acupuncture);"></span> Acupuncture</div>
-        <h2>Acupuncture & Personalized Wellness Care</h2>
-        <p>At Agarwal Hospital, acupuncture is practised by Dr. S.K. Agarwal (MBBS, M.D. Ac.M., D.Ac., M.I.Ac.S., M.Ac.F.) — a qualified specialist combining modern medical knowledge with traditional acupuncture practice. Each treatment plan is tailored to the individual patient's condition and health goals.</p>
+        <div class="section-label" style="color: var(--accent-acupuncture);"><span class="dot" style="background: var(--accent-acupuncture);"></span> <span data-i18n="acu_badge">Acupuncture</span></div>
+        <h2 data-i18n="acu_title">Acupuncture & Personalized Wellness Care</h2>
+        <p data-i18n="acu_desc">At Agarwal Hospital, acupuncture is practised by Dr. S.K. Agarwal (MBBS, M.D. Ac.M., D.Ac., M.I.Ac.S., M.Ac.F.) — a qualified specialist combining modern medical knowledge with traditional acupuncture practice. Each treatment plan is tailored to the individual patient's condition and health goals.</p>
 
         <div class="acu-category">
           <h3>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"/><path d="M2 20h20"/><path d="M14 12H10"/></svg>
-            Pain & Musculoskeletal Concerns
+            <span data-i18n="acu_cat_1">Pain & Musculoskeletal Concerns</span>
           </h3>
           <div class="acu-conditions">
-            <span class="acu-tag">Back Pain / Slip Disc</span>
-            <span class="acu-tag">Sciatica</span>
-            <span class="acu-tag">Knee Pain</span>
-            <span class="acu-tag">Joint Pain / Arthritis</span>
-            <span class="acu-tag">Shoulder Pain</span>
-            <span class="acu-tag">Tennis Elbow</span>
-            <span class="acu-tag">Heel Pain</span>
-            <span class="acu-tag">Cervical Spondylitis</span>
-            <span class="acu-tag">Numbness in Hands/Feet</span>
+            <span class="acu-tag" data-i18n="acu_c1_tag_1">Back Pain / Slip Disc</span>
+            <span class="acu-tag" data-i18n="acu_c1_tag_2">Sciatica</span>
+            <span class="acu-tag" data-i18n="acu_c1_tag_3">Knee Pain</span>
+            <span class="acu-tag" data-i18n="acu_c1_tag_4">Joint Pain / Arthritis</span>
+            <span class="acu-tag" data-i18n="acu_c1_tag_5">Shoulder Pain</span>
+            <span class="acu-tag" data-i18n="acu_c1_tag_6">Tennis Elbow</span>
+            <span class="acu-tag" data-i18n="acu_c1_tag_7">Heel Pain</span>
+            <span class="acu-tag" data-i18n="acu_c1_tag_8">Cervical Spondylitis</span>
+            <span class="acu-tag" data-i18n="acu_c1_tag_9">Numbness in Hands/Feet</span>
           </div>
         </div>
 
         <div class="acu-category">
           <h3>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-            Headache & Wellness
+            <span data-i18n="acu_cat_2">Headache & Wellness</span>
           </h3>
           <div class="acu-conditions">
-            <span class="acu-tag">Migraine</span>
-            <span class="acu-tag">Stress</span>
-            <span class="acu-tag">Insomnia / Sleep Problems</span>
-            <span class="acu-tag">Vertigo</span>
+            <span class="acu-tag" data-i18n="acu_c2_tag_1">Migraine</span>
+            <span class="acu-tag" data-i18n="acu_c2_tag_2">Stress</span>
+            <span class="acu-tag" data-i18n="acu_c2_tag_3">Insomnia / Sleep Problems</span>
+            <span class="acu-tag" data-i18n="acu_c2_tag_4">Vertigo</span>
           </div>
         </div>
 
         <div class="acu-category">
           <h3>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            Neurological & Other Conditions
+            <span data-i18n="acu_cat_3">Neurological & Other Conditions</span>
           </h3>
           <div class="acu-conditions">
-            <span class="acu-tag">Epilepsy / Seizures</span>
-            <span class="acu-tag">Facial Nerve Pain</span>
-            <span class="acu-tag">Paralysis</span>
-            <span class="acu-tag">Cerebral Palsy</span>
-            <span class="acu-tag">Asthma</span>
+            <span class="acu-tag" data-i18n="acu_c3_tag_1">Epilepsy / Seizures</span>
+            <span class="acu-tag" data-i18n="acu_c3_tag_2">Facial Nerve Pain</span>
+            <span class="acu-tag" data-i18n="acu_c3_tag_3">Paralysis</span>
+            <span class="acu-tag" data-i18n="acu_c3_tag_4">Cerebral Palsy</span>
+            <span class="acu-tag" data-i18n="acu_c3_tag_5">Asthma</span>
           </div>
         </div>
       </div>
@@ -612,50 +562,154 @@
     <!-- Treatment Journey -->
     <div class="reveal">
       <div class="section-heading" style="margin-bottom: var(--space-10);">
-        <h3 style="font-size: var(--font-size-2xl);">How the Treatment Journey Works</h3>
+        <h3 style="font-size: var(--font-size-2xl);" data-i18n="acu_journey_title">How the Treatment Journey Works</h3>
       </div>
       <div class="journey-steps">
         <div class="journey-step reveal reveal-delay-1">
           <div class="journey-step-num">01</div>
-          <h4>Consultation & Assessment</h4>
+          <h4 data-i18n="acu_step_1">Consultation & Assessment</h4>
         </div>
         <div class="journey-step reveal reveal-delay-2">
           <div class="journey-step-num">02</div>
-          <h4>Personalized Treatment Planning</h4>
+          <h4 data-i18n="acu_step_2">Personalized Treatment Planning</h4>
         </div>
         <div class="journey-step reveal reveal-delay-3">
           <div class="journey-step-num">03</div>
-          <h4>Acupuncture Session</h4>
+          <h4 data-i18n="acu_step_3">Acupuncture Session</h4>
         </div>
         <div class="journey-step reveal reveal-delay-4">
           <div class="journey-step-num">04</div>
-          <h4>Follow-up & Care</h4>
+          <h4 data-i18n="acu_step_4">Follow-up & Care</h4>
         </div>
       </div>
     </div>
 
-    <div class="medical-disclaimer reveal">
+    <div class="medical-disclaimer reveal" data-i18n="acu_disclaimer">
       Treatment suitability varies by individual. Outcomes depend on multiple factors including the nature and duration of the condition. Please consult a qualified practitioner for proper assessment before beginning any treatment.
     </div>
 
     <div style="text-align: center;" class="reveal">
-      <a href="#appointment" class="btn btn-primary" style="background: var(--accent-acupuncture); border-color: var(--accent-acupuncture);">Book Acupuncture Consultation</a>
+      <a href="#appointment" class="btn btn-primary" style="background: var(--accent-acupuncture); border-color: var(--accent-acupuncture);" data-i18n="btn_book_acu">Book Acupuncture Consultation</a>
     </div>
   </div>
 </section>
 
 
 <!-- ============================================
-     SKIN & DERMATOLOGY SECTION
+     2. DENTAL SECTION (SECOND)
+     ============================================ -->
+<section class="section dental-section" id="dental" aria-label="Dental Care Services">
+  <div class="container">
+    <div class="dental-header">
+      <div class="dental-header-text reveal">
+        <div class="section-label" style="color: var(--accent-dental);"><span class="dot" style="background: var(--accent-dental);"></span> <span data-i18n="dental_badge">Dental Care</span></div>
+        <h2 data-i18n="dental_title">Dental Care for Healthy Smiles</h2>
+        <p data-i18n="dental_desc">From routine check-ups to advanced dental procedures, Agarwal Hospital provides a full range of dental services. Our dental specialist, Dr. Deepak Agarwal (B.D.S., MIDA, D.Ac.), brings expertise and gentle care to every treatment.</p>
+        <a href="#appointment" class="btn btn-primary" style="background: var(--accent-dental); border-color: var(--accent-dental);" data-i18n="btn_book_dental">Book Dental Appointment</a>
+      </div>
+      <div class="dental-header-image-wrapper reveal reveal-delay-1">
+        <div class="dental-image-shape"></div>
+        <div class="dental-header-image">
+          <img src="img/specialities/dental-clinic.webp" alt="Modern dental clinic at Agarwal Hospital" loading="lazy">
+        </div>
+        <div class="speciality-floating-chip chip-dental">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span data-i18n="dental_chip">Modern Dental Suite</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dental-categories">
+      <div class="dental-cat-card reveal reveal-delay-1">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span data-i18n="dental_cat_1_title">Preventive Dental Care</span>
+        </h3>
+        <ul>
+          <li data-i18n="dental_c1_item_1">Dental Check-up</li>
+          <li data-i18n="dental_c1_item_2">Scaling / Ultrasonic Cleaning</li>
+          <li data-i18n="dental_c1_item_3">Fluoride-related Care</li>
+          <li data-i18n="dental_c1_item_4">Oral Hygiene Guidance</li>
+          <li data-i18n="dental_c1_item_5">Gum Care & Bleeding Treatment</li>
+        </ul>
+      </div>
+
+      <div class="dental-cat-card reveal reveal-delay-2">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <span data-i18n="dental_cat_2_title">Restorative Dentistry</span>
+        </h3>
+        <ul>
+          <li data-i18n="dental_c2_item_1">Dental Fillings (Silver & Tooth-coloured)</li>
+          <li data-i18n="dental_c2_item_2">Root Canal Treatment (RCT)</li>
+          <li data-i18n="dental_c2_item_3">Crowns (Metal & Tooth-coloured)</li>
+          <li data-i18n="dental_c2_item_4">Light Cure Restoration</li>
+          <li data-i18n="dental_c2_item_5">Fixed Teeth</li>
+        </ul>
+      </div>
+
+      <div class="dental-cat-card reveal reveal-delay-3">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span data-i18n="dental_cat_3_title">Orthodontic & Alignment</span>
+        </h3>
+        <ul>
+          <li data-i18n="dental_c3_item_1">Teeth Straightening</li>
+          <li data-i18n="dental_c3_item_2">Orthodontic Treatment (Fixed wiring)</li>
+          <li data-i18n="dental_c3_item_3">Night Grinding Plate</li>
+        </ul>
+      </div>
+
+      <div class="dental-cat-card reveal reveal-delay-1">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span data-i18n="dental_cat_4_title">Prosthetic Care</span>
+        </h3>
+        <ul>
+          <li data-i18n="dental_c4_item_1">Complete Dentures</li>
+          <li data-i18n="dental_c4_item_2">Partial Dentures</li>
+          <li data-i18n="dental_c4_item_3">Fixed Tooth Replacement</li>
+        </ul>
+      </div>
+
+      <div class="dental-cat-card reveal reveal-delay-2">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span data-i18n="dental_cat_5_title">Oral & Surgical Care</span>
+        </h3>
+        <ul>
+          <li data-i18n="dental_c5_item_1">Dental Cyst Removal</li>
+          <li data-i18n="dental_c5_item_2">Jaw Fracture Treatment</li>
+          <li data-i18n="dental_c5_item_3">Mouth Opening Problems</li>
+        </ul>
+      </div>
+
+      <div class="dental-cat-card reveal reveal-delay-3">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg>
+          <span data-i18n="dental_cat_6_title">Diagnostics</span>
+        </h3>
+        <ul>
+          <li data-i18n="dental_c6_item_1">Dental X-Ray</li>
+          <li data-i18n="dental_c6_item_2">Oral Examination</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     3. SKIN & DERMATOLOGY SECTION (THIRD)
      ============================================ -->
 <section class="section skin-section" id="skin" aria-label="Skin and Dermatology Services">
   <div class="container">
     <div class="skin-header">
       <div class="skin-header-text reveal">
-        <div class="section-label" style="color: var(--accent-skin);"><span class="dot" style="background: var(--accent-skin);"></span> Skin & Dermatology</div>
-        <h2>Healthy Skin Starts with Expert Care</h2>
-        <p>Professional care for skin, allergy, hair, nail and pigmentation concerns. Dr. S.K. Agarwal (MBBS, M.D.) brings clinical expertise and a patient-first approach to dermatological care at Agarwal Hospital.</p>
-        <a href="#appointment" class="btn btn-primary" style="background: var(--accent-skin); border-color: var(--accent-skin);">Consult Our Specialist</a>
+        <div class="section-label" style="color: var(--accent-skin);"><span class="dot" style="background: var(--accent-skin);"></span> <span data-i18n="skin_badge">Skin & Dermatology</span></div>
+        <h2 data-i18n="skin_title">Healthy Skin Starts with Expert Care</h2>
+        <p data-i18n="skin_desc">Professional care for skin, allergy, hair, nail and pigmentation concerns. Dr. S.K. Agarwal (MBBS, M.D.) brings clinical expertise and a patient-first approach to dermatological care at Agarwal Hospital.</p>
+        <a href="#appointment" class="btn btn-primary" style="background: var(--accent-skin); border-color: var(--accent-skin);" data-i18n="btn_consult_skin">Consult Our Specialist</a>
       </div>
       <div class="skin-header-image-wrapper reveal reveal-delay-1">
         <div class="skin-image-shape"></div>
@@ -664,7 +718,7 @@
         </div>
         <div class="speciality-floating-chip chip-skin">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61"/><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
-          <span>Dermatology Specialist</span>
+          <span data-i18n="skin_chip">Dermatology Specialist</span>
         </div>
       </div>
     </div>
@@ -674,61 +728,61 @@
         <div class="sc-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
         </div>
-        <h3>Acne & Pimples</h3>
+        <h3 data-i18n="skin_cond_1">Acne & Pimples</h3>
       </div>
       <div class="skin-condition-card reveal reveal-delay-2">
         <div class="sc-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h3>Skin Allergy</h3>
+        <h3 data-i18n="skin_cond_2">Skin Allergy</h3>
       </div>
       <div class="skin-condition-card reveal reveal-delay-3">
         <div class="sc-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
         </div>
-        <h3>Psoriasis</h3>
+        <h3 data-i18n="skin_cond_3">Psoriasis</h3>
       </div>
       <div class="skin-condition-card reveal reveal-delay-4">
         <div class="sc-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
         </div>
-        <h3>Eczema</h3>
+        <h3 data-i18n="skin_cond_4">Eczema</h3>
       </div>
       <div class="skin-condition-card reveal reveal-delay-5">
         <div class="sc-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
-        <h3>Itching & Rashes</h3>
+        <h3 data-i18n="skin_cond_5">Itching & Rashes</h3>
       </div>
       <div class="skin-condition-card reveal reveal-delay-1">
         <div class="sc-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
         </div>
-        <h3>Fungal / Ringworm</h3>
+        <h3 data-i18n="skin_cond_6">Fungal / Ringworm</h3>
       </div>
       <div class="skin-condition-card reveal reveal-delay-2">
         <div class="sc-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
         </div>
-        <h3>Pigmentation</h3>
+        <h3 data-i18n="skin_cond_7">Pigmentation</h3>
       </div>
       <div class="skin-condition-card reveal reveal-delay-3">
         <div class="sc-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 0 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-1 0-.83.67-1.5 1.5-1.5H16a5 5 0 0 0 5-5c0-4.42-4.03-8-9-8z"/></svg>
         </div>
-        <h3>Vitiligo / White Patches</h3>
+        <h3 data-i18n="skin_cond_8">Vitiligo / White Patches</h3>
       </div>
       <div class="skin-condition-card reveal reveal-delay-4">
         <div class="sc-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
-        <h3>Hair Fall & Baldness</h3>
+        <h3 data-i18n="skin_cond_9">Hair Fall & Baldness</h3>
       </div>
       <div class="skin-condition-card reveal reveal-delay-5">
         <div class="sc-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
         </div>
-        <h3>Nail Problems</h3>
+        <h3 data-i18n="skin_cond_10">Nail Problems</h3>
       </div>
     </div>
   </div>
@@ -741,9 +795,9 @@
 <section class="section section-alt" id="doctors" aria-label="Our Doctors">
   <div class="container">
     <div class="section-heading reveal">
-      <div class="section-label"><span class="dot"></span> Our Team</div>
-      <h2>Meet Our Specialists</h2>
-      <p>Experienced professionals dedicated to your health and well-being.</p>
+      <div class="section-label"><span class="dot"></span> <span data-i18n="doc_badge">Our Team</span></div>
+      <h2 data-i18n="doc_title">Meet Our Specialists</h2>
+      <p data-i18n="doc_subtitle">Experienced professionals dedicated to your health and well-being.</p>
     </div>
 
     <div class="doctors-grid">
@@ -756,12 +810,12 @@
           </div>
           <div class="doctor-badge-chip">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            Specialist
+            <span data-i18n="doc_chip">Specialist</span>
           </div>
         </div>
         <div class="doctor-info">
           <h3>Dr. S.K. Agarwal</h3>
-          <p class="doctor-specialization">Skin, Allergy & Acupuncture Specialist</p>
+          <p class="doctor-specialization" data-i18n="doc1_spec">Skin, Allergy & Acupuncture Specialist</p>
           <div class="doctor-qualifications">
             <span>MBBS</span>
             <span>M.D. (Ac.M.)</span>
@@ -769,8 +823,8 @@
             <span>M.I.Ac.S. (Hongkong)</span>
             <span>M.Ac.F. (Sri Lanka)</span>
           </div>
-          <p class="doctor-intro">Dr. S.K. Agarwal brings a unique combination of allopathic medical training and specialized acupuncture expertise. He provides comprehensive care for skin diseases, allergies and pain management through acupuncture.</p>
-          <a href="#appointment" class="btn btn-primary btn-sm">Book Appointment</a>
+          <p class="doctor-intro" data-i18n="doc1_intro">Dr. S.K. Agarwal brings a unique combination of allopathic medical training and specialized acupuncture expertise. He provides comprehensive care for skin diseases, allergies and pain management through acupuncture.</p>
+          <a href="#appointment" class="btn btn-primary btn-sm" data-i18n="btn_book_appointment">Book Appointment</a>
         </div>
       </div>
 
@@ -783,19 +837,19 @@
           </div>
           <div class="doctor-badge-chip">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            Specialist
+            <span data-i18n="doc_chip">Specialist</span>
           </div>
         </div>
         <div class="doctor-info">
           <h3>Dr. Deepak Agarwal</h3>
-          <p class="doctor-specialization">Dental & Acupuncture Specialist</p>
+          <p class="doctor-specialization" data-i18n="doc2_spec">Dental & Acupuncture Specialist</p>
           <div class="doctor-qualifications">
             <span>B.D.S.</span>
             <span>MIDA</span>
             <span>D.Ac.</span>
           </div>
-          <p class="doctor-intro">Dr. Deepak Agarwal is a qualified dental surgeon with additional training in acupuncture. He provides complete dental care ranging from preventive to restorative and orthodontic treatments.</p>
-          <a href="#appointment" class="btn btn-primary btn-sm">Book Appointment</a>
+          <p class="doctor-intro" data-i18n="doc2_intro">Dr. Deepak Agarwal is a qualified dental surgeon with additional training in acupuncture. He provides complete dental care ranging from preventive to restorative and orthodontic treatments.</p>
+          <a href="#appointment" class="btn btn-primary btn-sm" data-i18n="btn_book_appointment">Book Appointment</a>
         </div>
       </div>
     </div>
@@ -809,35 +863,35 @@
 <section class="section patient-journey" aria-label="Patient Journey">
   <div class="container">
     <div class="section-heading reveal">
-      <h2>Your Care Journey</h2>
-      <p>From your first call to follow-up care — a seamless healthcare experience.</p>
+      <h2 data-i18n="pj_title">Your Care Journey</h2>
+      <p data-i18n="pj_subtitle">From your first call to follow-up care — a seamless healthcare experience.</p>
     </div>
 
     <div class="pj-steps">
       <div class="pj-step reveal reveal-delay-1">
         <div class="pj-step-num">01</div>
-        <h3>Book Appointment</h3>
-        <p>Call, WhatsApp or visit</p>
+        <h3 data-i18n="pj_s1_title">Book Appointment</h3>
+        <p data-i18n="pj_s1_desc">Call, WhatsApp or visit</p>
       </div>
       <div class="pj-step reveal reveal-delay-2">
         <div class="pj-step-num">02</div>
-        <h3>Consultation</h3>
-        <p>Meet your specialist</p>
+        <h3 data-i18n="pj_s2_title">Consultation</h3>
+        <p data-i18n="pj_s2_desc">Meet your specialist</p>
       </div>
       <div class="pj-step reveal reveal-delay-3">
         <div class="pj-step-num">03</div>
-        <h3>Assessment</h3>
-        <p>Diagnosis & evaluation</p>
+        <h3 data-i18n="pj_s3_title">Assessment</h3>
+        <p data-i18n="pj_s3_desc">Diagnosis & evaluation</p>
       </div>
       <div class="pj-step reveal reveal-delay-4">
         <div class="pj-step-num">04</div>
-        <h3>Treatment</h3>
-        <p>Personalized care plan</p>
+        <h3 data-i18n="pj_s4_title">Treatment</h3>
+        <p data-i18n="pj_s4_desc">Personalized care plan</p>
       </div>
       <div class="pj-step reveal reveal-delay-5">
         <div class="pj-step-num">05</div>
-        <h3>Follow-up</h3>
-        <p>Continued support</p>
+        <h3 data-i18n="pj_s5_title">Follow-up</h3>
+        <p data-i18n="pj_s5_desc">Continued support</p>
       </div>
     </div>
   </div>
@@ -851,66 +905,66 @@
   <div class="container">
     <div class="appointment-grid">
       <div class="appointment-text reveal">
-        <h2>Ready to Talk to a Specialist?</h2>
-        <p>Book your consultation and take the next step toward better healthcare. Our team is here to help you with dental, acupuncture or skin concerns.</p>
+        <h2 data-i18n="apt_title">Ready to Talk to a Specialist?</h2>
+        <p data-i18n="apt_desc">Book your consultation and take the next step toward better healthcare. Our team is here to help you with acupuncture, dental or skin concerns.</p>
         <div class="appointment-actions">
           <a href="tel:+919460266901" class="btn btn-white">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Call Now
+            <span data-i18n="btn_call">Call Now</span>
           </a>
           <a href="https://wa.me/919460266901?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="btn btn-whatsapp">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            WhatsApp Us
+            <span data-i18n="btn_whatsapp">WhatsApp Us</span>
           </a>
         </div>
       </div>
 
       <div class="appointment-form reveal reveal-delay-1">
-        <h3>Book Your Appointment</h3>
+        <h3 data-i18n="apt_form_title">Book Your Appointment</h3>
         <form id="appointmentForm" novalidate>
           <div class="form-grid">
             <div class="form-group">
-              <label for="apt-name">Full Name *</label>
-              <input type="text" id="apt-name" name="name" placeholder="Your full name" required>
-              <span class="form-error" id="apt-name-error">Please enter your name</span>
+              <label for="apt-name" data-i18n="apt_label_name">Full Name *</label>
+              <input type="text" id="apt-name" name="name" placeholder="Your full name" data-i18n-placeholder="apt_ph_name" required>
+              <span class="form-error" id="apt-name-error" data-i18n="apt_err_name">Please enter your name</span>
             </div>
             <div class="form-group">
-              <label for="apt-phone">Phone Number *</label>
-              <input type="tel" id="apt-phone" name="phone" placeholder="Your phone number" required>
-              <span class="form-error" id="apt-phone-error">Please enter a valid phone number</span>
+              <label for="apt-phone" data-i18n="apt_label_phone">Phone Number *</label>
+              <input type="tel" id="apt-phone" name="phone" placeholder="Your phone number" data-i18n-placeholder="apt_ph_phone" required>
+              <span class="form-error" id="apt-phone-error" data-i18n="apt_err_phone">Please enter a valid phone number</span>
             </div>
             <div class="form-group">
-              <label for="apt-email">Email</label>
-              <input type="email" id="apt-email" name="email" placeholder="Your email address">
+              <label for="apt-email" data-i18n="apt_label_email">Email</label>
+              <input type="email" id="apt-email" name="email" placeholder="Your email address" data-i18n-placeholder="apt_ph_email">
             </div>
             <div class="form-group">
-              <label for="apt-speciality">Select Speciality *</label>
+              <label for="apt-speciality" data-i18n="apt_label_speciality">Select Speciality *</label>
               <select id="apt-speciality" name="speciality" required>
-                <option value="">Choose speciality</option>
-                <option value="dental">Dental Care</option>
-                <option value="acupuncture">Acupuncture</option>
-                <option value="skin">Skin & Dermatology</option>
+                <option value="" data-i18n="apt_opt_speciality">Choose speciality</option>
+                <option value="acupuncture" data-i18n="apt_opt_acu">Acupuncture</option>
+                <option value="dental" data-i18n="apt_opt_dental">Dental Care</option>
+                <option value="skin" data-i18n="apt_opt_skin">Skin & Dermatology</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="apt-date">Preferred Date</label>
+              <label for="apt-date" data-i18n="apt_label_date">Preferred Date</label>
               <input type="date" id="apt-date" name="date">
             </div>
             <div class="form-group">
-              <label for="apt-time">Preferred Time</label>
+              <label for="apt-time" data-i18n="apt_label_time">Preferred Time</label>
               <select id="apt-time" name="time">
-                <option value="">Choose time</option>
-                <option value="morning">Morning (9 AM – 1 PM)</option>
-                <option value="afternoon">Afternoon (3 PM – 7 PM)</option>
+                <option value="" data-i18n="apt_opt_time">Choose time</option>
+                <option value="morning" data-i18n="apt_opt_morning">Morning (9 AM – 1 PM)</option>
+                <option value="afternoon" data-i18n="apt_opt_afternoon">Afternoon (3 PM – 7 PM)</option>
               </select>
             </div>
             <div class="form-group full-width">
-              <label for="apt-message">Message</label>
-              <textarea id="apt-message" name="message" placeholder="Briefly describe your concern..." rows="3"></textarea>
+              <label for="apt-message" data-i18n="apt_label_message">Message</label>
+              <textarea id="apt-message" name="message" placeholder="Briefly describe your concern..." data-i18n-placeholder="apt_ph_message" rows="3"></textarea>
             </div>
           </div>
           <div class="form-submit">
-            <button type="submit" class="btn btn-primary btn-lg">Request Appointment</button>
+            <button type="submit" class="btn btn-primary btn-lg" data-i18n="btn_request_appointment">Request Appointment</button>
           </div>
         </form>
       </div>
@@ -925,16 +979,16 @@
 <section class="section section-alt" id="testimonials" aria-label="Patient Testimonials">
   <div class="container">
     <div class="section-heading reveal">
-      <div class="section-label"><span class="dot"></span> Testimonials</div>
-      <h2>What Our Patients Say</h2>
-      <p>Genuine feedback from patients who trust us with their care.</p>
+      <div class="section-label"><span class="dot"></span> <span data-i18n="test_badge">Testimonials</span></div>
+      <h2 data-i18n="test_title">What Our Patients Say</h2>
+      <p data-i18n="test_subtitle">Genuine feedback from patients who trust us with their care.</p>
     </div>
 
     <div class="testimonials-carousel reveal">
       <div class="testimonial-placeholder">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <h3>Patient Testimonials Coming Soon</h3>
-        <p>We value genuine feedback from our patients. This section will feature real patient reviews and experiences shared with their consent.</p>
+        <h3 data-i18n="test_ph_title">Patient Testimonials Coming Soon</h3>
+        <p data-i18n="test_ph_desc">We value genuine feedback from our patients. This section will feature real patient reviews and experiences shared with their consent.</p>
       </div>
     </div>
   </div>
@@ -947,139 +1001,142 @@
 <section class="section" id="faq" aria-label="Frequently Asked Questions">
   <div class="container">
     <div class="section-heading reveal">
-      <div class="section-label"><span class="dot"></span> FAQs</div>
-      <h2>Frequently Asked Questions</h2>
-      <p>Find answers to common questions about our services.</p>
+      <div class="section-label"><span class="dot"></span> <span data-i18n="faq_badge">FAQs</span></div>
+      <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
+      <p data-i18n="faq_subtitle">Find answers to common questions about our services.</p>
     </div>
 
     <div class="faq-tabs reveal" role="tablist">
-      <button class="faq-tab active" role="tab" data-faq="dental" aria-selected="true">Dental Care</button>
-      <button class="faq-tab" role="tab" data-faq="acupuncture" aria-selected="false">Acupuncture</button>
-      <button class="faq-tab" role="tab" data-faq="skin" aria-selected="false">Skin & Dermatology</button>
+      <!-- 1. Acupuncture Tab First -->
+      <button class="faq-tab active" role="tab" data-faq="acupuncture" aria-selected="true" data-i18n="faq_tab_acu">Acupuncture</button>
+      <!-- 2. Dental Tab Second -->
+      <button class="faq-tab" role="tab" data-faq="dental" aria-selected="false" data-i18n="faq_tab_dental">Dental Care</button>
+      <!-- 3. Skin Tab Third -->
+      <button class="faq-tab" role="tab" data-faq="skin" aria-selected="false" data-i18n="faq_tab_skin">Skin & Dermatology</button>
     </div>
 
     <div class="faq-list">
-      <!-- Dental FAQs -->
-      <div class="faq-category active" id="faq-dental" role="tabpanel">
+      <!-- 1. Acupuncture FAQs (First Panel, Active) -->
+      <div class="faq-category active" id="faq-acupuncture" role="tabpanel">
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            What dental treatments are available at Agarwal Hospital?
+            <span data-i18n="faq_acu_q1">What is acupuncture?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">We offer a comprehensive range of dental services including preventive care (scaling, cleaning, check-ups), restorative treatments (fillings, root canal, crowns), orthodontic care (teeth straightening), prosthetic solutions (dentures, fixed teeth), oral surgical procedures and dental X-rays.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_acu_a1">Acupuncture is a practice from traditional Chinese medicine that involves inserting thin needles at specific points on the body. It is used as a supportive approach for pain management, neurological conditions and various other health concerns.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            Do you provide root canal treatment?
+            <span data-i18n="faq_acu_q2">How does acupuncture treatment work?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes, root canal treatment (RCT) is one of our core dental services. It is performed by our qualified dental specialist to save damaged or infected teeth, relieve pain and restore tooth function.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_acu_a2">Acupuncture involves stimulating specific points on the body using thin sterile needles. The approach is based on traditional principles of energy flow and is used as a complementary approach alongside conventional medical treatment.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            Is dental X-ray available?
+            <span data-i18n="faq_acu_q3">How is an acupuncture session conducted?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes, dental X-ray facilities are available at the hospital to aid in accurate diagnosis of dental conditions, including detecting cavities, impacted teeth, cysts and jaw issues.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_acu_a3">Each session begins with a brief assessment. Thin, sterile needles are then placed at specific points based on your condition. Sessions typically last 20-40 minutes. The process is generally well-tolerated by most patients.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            Do you provide dentures and fixed teeth?
+            <span data-i18n="faq_acu_q4">How many sessions may be recommended?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes, we provide both complete and partial dentures as well as fixed tooth replacement options. Our dental specialist will recommend the most suitable solution based on your individual dental condition and needs.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_acu_a4">The number of sessions depends on the individual condition, its severity and duration. Your practitioner will develop a personalized treatment plan and discuss the recommended course of sessions during your initial consultation.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            Do you provide orthodontic treatment?
+            <span data-i18n="faq_acu_q5">Is acupuncture suitable for everyone?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes, we offer orthodontic treatment for teeth alignment using fixed dental wiring. A consultation with our dental specialist will determine the appropriate treatment approach for your case.</div></div>
-        </div>
-      </div>
-
-      <!-- Acupuncture FAQs -->
-      <div class="faq-category" id="faq-acupuncture" role="tabpanel">
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            What is acupuncture?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Acupuncture is a practice from traditional Chinese medicine that involves inserting thin needles at specific points on the body. It is used as a supportive approach for pain management, neurological conditions and various other health concerns.</div></div>
-        </div>
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            How does acupuncture treatment work?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Acupuncture involves stimulating specific points on the body using thin sterile needles. The approach is based on traditional principles of energy flow and is used as a complementary approach alongside conventional medical treatment.</div></div>
-        </div>
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            How is an acupuncture session conducted?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Each session begins with a brief assessment. Thin, sterile needles are then placed at specific points based on your condition. Sessions typically last 20-40 minutes. The process is generally well-tolerated by most patients.</div></div>
-        </div>
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            How many sessions may be recommended?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">The number of sessions depends on the individual condition, its severity and duration. Your practitioner will develop a personalized treatment plan and discuss the recommended course of sessions during your initial consultation.</div></div>
-        </div>
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            Is acupuncture suitable for everyone?
-            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Treatment suitability varies by individual. A thorough consultation and assessment are conducted before beginning any treatment. Certain medical conditions may require special consideration. Please consult our specialist for a proper evaluation.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_acu_a5">Treatment suitability varies by individual. A thorough consultation and assessment are conducted before beginning any treatment. Certain medical conditions may require special consideration. Please consult our specialist for a proper evaluation.</div></div>
         </div>
       </div>
 
-      <!-- Skin FAQs -->
+      <!-- 2. Dental FAQs (Second Panel) -->
+      <div class="faq-category" id="faq-dental" role="tabpanel">
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq_dental_q1">What dental treatments are available at Agarwal Hospital?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_dental_a1">We offer a comprehensive range of dental services including preventive care (scaling, cleaning, check-ups), restorative treatments (fillings, root canal, crowns), orthodontic care (teeth straightening), prosthetic solutions (dentures, fixed teeth), oral surgical procedures and dental X-rays.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq_dental_q2">Do you provide root canal treatment?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_dental_a2">Yes, root canal treatment (RCT) is one of our core dental services. It is performed by our qualified dental specialist to save damaged or infected teeth, relieve pain and restore tooth function.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq_dental_q3">Is dental X-ray available?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_dental_a3">Yes, dental X-ray facilities are available at the hospital to aid in accurate diagnosis of dental conditions, including detecting cavities, impacted teeth, cysts and jaw issues.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq_dental_q4">Do you provide dentures and fixed teeth?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_dental_a4">Yes, we provide both complete and partial dentures as well as fixed tooth replacement options. Our dental specialist will recommend the most suitable solution based on your individual dental condition and needs.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span data-i18n="faq_dental_q5">Do you provide orthodontic treatment?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_dental_a5">Yes, we offer orthodontic treatment for teeth alignment using fixed dental wiring. A consultation with our dental specialist will determine the appropriate treatment approach for your case.</div></div>
+        </div>
+      </div>
+
+      <!-- 3. Skin FAQs (Third Panel) -->
       <div class="faq-category" id="faq-skin" role="tabpanel">
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            What skin conditions are treated at Agarwal Hospital?
+            <span data-i18n="faq_skin_q1">What skin conditions are treated at Agarwal Hospital?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">We provide care for a wide range of skin conditions including acne, skin allergies, psoriasis, eczema, itching, rashes, fungal infections, ringworm, facial pigmentation, vitiligo (white patches), hair fall, baldness and nail problems.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_skin_a1">We provide care for a wide range of skin conditions including acne, skin allergies, psoriasis, eczema, itching, rashes, fungal infections, ringworm, facial pigmentation, vitiligo (white patches), hair fall, baldness and nail problems.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            Do you treat acne and pimples?
+            <span data-i18n="faq_skin_q2">Do you treat acne and pimples?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes, acne and pimple treatment is one of our core dermatology services. Our specialist evaluates each case individually to determine the most appropriate treatment approach based on the type and severity of acne.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_skin_a2">Yes, acne and pimple treatment is one of our core dermatology services. Our specialist evaluates each case individually to determine the most appropriate treatment approach based on the type and severity of acne.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            Do you treat psoriasis and eczema?
+            <span data-i18n="faq_skin_q3">Do you treat psoriasis and eczema?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes, we provide treatment for both psoriasis and eczema. These are chronic skin conditions that require careful, ongoing management. Our specialist develops personalized treatment plans to help manage symptoms and improve quality of life.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_skin_a3">Yes, we provide treatment for both psoriasis and eczema. These are chronic skin conditions that require careful, ongoing management. Our specialist develops personalized treatment plans to help manage symptoms and improve quality of life.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            Do you treat skin allergies?
+            <span data-i18n="faq_skin_q4">Do you treat skin allergies?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes, allergy care is a key area of our practice. We evaluate and treat various types of skin allergies to identify triggers and provide appropriate treatment for symptom relief and management.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_skin_a4">Yes, allergy care is a key area of our practice. We evaluate and treat various types of skin allergies to identify triggers and provide appropriate treatment for symptom relief and management.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            Do you treat hair fall and baldness?
+            <span data-i18n="faq_skin_q5">Do you treat hair fall and baldness?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes, we address hair fall and baldness concerns. Our specialist evaluates the underlying causes and recommends appropriate treatment approaches. Results vary based on individual conditions and causes.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_skin_a5">Yes, we address hair fall and baldness concerns. Our specialist evaluates the underlying causes and recommends appropriate treatment approaches. Results vary based on individual conditions and causes.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            Do you treat pigmentation and white patches (vitiligo)?
+            <span data-i18n="faq_skin_q6">Do you treat pigmentation and white patches (vitiligo)?</span>
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer" role="region"><div class="faq-answer-inner">Yes, we provide care for facial pigmentation and vitiligo (white patches). These conditions are managed through personalized treatment plans developed after thorough assessment of each patient's condition.</div></div>
+          <div class="faq-answer" role="region"><div class="faq-answer-inner" data-i18n="faq_skin_a6">Yes, we provide care for facial pigmentation and vitiligo (white patches). These conditions are managed through personalized treatment plans developed after thorough assessment of each patient's condition.</div></div>
         </div>
       </div>
     </div>
@@ -1093,81 +1150,87 @@
 <section class="section section-alt" id="blog" aria-label="Health Resources">
   <div class="container">
     <div class="section-heading reveal">
-      <div class="section-label"><span class="dot"></span> Resources</div>
-      <h2>Health & Wellness Resources</h2>
-      <p>Helpful information on dental health, skin care and acupuncture wellness.</p>
+      <div class="section-label" data-i18n="blog_badge"><span class="dot"></span> Resources</div>
+      <h2 data-i18n="blog_title">Health & Wellness Resources</h2>
+      <p data-i18n="blog_subtitle">Helpful information on acupuncture wellness, dental health and skin care.</p>
     </div>
 
     <div class="blog-grid">
+      <!-- 1. Acupuncture -->
       <div class="blog-card reveal reveal-delay-1">
-        <div class="blog-card-image">
-          <img src="img/blog/dental-health.webp" alt="Understanding common causes of tooth pain" loading="lazy">
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-category-tag dental">Dental Health</span>
-          <h3>Common Causes of Tooth Pain</h3>
-          <p>Understanding why your teeth hurt and when to see a dentist for proper evaluation and care.</p>
-          <a href="#" class="blog-read-more">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card reveal reveal-delay-2">
-        <div class="blog-card-image">
-          <img src="img/blog/skin-care.webp" alt="Understanding acne and common skin concerns" loading="lazy">
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-category-tag skin">Skin Health</span>
-          <h3>Acne and Common Skin Concerns</h3>
-          <p>A brief guide to understanding acne types, common triggers and when to consult a specialist.</p>
-          <a href="#" class="blog-read-more">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card reveal reveal-delay-3">
-        <div class="blog-card-image">
-          <img src="img/blog/acupuncture-wellness.webp" alt="What is acupuncture and how it works" loading="lazy">
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-category-tag acupuncture">Acupuncture</span>
-          <h3>What Is Acupuncture?</h3>
-          <p>An introduction to acupuncture — its origins, how sessions work and what to expect.</p>
-          <a href="#" class="blog-read-more">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card reveal reveal-delay-1">
-        <div class="blog-card-image">
-          <img src="img/blog/oral-hygiene.webp" alt="Tips for maintaining good oral hygiene" loading="lazy">
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-category-tag dental">Dental Health</span>
-          <h3>How to Maintain Good Oral Hygiene</h3>
-          <p>Simple daily habits and tips to keep your teeth and gums healthy between dental visits.</p>
-          <a href="#" class="blog-read-more">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card reveal reveal-delay-2">
-        <div class="blog-card-image">
-          <img src="img/blog/hair-fall.webp" alt="Understanding common causes of hair fall" loading="lazy">
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-category-tag skin">Skin Health</span>
-          <h3>Common Causes of Hair Fall</h3>
-          <p>Understanding the factors behind hair loss and when to seek professional dermatological advice.</p>
-          <a href="#" class="blog-read-more">Read More →</a>
-        </div>
-      </div>
-
-      <div class="blog-card reveal reveal-delay-3">
         <div class="blog-card-image">
           <img src="img/blog/pain-management.webp" alt="Acupuncture for pain management" loading="lazy">
         </div>
         <div class="blog-card-body">
-          <span class="blog-category-tag acupuncture">Acupuncture</span>
-          <h3>Understanding Acupuncture for Pain</h3>
-          <p>How acupuncture is used as a complementary approach to managing chronic pain conditions.</p>
-          <a href="#" class="blog-read-more">Read More →</a>
+          <span class="blog-category-tag acupuncture" data-i18n="blog_cat_acu">Acupuncture</span>
+          <h3 data-i18n="blog_c1_title">Understanding Acupuncture for Pain</h3>
+          <p data-i18n="blog_c1_desc">How acupuncture is used as a complementary approach to managing chronic pain conditions.</p>
+          <a href="#" class="blog-read-more" data-i18n="btn_read_more">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 2. Dental Care -->
+      <div class="blog-card reveal reveal-delay-2">
+        <div class="blog-card-image">
+          <img src="img/blog/dental-health.webp" alt="Understanding common causes of tooth pain" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-category-tag dental" data-i18n="blog_cat_dental">Dental Health</span>
+          <h3 data-i18n="blog_c2_title">Common Causes of Tooth Pain</h3>
+          <p data-i18n="blog_c2_desc">Understanding why your teeth hurt and when to see a dentist for proper evaluation and care.</p>
+          <a href="#" class="blog-read-more" data-i18n="btn_read_more">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 3. Skin Care -->
+      <div class="blog-card reveal reveal-delay-3">
+        <div class="blog-card-image">
+          <img src="img/blog/skin-care.webp" alt="Understanding acne and common skin concerns" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-category-tag skin" data-i18n="blog_cat_skin">Skin Health</span>
+          <h3 data-i18n="blog_c3_title">Acne and Common Skin Concerns</h3>
+          <p data-i18n="blog_c3_desc">A brief guide to understanding acne types, common triggers and when to consult a specialist.</p>
+          <a href="#" class="blog-read-more" data-i18n="btn_read_more">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 4. Acupuncture -->
+      <div class="blog-card reveal reveal-delay-1">
+        <div class="blog-card-image">
+          <img src="img/blog/acupuncture-wellness.webp" alt="What is acupuncture and how it works" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-category-tag acupuncture" data-i18n="blog_cat_acu">Acupuncture</span>
+          <h3 data-i18n="blog_c4_title">What Is Acupuncture?</h3>
+          <p data-i18n="blog_c4_desc">An introduction to acupuncture — its origins, how sessions work and what to expect.</p>
+          <a href="#" class="blog-read-more" data-i18n="btn_read_more">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 5. Dental Care -->
+      <div class="blog-card reveal reveal-delay-2">
+        <div class="blog-card-image">
+          <img src="img/blog/oral-hygiene.webp" alt="Tips for maintaining good oral hygiene" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-category-tag dental" data-i18n="blog_cat_dental">Dental Health</span>
+          <h3 data-i18n="blog_c5_title">How to Maintain Good Oral Hygiene</h3>
+          <p data-i18n="blog_c5_desc">Simple daily habits and tips to keep your teeth and gums healthy between dental visits.</p>
+          <a href="#" class="blog-read-more" data-i18n="btn_read_more">Read More →</a>
+        </div>
+      </div>
+
+      <!-- 6. Skin Care -->
+      <div class="blog-card reveal reveal-delay-3">
+        <div class="blog-card-image">
+          <img src="img/blog/hair-fall.webp" alt="Understanding common causes of hair fall" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-category-tag skin" data-i18n="blog_cat_skin">Skin Health</span>
+          <h3 data-i18n="blog_c6_title">Common Causes of Hair Fall</h3>
+          <p data-i18n="blog_c6_desc">Understanding the factors behind hair loss and when to seek professional dermatological advice.</p>
+          <a href="#" class="blog-read-more" data-i18n="btn_read_more">Read More →</a>
         </div>
       </div>
     </div>
@@ -1181,9 +1244,9 @@
 <section class="section" id="gallery" aria-label="Hospital Gallery">
   <div class="container">
     <div class="section-heading reveal">
-      <div class="section-label"><span class="dot"></span> Gallery</div>
-      <h2>Inside Our Hospital</h2>
-      <p>A glimpse of our clinical environment and facilities.</p>
+      <div class="section-label" data-i18n="gallery_badge"><span class="dot"></span> Gallery</div>
+      <h2 data-i18n="gallery_title">Inside Our Hospital</h2>
+      <p data-i18n="gallery_subtitle">A glimpse of our clinical environment and facilities.</p>
     </div>
 
     <div class="gallery-grid reveal">
@@ -1193,34 +1256,7 @@
           <span class="gallery-item-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           </span>
-          <span class="gallery-item-label">Reception & Patient Lounge</span>
-        </div>
-      </div>
-      <div class="gallery-item" data-lightbox>
-        <img src="img/gallery/gallery-2.webp" alt="Dental treatment room" loading="lazy">
-        <div class="gallery-item-overlay">
-          <span class="gallery-item-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-          </span>
-          <span class="gallery-item-label">Modern Dental Suite</span>
-        </div>
-      </div>
-      <div class="gallery-item" data-lightbox>
-        <img src="img/gallery/gallery-3.webp" alt="Consultation room" loading="lazy">
-        <div class="gallery-item-overlay">
-          <span class="gallery-item-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-          </span>
-          <span class="gallery-item-label">Doctor Consultation Room</span>
-        </div>
-      </div>
-      <div class="gallery-item wide" data-lightbox>
-        <img src="img/gallery/gallery-4.webp" alt="Hospital exterior" loading="lazy">
-        <div class="gallery-item-overlay">
-          <span class="gallery-item-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-          </span>
-          <span class="gallery-item-label">Hospital Clinical Facility</span>
+          <span class="gallery-item-label" data-i18n="gallery_cap_1">Reception & Patient Lounge</span>
         </div>
       </div>
       <div class="gallery-item" data-lightbox>
@@ -1229,7 +1265,34 @@
           <span class="gallery-item-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           </span>
-          <span class="gallery-item-label">Acupuncture Therapy Room</span>
+          <span class="gallery-item-label" data-i18n="gallery_cap_2">Acupuncture Therapy Room</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-lightbox>
+        <img src="img/gallery/gallery-2.webp" alt="Dental treatment room" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </span>
+          <span class="gallery-item-label" data-i18n="gallery_cap_3">Modern Dental Suite</span>
+        </div>
+      </div>
+      <div class="gallery-item wide" data-lightbox>
+        <img src="img/gallery/gallery-4.webp" alt="Hospital exterior" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </span>
+          <span class="gallery-item-label" data-i18n="gallery_cap_5">Hospital Clinical Facility</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-lightbox>
+        <img src="img/gallery/gallery-3.webp" alt="Consultation room" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </span>
+          <span class="gallery-item-label" data-i18n="gallery_cap_4">Doctor Consultation Room</span>
         </div>
       </div>
       <div class="gallery-item tall" data-lightbox>
@@ -1238,7 +1301,7 @@
           <span class="gallery-item-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           </span>
-          <span class="gallery-item-label">Dermatology Care Room</span>
+          <span class="gallery-item-label" data-i18n="gallery_cap_6">Dermatology Care Room</span>
         </div>
       </div>
     </div>
@@ -1253,8 +1316,8 @@
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <div class="section-label"><span class="dot"></span> Contact</div>
-        <h2>Visit Our Hospital</h2>
+        <div class="section-label" data-i18n="contact_badge"><span class="dot"></span> Contact</div>
+        <h2 data-i18n="contact_title">Visit Our Hospital</h2>
 
         <div class="contact-cards">
           <div class="contact-card">
@@ -1262,7 +1325,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div>
-              <h3>Main Address</h3>
+              <h3 data-i18n="contact_main_address_title">Main Address</h3>
               <p>83/3, Sector-12, Near Makasar, Railway Phatak, Hanumangarh Junction - 335512 (Rajasthan) INDIA</p>
             </div>
           </div>
@@ -1272,7 +1335,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div>
-              <h3>Branch Address</h3>
+              <h3 data-i18n="contact_branch_address_title">Branch Address</h3>
               <p>Near New India Insurance Company, At front of Bansal Nursing Home, Shri Ganganagar Road, Hanumangarh Junction - 335512 (Rajasthan) INDIA</p>
             </div>
           </div>
@@ -1282,7 +1345,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </div>
             <div>
-              <h3>Phone</h3>
+              <h3 data-i18n="contact_phone_title">Phone</h3>
               <p><a href="tel:+919460266901">+91-94602-66901</a></p>
               <p><a href="tel:+919828012819">+91-98280-12819</a></p>
             </div>
@@ -1293,7 +1356,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div>
-              <h3>Email</h3>
+              <h3 data-i18n="contact_email_title">Email</h3>
               <p><a href="mailto:support@agarwalhospital.com">support@agarwalhospital.com</a></p>
             </div>
           </div>
@@ -1303,8 +1366,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
-              <h3>Timings</h3>
-              <p>9:00 AM – 1:00 PM &amp; 3:00 PM – 7:00 PM</p>
+              <h3 data-i18n="contact_timings_title">Timings</h3>
+              <p data-i18n="contact_timings_val">9:00 AM – 1:00 PM &amp; 3:00 PM – 7:00 PM</p>
             </div>
           </div>
         </div>
@@ -1312,15 +1375,15 @@
         <div class="contact-actions">
           <a href="tel:+919460266901" class="btn btn-call btn-sm">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Call Now
+            <span data-i18n="btn_call">Call Now</span>
           </a>
           <a href="https://wa.me/919460266901" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            WhatsApp
+            <span data-i18n="btn_whatsapp">WhatsApp</span>
           </a>
           <a href="https://maps.google.com/?q=83/3+Sector+12+Hanumangarh+Junction+335512" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-            Get Directions
+            <span data-i18n="btn_get_directions">Get Directions</span>
           </a>
         </div>
       </div>
@@ -1346,7 +1409,7 @@
           </div>
           <span class="logo-name">Agarwal Hospital</span>
         </div>
-        <p>Delivering quality healthcare with compassion and clinical expertise across Dental Care, Acupuncture and Skin & Dermatology services in Hanumangarh, Rajasthan.</p>
+        <p data-i18n="footer_desc">Delivering quality healthcare with compassion and clinical expertise across Acupuncture, Dental Care and Skin & Dermatology services in Hanumangarh, Rajasthan.</p>
         <div class="footer-social">
           <a href="https://www.facebook.com/agarwalhospital" target="_blank" rel="noopener" aria-label="Facebook">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -1367,24 +1430,24 @@
       </div>
 
       <div class="footer-col">
-        <h4>Services</h4>
-        <a href="#dental">Dental Care</a>
-        <a href="#acupuncture">Acupuncture</a>
-        <a href="#skin">Skin & Dermatology</a>
-        <a href="#doctors">Our Doctors</a>
+        <h4 data-i18n="footer_col_services">Services</h4>
+        <a href="#acupuncture" data-i18n="nav_acupuncture">Acupuncture</a>
+        <a href="#dental" data-i18n="nav_dental">Dental Care</a>
+        <a href="#skin" data-i18n="nav_skin">Skin & Dermatology</a>
+        <a href="#doctors" data-i18n="nav_doctors">Our Doctors</a>
       </div>
 
       <div class="footer-col">
-        <h4>Quick Links</h4>
-        <a href="#about">About Us</a>
-        <a href="#appointment">Book Appointment</a>
-        <a href="#faq">FAQs</a>
-        <a href="#blog">Health Resources</a>
-        <a href="#gallery">Gallery</a>
+        <h4 data-i18n="footer_col_links">Quick Links</h4>
+        <a href="#about" data-i18n="nav_about">About Us</a>
+        <a href="#appointment" data-i18n="btn_book_appointment">Book Appointment</a>
+        <a href="#faq" data-i18n="faq_badge">FAQs</a>
+        <a href="#blog" data-i18n="blog_badge">Health Resources</a>
+        <a href="#gallery" data-i18n="gallery_badge">Gallery</a>
       </div>
 
       <div class="footer-col">
-        <h4>Contact</h4>
+        <h4 data-i18n="footer_col_contact">Contact</h4>
         <a href="tel:+919460266901">+91-94602-66901</a>
         <a href="tel:+919828012819">+91-98280-12819</a>
         <a href="mailto:support@agarwalhospital.com">support@agarwalhospital.com</a>
@@ -1393,18 +1456,18 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2024 Agarwal Hospital. All rights reserved.</p>
+      <p data-i18n="footer_rights">&copy; 2024 Agarwal Hospital. All rights reserved.</p>
       <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Conditions</a>
-        <a href="#">Medical Disclaimer</a>
+        <a href="#" data-i18n="footer_link_privacy">Privacy Policy</a>
+        <a href="#" data-i18n="footer_link_terms">Terms & Conditions</a>
+        <a href="#" data-i18n="footer_link_disclaimer">Medical Disclaimer</a>
       </div>
     </div>
 
     <!-- Medical Disclaimer -->
     <div style="padding: 16px 0 24px; border-top: 1px solid rgba(255,255,255,0.05);">
       <p style="font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.6; max-width: 800px;">
-        <strong style="color: rgba(255,255,255,0.4);">Medical Disclaimer:</strong> The information provided on this website is for general informational purposes only and does not constitute medical advice. Treatment outcomes vary by individual. Always consult a qualified healthcare professional for diagnosis and treatment. No claims of guaranteed results or cures are made.
+        <strong style="color: rgba(255,255,255,0.4);" data-i18n="footer_disclaimer_title">Medical Disclaimer:</strong> <span data-i18n="footer_disclaimer_text">The information provided on this website is for general informational purposes only and does not constitute medical advice. Treatment outcomes vary by individual. Always consult a qualified healthcare professional for diagnosis and treatment. No claims of guaranteed results or cures are made.</span>
       </p>
     </div>
   </div>
@@ -1430,15 +1493,15 @@
   <div class="mobile-bottom-bar-inner">
     <a href="tel:+919460266901" class="mbb-call" aria-label="Call us">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      Call
+      <span data-i18n="mbb_call">Call</span>
     </a>
     <a href="https://wa.me/919460266901" target="_blank" rel="noopener" class="mbb-whatsapp" aria-label="WhatsApp us">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      WhatsApp
+    <span data-i18n="mbb_whatsapp">WhatsApp</span>
     </a>
     <a href="#appointment" class="mbb-book" aria-label="Book appointment">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Book
+      <span data-i18n="mbb_book">Book</span>
     </a>
   </div>
 </div>
@@ -1454,6 +1517,7 @@
 
 
 <!-- JavaScript -->
+<script src="js/translations.js"></script>
 <script src="js/main.js"></script>
 
 </body>
