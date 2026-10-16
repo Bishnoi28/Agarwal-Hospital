@@ -27,10 +27,6 @@
   --accent-acupuncture-light: #EDF7F1;
   --accent-acupuncture-bg: #F2F9F4;
   --accent-acupuncture-glow: rgba(59, 140, 97, 0.18);
-  --accent-skin: #BA6650;
-  --accent-skin-light: #FCF1EC;
-  --accent-skin-bg: #FDF5F1;
-  --accent-skin-glow: rgba(186, 102, 80, 0.18);
 
   /* Neutrals */
   --white: #FFFFFF;
@@ -1034,8 +1030,10 @@ body.lang-hi p {
    ============================================ */
 .specialities-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-8);
+  max-width: 980px;
+  margin: 0 auto;
 }
 .spec-card {
   background: rgba(255, 255, 255, 0.95);
@@ -1053,9 +1051,8 @@ body.lang-hi p {
   transform: translateY(-10px) scale(1.01);
   box-shadow: 0 24px 48px -12px rgba(10, 96, 110, 0.16);
 }
-.spec-card.dental:hover { border-color: rgba(25, 124, 166, 0.35); }
 .spec-card.acupuncture:hover { border-color: rgba(59, 140, 97, 0.35); }
-.spec-card.skin:hover { border-color: rgba(186, 102, 80, 0.35); }
+.spec-card.dental:hover { border-color: rgba(25, 124, 166, 0.35); }
 
 .spec-card-image {
   position: relative;
@@ -1064,14 +1061,11 @@ body.lang-hi p {
   margin: 10px 10px 0 10px;
   transition: border-radius 0.5s ease;
 }
-.spec-card.dental .spec-card-image {
-  border-radius: 22px 80px 22px 14px;
-}
 .spec-card.acupuncture .spec-card-image {
   border-radius: 80px 22px 14px 22px;
 }
-.spec-card.skin .spec-card-image {
-  border-radius: 22px 22px 80px 14px;
+.spec-card.dental .spec-card-image {
+  border-radius: 22px 80px 22px 14px;
 }
 .spec-card:hover .spec-card-image {
   border-radius: 22px;
@@ -1090,9 +1084,8 @@ body.lang-hi p {
   margin: 8px 10px 0 10px;
   border-radius: 2px;
 }
-.spec-card.dental .spec-card-accent { background: linear-gradient(90deg, var(--accent-dental), transparent); }
 .spec-card.acupuncture .spec-card-accent { background: linear-gradient(90deg, var(--accent-acupuncture), transparent); }
-.spec-card.skin .spec-card-accent { background: linear-gradient(90deg, var(--accent-skin), transparent); }
+.spec-card.dental .spec-card-accent { background: linear-gradient(90deg, var(--accent-dental), transparent); }
 
 .spec-card-body {
   padding: var(--space-6) var(--space-6) var(--space-8);
@@ -1118,9 +1111,8 @@ body.lang-hi p {
 .spec-card:hover .spec-card-icon {
   transform: scale(1.1) rotate(4deg);
 }
-.spec-card.dental .spec-card-icon { background: var(--accent-dental-light); color: var(--accent-dental); }
 .spec-card.acupuncture .spec-card-icon { background: var(--accent-acupuncture-light); color: var(--accent-acupuncture); }
-.spec-card.skin .spec-card-icon { background: var(--accent-skin-light); color: var(--accent-skin); }
+.spec-card.dental .spec-card-icon { background: var(--accent-dental-light); color: var(--accent-dental); }
 
 .spec-card h3 {
   font-size: var(--font-size-2xl);
@@ -1147,20 +1139,15 @@ body.lang-hi p {
   border: 1px solid;
   transition: all var(--transition-fast);
 }
-.spec-card.dental .spec-tag {
-  color: var(--accent-dental);
-  border-color: var(--accent-dental-light);
-  background: var(--accent-dental-light);
-}
 .spec-card.acupuncture .spec-tag {
   color: var(--accent-acupuncture);
   border-color: var(--accent-acupuncture-light);
   background: var(--accent-acupuncture-light);
 }
-.spec-card.skin .spec-tag {
-  color: var(--accent-skin);
-  border-color: var(--accent-skin-light);
-  background: var(--accent-skin-light);
+.spec-card.dental .spec-tag {
+  color: var(--accent-dental);
+  border-color: var(--accent-dental-light);
+  background: var(--accent-dental-light);
 }
 .spec-card-link {
   display: inline-flex;
@@ -1170,9 +1157,8 @@ body.lang-hi p {
   font-size: var(--font-size-sm);
   transition: gap var(--transition-base);
 }
-.spec-card.dental .spec-card-link { color: var(--accent-dental); }
 .spec-card.acupuncture .spec-card-link { color: var(--accent-acupuncture); }
-.spec-card.skin .spec-card-link { color: var(--accent-skin); }
+.spec-card.dental .spec-card-link { color: var(--accent-dental); }
 .spec-card:hover .spec-card-link {
   gap: var(--space-3);
 }
@@ -1243,7 +1229,7 @@ body.lang-hi p {
   left: 0;
   right: 0;
   height: 5px;
-  background: linear-gradient(90deg, var(--accent-dental), var(--accent-acupuncture), var(--accent-skin));
+  background: linear-gradient(90deg, var(--accent-acupuncture), var(--accent-dental));
 }
 .about-floating-badge {
   position: absolute;
@@ -1426,17 +1412,13 @@ body.lang-hi p {
   z-index: 3;
   animation: floatSmooth 6s ease-in-out infinite;
 }
-.chip-dental {
-  border: 1px solid rgba(25, 124, 166, 0.3);
-  color: var(--accent-dental);
-}
 .chip-acu {
   border: 1px solid rgba(59, 140, 97, 0.3);
   color: var(--accent-acupuncture);
 }
-.chip-skin {
-  border: 1px solid rgba(186, 102, 80, 0.3);
-  color: var(--accent-skin);
+.chip-dental {
+  border: 1px solid rgba(25, 124, 166, 0.3);
+  color: var(--accent-dental);
 }
 
 .dental-header-text h2 {
@@ -1642,99 +1624,6 @@ body.lang-hi p {
 
 
 /* ============================================
-   SKIN & DERMATOLOGY SECTION
-   ============================================ */
-.skin-section {
-  background: linear-gradient(180deg, var(--accent-skin-bg) 0%, var(--white) 100%);
-}
-.skin-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-12);
-  align-items: center;
-  margin-bottom: var(--space-12);
-}
-.skin-header-text h2 {
-  font-size: var(--font-size-4xl);
-  margin-bottom: var(--space-4);
-  letter-spacing: -0.02em;
-}
-.skin-header-text p {
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-relaxed);
-  margin-bottom: var(--space-6);
-}
-.skin-header-image-wrapper {
-  position: relative;
-  padding: 16px;
-}
-.skin-image-shape {
-  position: absolute;
-  inset: -4px;
-  background: radial-gradient(circle, rgba(186, 102, 80, 0.25) 0%, transparent 70%);
-  filter: blur(20px);
-  border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
-  z-index: 0;
-  pointer-events: none;
-}
-.skin-header-image {
-  border-radius: 90px 32px 90px 32px;
-  overflow: hidden;
-  box-shadow: 0 20px 48px -10px rgba(186, 102, 80, 0.22);
-  aspect-ratio: 16/10;
-  position: relative;
-  z-index: 1;
-  transition: border-radius 0.6s ease, transform 0.6s ease;
-}
-.skin-header-image-wrapper:hover .skin-header-image {
-  border-radius: 32px 90px 32px 90px;
-  transform: scale(1.015);
-}
-.skin-header-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s ease;
-}
-.skin-header-image-wrapper:hover .skin-header-image img {
-  transform: scale(1.06);
-}
-.skin-conditions {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--space-4);
-}
-.skin-condition-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6) var(--space-4);
-  text-align: center;
-  transition: all var(--transition-base);
-}
-.skin-condition-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--accent-skin-light);
-}
-.skin-condition-card .sc-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-lg);
-  background: var(--accent-skin-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto var(--space-3);
-  color: var(--accent-skin);
-}
-.skin-condition-card h3 {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-}
-
-
-/* ============================================
    DOCTORS SECTION
    ============================================ */
 .doctors-grid {
@@ -1853,203 +1742,6 @@ body.lang-hi p {
   color: var(--text-muted);
   margin-bottom: var(--space-6);
   line-height: var(--line-height-relaxed);
-}
-
-
-/* ============================================
-   PATIENT JOURNEY
-   ============================================ */
-.patient-journey {
-  background: var(--primary);
-  color: var(--white);
-  overflow: hidden;
-}
-.patient-journey .section-heading h2 {
-  color: var(--white);
-}
-.patient-journey .section-heading p {
-  color: rgba(255,255,255,0.7);
-}
-.pj-steps {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--space-4);
-  position: relative;
-}
-.pj-steps::before {
-  content: '';
-  position: absolute;
-  top: 32px;
-  left: 10%;
-  right: 10%;
-  height: 2px;
-  background: rgba(255,255,255,0.2);
-}
-.pj-step {
-  text-align: center;
-  position: relative;
-}
-.pj-step-num {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.15);
-  border: 2px solid rgba(255,255,255,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto var(--space-5);
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  position: relative;
-  z-index: 1;
-}
-.pj-step h3 {
-  font-size: var(--font-size-base);
-  color: var(--white);
-  margin-bottom: var(--space-1);
-}
-.pj-step p {
-  font-size: var(--font-size-sm);
-  color: rgba(255,255,255,0.6);
-}
-
-
-/* ============================================
-   APPOINTMENT CTA
-   ============================================ */
-.appointment-section {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-medium) 100%);
-  color: var(--white);
-  position: relative;
-  overflow: hidden;
-}
-.appointment-section::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.03);
-}
-.appointment-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-16);
-  align-items: center;
-}
-.appointment-text h2 {
-  font-size: var(--font-size-4xl);
-  color: var(--white);
-  letter-spacing: -0.02em;
-  margin-bottom: var(--space-4);
-}
-.appointment-text > p {
-  font-size: var(--font-size-lg);
-  color: rgba(255,255,255,0.8);
-  margin-bottom: var(--space-8);
-}
-.appointment-actions {
-  display: flex;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-}
-.appointment-form {
-  background: var(--white);
-  border-radius: var(--radius-xl);
-  padding: var(--space-8);
-  box-shadow: var(--shadow-xl);
-}
-.appointment-form h3 {
-  font-size: var(--font-size-xl);
-  margin-bottom: var(--space-6);
-  color: var(--text-primary);
-}
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
-}
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-.form-group.full-width {
-  grid-column: 1 / -1;
-}
-.form-group label {
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  color: var(--text-primary);
-}
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
-  color: var(--text-primary);
-  transition: border-color var(--transition-fast);
-  background: var(--white);
-  outline: none;
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(11,110,127,0.1);
-}
-.form-group textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-.form-group input.error,
-.form-group select.error {
-  border-color: var(--error);
-}
-.form-error {
-  font-size: var(--font-size-xs);
-  color: var(--error);
-  display: none;
-}
-.form-submit {
-  margin-top: var(--space-6);
-}
-.form-submit .btn {
-  width: 100%;
-}
-
-
-/* ============================================
-   TESTIMONIALS
-   ============================================ */
-.testimonials-carousel {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-}
-.testimonial-placeholder {
-  padding: var(--space-12) var(--space-8);
-  background: var(--gray-50);
-  border-radius: var(--radius-xl);
-  border: 2px dashed var(--border);
-}
-.testimonial-placeholder svg {
-  margin: 0 auto var(--space-4);
-  color: var(--gray-300);
-}
-.testimonial-placeholder h3 {
-  font-size: var(--font-size-lg);
-  margin-bottom: var(--space-2);
-  color: var(--text-primary);
-}
-.testimonial-placeholder p {
-  color: var(--text-muted);
-  font-size: var(--font-size-sm);
 }
 
 
@@ -2209,9 +1901,8 @@ body.lang-hi p {
   letter-spacing: 0.04em;
   margin-bottom: var(--space-3);
 }
-.blog-category-tag.dental { background: var(--accent-dental-light); color: var(--accent-dental); }
 .blog-category-tag.acupuncture { background: var(--accent-acupuncture-light); color: var(--accent-acupuncture); }
-.blog-category-tag.skin { background: var(--accent-skin-light); color: var(--accent-skin); }
+.blog-category-tag.dental { background: var(--accent-dental-light); color: var(--accent-dental); }
 .blog-card h3 {
   font-size: var(--font-size-lg);
   margin-bottom: var(--space-3);
@@ -2813,14 +2504,6 @@ body.lang-hi p {
   .acu-layout { grid-template-columns: 1fr; }
   .acu-image-wrapper { position: static; max-width: 520px; margin: 0 auto; }
 
-  .skin-header { grid-template-columns: 1fr; }
-  .skin-header-image-wrapper { max-width: 520px; margin: 0 auto; }
-  .skin-conditions { grid-template-columns: repeat(3, 1fr); }
-
-  .pj-steps { grid-template-columns: repeat(5, 1fr); gap: var(--space-2); }
-
-  .appointment-grid { grid-template-columns: 1fr; }
-
   .blog-grid { grid-template-columns: repeat(2, 1fr); }
 
   .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; }
@@ -3095,29 +2778,6 @@ body.lang-hi p {
     padding: var(--space-5);
   }
 
-  /* Skin Section */
-  .skin-header {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-    margin-bottom: var(--space-8);
-  }
-  .skin-header-text h2 {
-    font-size: 1.55rem;
-  }
-  .skin-header-text p {
-    font-size: 0.95rem;
-  }
-  .skin-conditions {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3);
-  }
-  .skin-cond-card {
-    padding: var(--space-3) var(--space-4);
-  }
-  .skin-cond-card span {
-    font-size: 0.85rem;
-  }
-
   /* Doctors Section */
   .doctors-grid {
     grid-template-columns: 1fr;
@@ -3135,83 +2795,6 @@ body.lang-hi p {
   }
   .doctor-card h3 {
     font-size: 1.35rem;
-  }
-
-  /* Patient Journey Steps */
-  .pj-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-  .pj-steps::before {
-    display: none;
-  }
-  .pj-step {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    gap: 14px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: var(--radius-lg);
-    padding: 14px 16px;
-  }
-  .pj-step-num {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-    margin: 0;
-    flex-shrink: 0;
-  }
-  .pj-step h3 {
-    font-size: 0.98rem;
-    margin-bottom: 2px;
-  }
-  .pj-step p {
-    font-size: 0.82rem;
-    margin-bottom: 0;
-  }
-
-  /* Appointment Form */
-  .appointment-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-  }
-  .appointment-text h2 {
-    font-size: 1.6rem;
-  }
-  .appointment-text > p {
-    font-size: 0.95rem;
-    margin-bottom: var(--space-6);
-  }
-  .appointment-form {
-    padding: var(--space-6) var(--space-4);
-    border-radius: var(--radius-lg);
-  }
-  .appointment-form h3 {
-    font-size: 1.25rem;
-    margin-bottom: var(--space-4);
-  }
-  .form-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    font-size: 16px; /* Prevents auto-zoom in iOS Safari */
-    padding: 12px 14px;
-    min-height: 46px;
-  }
-  .appointment-actions {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .appointment-actions .btn {
-    width: 100%;
-    min-height: 48px;
   }
 
   /* FAQs Section */
@@ -3462,18 +3045,6 @@ body.lang-hi p {
     font-size: 0.88rem;
   }
 
-  /* Skin conditions cards */
-  .skin-conditions {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  .skin-cond-card {
-    padding: 8px 10px;
-  }
-  .skin-cond-card span {
-    font-size: 0.8rem;
-  }
-
   /* Gallery */
   .gallery-grid {
     grid-template-columns: 1fr 1fr;
@@ -3497,9 +3068,6 @@ body.lang-hi p {
   .trust-strip-inner {
     grid-template-columns: 1fr;
     gap: 8px;
-  }
-  .skin-conditions {
-    grid-template-columns: 1fr;
   }
   .gallery-grid {
     grid-template-columns: 1fr;

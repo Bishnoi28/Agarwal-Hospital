@@ -18,8 +18,6 @@
     initFAQ();
     initGalleryLightbox();
     initBackToTop();
-    initFormValidation();
-    initFormDateMin();
   }
 
 
@@ -415,106 +413,6 @@
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  }
-
-
-  /* ============================================
-     FORM VALIDATION
-     ============================================ */
-  function initFormValidation() {
-    const form = document.getElementById('appointmentForm');
-    if (!form) return;
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      let isValid = true;
-
-      // Name validation
-      const name = document.getElementById('apt-name');
-      const nameError = document.getElementById('apt-name-error');
-      if (!name.value.trim()) {
-        name.classList.add('error');
-        if (nameError) nameError.style.display = 'block';
-        isValid = false;
-      } else {
-        name.classList.remove('error');
-        if (nameError) nameError.style.display = 'none';
-      }
-
-      // Phone validation
-      const phone = document.getElementById('apt-phone');
-      const phoneError = document.getElementById('apt-phone-error');
-      const phoneVal = phone.value.trim().replace(/[\s\-\+]/g, '');
-      if (!phoneVal || phoneVal.length < 10) {
-        phone.classList.add('error');
-        if (phoneError) phoneError.style.display = 'block';
-        isValid = false;
-      } else {
-        phone.classList.remove('error');
-        if (phoneError) phoneError.style.display = 'none';
-      }
-
-      if (isValid) {
-        // Build WhatsApp message
-        const speciality = document.getElementById('apt-speciality')?.value || '';
-        const date = document.getElementById('apt-date')?.value || '';
-        const time = document.getElementById('apt-time')?.value || '';
-        const message = document.getElementById('apt-message')?.value || '';
-
-        const whatsappMsg = encodeURIComponent(
-          `Hello, I would like to book an appointment.\n\n` +
-          `Name: ${name.value.trim()}\n` +
-          `Phone: ${phone.value.trim()}\n` +
-          (speciality ? `Speciality: ${speciality}\n` : '') +
-          (date ? `Preferred Date: ${date}\n` : '') +
-          (time ? `Preferred Time: ${time}\n` : '') +
-          (message ? `Message: ${message}\n` : '')
-        );
-
-        // Show success feedback
-        const submitBtn = form.querySelector('.form-submit .btn');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending via WhatsApp...';
-        submitBtn.style.background = 'var(--whatsapp)';
-        submitBtn.style.borderColor = 'var(--whatsapp)';
-
-        setTimeout(() => {
-          window.open(`https://wa.me/919460266901?text=${whatsappMsg}`, '_blank');
-          submitBtn.textContent = 'Appointment Request Sent!';
-          setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.style.background = '';
-            submitBtn.style.borderColor = '';
-            form.reset();
-          }, 3000);
-        }, 500);
-      }
-    });
-
-    // Real-time error clearing
-    ['apt-name', 'apt-phone'].forEach(id => {
-      const input = document.getElementById(id);
-      const error = document.getElementById(id + '-error');
-      if (input && error) {
-        input.addEventListener('input', () => {
-          input.classList.remove('error');
-          error.style.display = 'none';
-        });
-      }
-    });
-  }
-
-
-  /* ============================================
-     FORM DATE MIN
-     ============================================ */
-  function initFormDateMin() {
-    const dateInput = document.getElementById('apt-date');
-    if (dateInput) {
-      const today = new Date().toISOString().split('T')[0];
-      dateInput.setAttribute('min', today);
-    }
   }
 
 })();
