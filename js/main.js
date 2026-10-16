@@ -24,13 +24,10 @@
 
 
   /* ============================================
-     LANGUAGE SYSTEM & WELCOME MODAL
+     LANGUAGE SYSTEM (Bilingual switcher & storage)
      ============================================ */
   function initLanguageSystem() {
     const STORAGE_KEY = 'agarwal_hospital_lang';
-    const langModal = document.getElementById('langModal');
-    const chooseEn = document.getElementById('chooseLangEn');
-    const chooseHi = document.getElementById('chooseLangHi');
     const langBtns = document.querySelectorAll('.lang-btn, .mobile-lang-drawer-btn');
 
     function applyLanguage(lang) {
@@ -86,58 +83,28 @@
       });
     }
 
-    function selectLanguage(lang, fromModal) {
+    function selectLanguage(lang) {
       try {
         localStorage.setItem(STORAGE_KEY, lang);
       } catch (e) {
         // storage disabled fallback
       }
       applyLanguage(lang);
-
-      if (fromModal && langModal) {
-        langModal.classList.add('closing');
-        setTimeout(() => {
-          langModal.style.display = 'none';
-          langModal.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-        }, 300);
-      }
     }
 
-    // Check stored preference
-    let savedLang = null;
+    // Check stored preference: use saved language if valid, otherwise default to English
+    let currentLang = 'en';
     try {
-      savedLang = localStorage.getItem(STORAGE_KEY);
+      const savedLang = localStorage.getItem(STORAGE_KEY);
+      if (savedLang === 'en' || savedLang === 'hi') {
+        currentLang = savedLang;
+      }
     } catch (e) {
-      savedLang = null;
+      currentLang = 'en';
     }
 
-    if (savedLang === 'en' || savedLang === 'hi') {
-      // User has already chosen a language
-      if (langModal) {
-        langModal.style.display = 'none';
-        langModal.setAttribute('aria-hidden', 'true');
-      }
-      applyLanguage(savedLang);
-    } else {
-      // First visit: show language selection modal
-      if (langModal) {
-        langModal.style.display = 'flex';
-        langModal.classList.remove('closing');
-        langModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      }
-      // Default to English initially
-      applyLanguage('en');
-    }
-
-    // Modal option clicks
-    if (chooseEn) {
-      chooseEn.addEventListener('click', () => selectLanguage('en', true));
-    }
-    if (chooseHi) {
-      chooseHi.addEventListener('click', () => selectLanguage('hi', true));
-    }
+    // Apply language immediately on load (no modal)
+    applyLanguage(currentLang);
 
     // Toggle button clicks (Navbar & Mobile Menu Drawer)
     langBtns.forEach(btn => {
@@ -145,16 +112,9 @@
         e.preventDefault();
         const targetLang = btn.getAttribute('data-lang');
         if (targetLang) {
-          selectLanguage(targetLang, false);
+          selectLanguage(targetLang);
         }
       });
-    });
-
-    // Close modal on Escape if visible
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && langModal && langModal.style.display === 'flex') {
-        selectLanguage('en', true);
-      }
     });
   }
 
