@@ -22,6 +22,21 @@ const TRANSLATIONS = {
     btn_call_now: "Call Now",
     logo_tagline: "Acupuncture · Dental Care",
 
+    // Top Information Bar
+    topbar_address: "83/3, Sector-12, Near Makasar, Hanumangarh Junction - 335512 (Raj.)",
+    topbar_hours: "9:00 AM – 1:00 PM & 3:00 PM – 7:00 PM",
+    btn_meet_specialists: "Meet Our Specialists",
+
+    // Patient Guidance
+    guidance_badge: "Patient Guidance",
+    guidance_title: "How to Consult & Receive Care",
+    guidance_s1_title: "Easy Appointment",
+    guidance_s1_desc: "Book directly via phone call, WhatsApp, or walk in during clinic hours.",
+    guidance_s2_title: "Specialist Consultation",
+    guidance_s2_desc: "Detailed evaluation and diagnosis by Dr. S.K. Agarwal or Dr. Deepak Agarwal.",
+    guidance_s3_title: "Personalized Treatment",
+    guidance_s3_desc: "Gentle treatment approach with transparent guidance and ongoing recovery support.",
+
     // Welcome Screen
     welcome_title: "Welcome to Agarwal Hospital",
     welcome_subtitle: "Please select your preferred language to proceed",
@@ -275,6 +290,21 @@ const TRANSLATIONS = {
     btn_book_appointment: "अपॉइंटमेंट बुक करें",
     btn_call_now: "कॉल करें",
     logo_tagline: "एक्यूपंक्चर · डेंटल केयर",
+
+    // Top Information Bar
+    topbar_address: "83/3, सेक्टर-12, मक्कासर के पास, हनुमानगढ़ जंक्शन - 335512 (राज.)",
+    topbar_hours: "प्रातः 9:00 – 1:00 एवं सायं 3:00 – 7:00",
+    btn_meet_specialists: "विशेषज्ञ डॉक्टरों से मिलें",
+
+    // Patient Guidance
+    guidance_badge: "मरीज़ मार्गदर्शन",
+    guidance_title: "परामर्श एवं उपचार प्रक्रिया",
+    guidance_s1_title: "आसान अपॉइंटमेंट",
+    guidance_s1_desc: "अस्पताल समय में फ़ोन, व्हाट्सएप या सीधे आकर आसानी से अपॉइंटमेंट लें।",
+    guidance_s2_title: "विशेषज्ञ परामर्श",
+    guidance_s2_desc: "डॉ. एस.के. अग्रवाल या डॉ. दीपक अग्रवाल द्वारा गहन क्लिनिकल परीक्षण एवं परामर्श।",
+    guidance_s3_title: "व्यक्तिगत उपचार",
+    guidance_s3_desc: "स्पष्ट उपचार योजना, सौम्य चिकित्सा एवं स्वास्थ्य लाभ के लिए नियमित फॉलो-अप।",
 
     // Welcome Screen
     welcome_title: "अग्रवाल हॉस्पिटल में आपका स्वागत है",

@@ -115,8 +115,10 @@
   /* Layout */
   --container-max: 1200px;
   --container-wide: 1320px;
-  --header-height: 72px;
-  --section-padding: 100px;
+  --topbar-height: 36px;
+  --nav-height: 64px;
+  --header-height: calc(var(--topbar-height) + var(--nav-height));
+  --section-padding: 68px;
 }
 
 /* ---------- CSS Reset / Normalize ---------- */
@@ -420,6 +422,55 @@ body.lang-hi p {
 
 
 /* ============================================
+   TOP CONTACT BAR (Slim Information Bar)
+   ============================================ */
+.top-bar {
+  background: #0A3D44;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  line-height: 1;
+}
+.top-bar-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 8px var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.top-bar-left, .top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+.top-bar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+.tb-icon {
+  color: #4FD1C5;
+  flex-shrink: 0;
+}
+.tb-link {
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.tb-link:hover {
+  color: #4FD1C5;
+  text-decoration: underline;
+}
+.tb-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* ============================================
    HEADER — 3-Area Professional Layout
    ============================================ */
 .header {
@@ -428,12 +479,11 @@ body.lang-hi p {
   left: 0;
   right: 0;
   z-index: 1000;
-  height: var(--header-height);
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.75);
-  transition: all var(--transition-slow);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  transition: box-shadow var(--transition-base), background var(--transition-base);
 }
 .header.scrolled {
   background: rgba(255, 255, 255, 0.98);
@@ -446,7 +496,7 @@ body.lang-hi p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  height: var(--nav-height);
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
@@ -767,400 +817,182 @@ body.lang-hi p {
 
 
 /* ============================================
-   HOSPITAL VIDEO SECTION
+   HERO VIDEO SECTION
    ============================================ */
-.hospital-video-section {
+.hero-video-section {
   position: relative;
   width: 100%;
-  height: 500px;
+  min-height: 480px;
   margin-top: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  background: var(--gray-900);
-  line-height: 0;
+  background: #0A3D44;
 }
-.hospital-video-section video {
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero-video-bg video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
-
-/* ============================================
-   HERO SECTION
-   ============================================ */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding-top: var(--header-height);
-  overflow: hidden;
-  background: linear-gradient(135deg, #F0F9FA 0%, #E6F3F5 30%, #F7F9FA 100%);
-}
-.hero-bg {
+.hero-video-overlay {
   position: absolute;
   inset: 0;
-  z-index: 0;
-}
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.12;
-}
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(240,249,250,0.92) 0%, rgba(230,243,245,0.85) 50%, rgba(247,249,250,0.9) 100%);
-}
-.hero .container {
-  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 48, 54, 0.74) 0%,
+    rgba(10, 48, 54, 0.65) 50%,
+    rgba(10, 48, 54, 0.88) 100%
+  );
   z-index: 1;
 }
-.hero-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-16);
-  align-items: center;
-  padding: var(--space-12) 0;
+.hero-video-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: var(--space-8) var(--space-6);
+  color: var(--white);
 }
-.hero-text {
-  max-width: 600px;
-}
-.hero-label {
+.hero-video-badge {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  background: var(--white);
-  padding: var(--space-2) var(--space-4);
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 6px 16px;
   border-radius: var(--radius-full);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  color: var(--primary);
-  margin-bottom: var(--space-6);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--primary-light);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #E2F3F5;
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-5);
 }
-.hero-label .pulse {
+.hero-video-badge .pulse {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--primary);
+  background: #5EEAD4;
+  box-shadow: 0 0 10px #5EEAD4;
   animation: pulse 2s infinite;
 }
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.6; transform: scale(1.3); }
 }
-.hero h1 {
-  font-size: var(--font-size-6xl);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+.hero-video-title {
+  font-size: clamp(2rem, 4.4vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--white);
   margin-bottom: var(--space-4);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
 }
-.hero h1 .gradient-text {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-medium) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero-video-title .highlight {
+  color: #5EEAD4;
 }
-.hero-subtitle {
-  font-size: var(--font-size-xl);
-  color: var(--primary);
-  font-weight: 600;
-  margin-bottom: var(--space-4);
+.hero-video-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.18rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.6;
+  max-width: 660px;
+  margin: 0 auto var(--space-6);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
-.hero-description {
-  font-size: var(--font-size-lg);
-  color: var(--text-body);
-  max-width: 520px;
-  margin-bottom: var(--space-8);
-  line-height: var(--line-height-relaxed);
-}
-.hero-ctas {
+.hero-video-ctas {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: var(--space-4);
   flex-wrap: wrap;
-}
-.hero-image {
-  position: relative;
-  padding: 16px;
-}
-.hero-image-blob {
-  position: absolute;
-  inset: -8px;
-  background: linear-gradient(135deg, rgba(14, 165, 182, 0.25), rgba(200, 153, 51, 0.18), rgba(59, 140, 97, 0.2));
-  filter: blur(26px);
-  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-  animation: morphBlob 14s ease-in-out infinite alternate;
-  z-index: 0;
-  pointer-events: none;
-}
-.hero-image-frame {
-  position: absolute;
-  inset: 4px;
-  border: 2px dashed rgba(10, 96, 110, 0.22);
-  border-radius: 54px 144px 54px 144px;
-  transform: rotate(-2.5deg);
-  z-index: 1;
-  pointer-events: none;
-  transition: transform 0.6s ease;
-}
-.hero-image:hover .hero-image-frame {
-  transform: rotate(1deg) scale(1.02);
-}
-.hero-image-main {
-  border-radius: 48px 140px 48px 140px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px -12px rgba(10, 96, 110, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.8);
-  aspect-ratio: 4/5;
-  position: relative;
-  z-index: 2;
-  transition: border-radius 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s ease;
-}
-.hero-image:hover .hero-image-main {
-  border-radius: 90px 48px 90px 48px;
-  transform: scale(1.015);
-}
-.hero-image-main img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s ease;
-}
-.hero-image:hover .hero-image-main img {
-  transform: scale(1.05);
-}
-.hero-float-card {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: var(--radius-xl);
-  padding: var(--space-4) var(--space-5);
-  box-shadow: 0 16px 36px rgba(10, 96, 110, 0.12), 0 0 0 1px rgba(10, 96, 110, 0.05);
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  z-index: 3;
-  animation: floatSmooth 6s ease-in-out infinite;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.hero-float-card:hover {
-  transform: translateY(-6px) scale(1.04);
-  box-shadow: 0 22px 42px rgba(10, 96, 110, 0.2);
-}
-.hero-float-card.card-1 {
-  bottom: 40px;
-  left: -35px;
-}
-.hero-float-card.card-2 {
-  top: 40px;
-  right: -25px;
-  animation: floatReverse 7s ease-in-out infinite;
-  animation-delay: -2s;
-}
-.hero-float-card.card-3 {
-  bottom: -15px;
-  right: 25px;
-  animation: floatDiagonal 8s ease-in-out infinite;
-  animation-delay: -4s;
-  border-color: rgba(200, 153, 51, 0.3);
-}
-.hero-float-card .fc-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.hero-float-card .fc-text {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--text-primary);
-  line-height: 1.3;
-}
-.hero-float-card .fc-sub {
-  font-size: var(--font-size-xs);
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
-/* Trust Strip */
-.trust-strip {
-  margin-top: var(--space-20);
-  padding: var(--space-8) 0;
-  border-top: 1px solid var(--border);
-}
-.trust-strip-inner {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-8);
-}
-.trust-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-}
-.trust-item-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-lg);
-  background: var(--primary-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: var(--primary);
-}
-.trust-item-text {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--text-primary);
-  line-height: 1.3;
-}
-
-
-/* ============================================
-   SPECIALITIES SECTION
-   ============================================ */
-.specialities-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-8);
-  max-width: 980px;
-  margin: 0 auto;
-}
-.spec-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(10, 96, 110, 0.06);
-  border: 1px solid rgba(226, 232, 240, 0.85);
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-.spec-card:hover {
-  transform: translateY(-10px) scale(1.01);
-  box-shadow: 0 24px 48px -12px rgba(10, 96, 110, 0.16);
-}
-.spec-card.acupuncture:hover { border-color: rgba(59, 140, 97, 0.35); }
-.spec-card.dental:hover { border-color: rgba(25, 124, 166, 0.35); }
-
-.spec-card-image {
-  position: relative;
-  height: 230px;
-  overflow: hidden;
-  margin: 10px 10px 0 10px;
-  transition: border-radius 0.5s ease;
-}
-.spec-card.acupuncture .spec-card-image {
-  border-radius: 80px 22px 14px 22px;
-}
-.spec-card.dental .spec-card-image {
-  border-radius: 22px 80px 22px 14px;
-}
-.spec-card:hover .spec-card-image {
-  border-radius: 22px;
-}
-.spec-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.spec-card:hover .spec-card-image img {
-  transform: scale(1.08);
-}
-.spec-card-accent {
-  height: 4px;
-  margin: 8px 10px 0 10px;
-  border-radius: 2px;
-}
-.spec-card.acupuncture .spec-card-accent { background: linear-gradient(90deg, var(--accent-acupuncture), transparent); }
-.spec-card.dental .spec-card-accent { background: linear-gradient(90deg, var(--accent-dental), transparent); }
-
-.spec-card-body {
-  padding: var(--space-6) var(--space-6) var(--space-8);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.spec-card-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: -38px;
-  margin-bottom: var(--space-4);
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border: 3px solid var(--white);
-  transition: transform 0.4s ease;
-}
-.spec-card:hover .spec-card-icon {
-  transform: scale(1.1) rotate(4deg);
-}
-.spec-card.acupuncture .spec-card-icon { background: var(--accent-acupuncture-light); color: var(--accent-acupuncture); }
-.spec-card.dental .spec-card-icon { background: var(--accent-dental-light); color: var(--accent-dental); }
-
-.spec-card h3 {
-  font-size: var(--font-size-2xl);
-  margin-bottom: var(--space-3);
-}
-.spec-card p {
-  color: var(--text-body);
-  margin-bottom: var(--space-5);
-  line-height: var(--line-height-relaxed);
-}
-.spec-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
   margin-bottom: var(--space-6);
-  flex: 1;
 }
-.spec-tag {
-  display: inline-block;
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
-  font-weight: 500;
-  border: 1px solid;
-  transition: all var(--transition-fast);
+.btn-secondary-white {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--white);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-.spec-card.acupuncture .spec-tag {
-  color: var(--accent-acupuncture);
-  border-color: var(--accent-acupuncture-light);
-  background: var(--accent-acupuncture-light);
+.btn-secondary-white:hover {
+  background: var(--white);
+  color: var(--primary);
+  border-color: var(--white);
 }
-.spec-card.dental .spec-tag {
-  color: var(--accent-dental);
-  border-color: var(--accent-dental-light);
-  background: var(--accent-dental-light);
-}
-.spec-card-link {
+.hero-video-trust {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  font-weight: 600;
-  font-size: var(--font-size-sm);
-  transition: gap var(--transition-base);
+  justify-content: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
-.spec-card.acupuncture .spec-card-link { color: var(--accent-acupuncture); }
-.spec-card.dental .spec-card-link { color: var(--accent-dental); }
-.spec-card:hover .spec-card-link {
-  gap: var(--space-3);
+.hvt-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+.hvt-item svg {
+  color: #5EEAD4;
+}
+
+/* Patient Guidance Cards */
+.guidance-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+.guidance-card {
+  background: var(--white);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 20px;
+  padding: var(--space-6);
+  box-shadow: 0 4px 16px rgba(10, 96, 110, 0.05);
+  transition: all 0.35s ease;
+  position: relative;
+}
+.guidance-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(10, 96, 110, 0.12);
+  border-color: rgba(10, 96, 110, 0.25);
+}
+.guidance-step-num {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--primary);
+  opacity: 0.3;
+  margin-bottom: var(--space-2);
+}
+.guidance-card h4 {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+.guidance-card p {
+  font-size: var(--font-size-sm);
+  color: var(--text-body);
+  line-height: 1.55;
+  margin: 0;
 }
 
 
@@ -2236,37 +2068,17 @@ body.lang-hi p {
    ============================================ */
 @media (max-width: 1024px) {
   :root {
-    --section-padding: 72px;
+    --section-padding: 56px;
     --font-size-6xl: 2.5rem;
     --font-size-5xl: 2.25rem;
     --font-size-4xl: 2rem;
   }
 
-  .hospital-video-section { height: 400px; }
-
-  .hero-content {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-    text-align: center;
-    padding: var(--space-8) 0;
-  }
-  .hero-text { max-width: 100%; }
-  .hero-description { margin: 0 auto var(--space-8); }
-  .hero-ctas { justify-content: center; }
-  .hero-image { max-width: 440px; margin: 0 auto; }
-  .hero-float-card.card-1 { left: -10px; bottom: 30px; }
-  .hero-float-card.card-2 { right: -10px; top: 20px; }
-  .hero-float-card.card-3 { right: 10px; bottom: -15px; }
-
-  .trust-strip-inner {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-5);
-  }
-
-  .specialities-cards {
+  .hero-video-section { min-height: 440px; }
+  .guidance-steps {
     grid-template-columns: 1fr;
     max-width: 520px;
-    margin: 0 auto;
+    margin: var(--space-6) auto 0;
   }
 
   .about-grid {
@@ -2298,12 +2110,32 @@ body.lang-hi p {
    ============================================ */
 @media (max-width: 768px) {
   :root {
-    --section-padding: 52px;
+    --topbar-height: 32px;
+    --nav-height: 56px;
+    --header-height: calc(var(--topbar-height) + var(--nav-height));
+    --section-padding: 44px;
     --font-size-6xl: 2rem;
     --font-size-5xl: 1.75rem;
     --font-size-4xl: 1.5rem;
     --font-size-3xl: 1.35rem;
-    --header-height: 64px;
+  }
+
+  .top-bar-inner {
+    padding: 6px var(--space-4);
+    font-size: 0.72rem;
+  }
+  .top-bar-hours {
+    display: none;
+  }
+  .top-bar-left, .top-bar-right {
+    gap: var(--space-3);
+  }
+  .top-bar-address .tb-link {
+    max-width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
   }
 
   body {
@@ -2373,60 +2205,38 @@ body.lang-hi p {
   }
 
 
-  /* Hospital Video Section */
-  .hospital-video-section {
-    height: 260px;
+  /* Hero Video Section Mobile */
+  .hero-video-section {
+    min-height: 400px;
     margin-top: var(--header-height);
   }
-
-  /* Hero Section */
-  .hero {
-    min-height: auto;
-    padding-top: calc(var(--header-height) + var(--space-6));
-    padding-bottom: var(--space-8);
+  .hero-video-content {
+    padding: var(--space-6) var(--space-4);
   }
-  .hero-image {
-    display: block;
-    max-width: 300px;
-    margin: var(--space-8) auto 0;
-    padding: 8px;
+  .hero-video-title {
+    font-size: 1.85rem;
+    line-height: 1.22;
   }
-  .hero-image-main {
-    aspect-ratio: 1/1;
-    border-radius: 32px 80px 32px 80px;
-  }
-  .hero-float-card {
-    display: flex;
-    padding: var(--space-2) var(--space-3);
-    transform: scale(0.82);
-  }
-  .hero-float-card.card-1 {
-    left: -4px;
-    bottom: -6px;
-  }
-  .hero-float-card.card-2 {
-    right: -4px;
-    top: -6px;
-  }
-  .hero-float-card.card-3 {
-    display: none;
-  }
-
-  .hero h1 {
-    font-size: 1.75rem;
-    line-height: 1.25;
-  }
-  .hero p {
+  .hero-video-subtitle {
     font-size: 0.95rem;
-    line-height: 1.5;
+    margin-bottom: var(--space-5);
   }
-  .hero-ctas {
+  .hero-video-ctas {
     flex-direction: column;
     gap: 10px;
-  }
-  .hero-ctas .btn {
     width: 100%;
-    min-height: 48px;
+  }
+  .hero-video-ctas .btn {
+    width: 100%;
+    min-height: 46px;
+  }
+  .hero-video-trust {
+    gap: var(--space-3);
+    font-size: 0.75rem;
+  }
+  .guidance-steps {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
 
   /* Trust Strip */
@@ -2724,28 +2534,21 @@ body.lang-hi p {
     font-size: 0.7rem;
   }
 
-  /* Video section height */
-  .hospital-video-section {
-    height: 220px;
+  .top-bar-inner {
+    padding: 5px 12px;
+    font-size: 0.68rem;
   }
-
-  /* Hero */
-  .hero h1 {
-    font-size: 1.55rem;
+  .top-bar-address .tb-link {
+    max-width: 170px;
   }
-  .hero-image {
-    max-width: 250px;
+  .hero-video-section {
+    min-height: 360px;
   }
-  .hero-float-card {
-    transform: scale(0.72);
+  .hero-video-title {
+    font-size: 1.6rem;
   }
-  .hero-float-card.card-1 {
-    left: -2px;
-    bottom: -2px;
-  }
-  .hero-float-card.card-2 {
-    right: -2px;
-    top: -2px;
+  .hero-video-trust {
+    display: none;
   }
 
   /* Trust Strip */
