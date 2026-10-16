@@ -16,7 +16,6 @@
     initScrollSpy();
     initRevealAnimations();
     initFAQ();
-    initGalleryLightbox();
     initBackToTop();
   }
 
@@ -339,55 +338,6 @@
         item.classList.toggle('active', !isOpen);
         question.setAttribute('aria-expanded', !isOpen);
       });
-    });
-  }
-
-
-  /* ============================================
-     GALLERY LIGHTBOX
-     ============================================ */
-  function initGalleryLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = lightbox?.querySelector('.lightbox-close');
-
-    if (!lightbox || !lightboxImg) return;
-
-    // Open lightbox
-    document.querySelectorAll('[data-lightbox]').forEach(item => {
-      item.addEventListener('click', () => {
-        const img = item.querySelector('img');
-        if (img) {
-          lightboxImg.src = img.src;
-          lightboxImg.alt = img.alt;
-          lightbox.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        }
-      });
-    });
-
-    // Close lightbox
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-      lightboxImg.src = '';
-    }
-
-    lightboxClose?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeLightbox();
-    });
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
-      }
     });
   }
 

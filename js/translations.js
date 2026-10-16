@@ -232,32 +232,6 @@ const TRANSLATIONS = {
     faq_dental_q5: "Do you provide orthodontic treatment?",
     faq_dental_a5: "Yes, we offer orthodontic treatment for teeth alignment using fixed dental wiring. A consultation with our dental specialist will determine the appropriate treatment approach for your case.",
 
-    // Health Resources / Blog
-    blog_badge: "Resources",
-    blog_title: "Health & Wellness Resources",
-    blog_subtitle: "Helpful information on acupuncture wellness and dental health.",
-    blog_cat_acu: "Acupuncture",
-    blog_cat_dental: "Dental Health",
-    blog_c1_title: "Understanding Acupuncture for Pain",
-    blog_c1_desc: "How acupuncture is used as a complementary approach to managing chronic pain conditions.",
-    blog_c2_title: "Common Causes of Tooth Pain",
-    blog_c2_desc: "Understanding why your teeth hurt and when to see a dentist for proper evaluation and care.",
-    blog_c4_title: "What Is Acupuncture?",
-    blog_c4_desc: "An introduction to acupuncture — its origins, how sessions work and what to expect.",
-    blog_c5_title: "How to Maintain Good Oral Hygiene",
-    blog_c5_desc: "Simple daily habits and tips to keep your teeth and gums healthy between dental visits.",
-    btn_read_more: "Read More →",
-
-    // Gallery Section
-    gallery_badge: "Gallery",
-    gallery_title: "Inside Our Hospital",
-    gallery_subtitle: "A glimpse of our clinical environment and facilities.",
-    gallery_cap_1: "Reception & Patient Lounge",
-    gallery_cap_2: "Acupuncture Therapy Room",
-    gallery_cap_3: "Modern Dental Suite",
-    gallery_cap_4: "Doctor Consultation Room",
-    gallery_cap_5: "Hospital Clinical Facility",
-
     // Contact Section
     contact_badge: "Contact",
     contact_title: "Visit Our Hospital",
@@ -511,32 +485,6 @@ const TRANSLATIONS = {
     faq_dental_a4: "हाँ, हम पूर्ण और आंशिक दोनों प्रकार की बत्तीसी के साथ-साथ फिक्स्ड क्राउन व ब्रिज की सुविधा प्रदान करते हैं। हमारे डेंटल विशेषज्ञ आपकी ज़रूरत के अनुसार सबसे उपयुक्त विकल्प सुझाते हैं।",
     faq_dental_q5: "क्या आप टेढ़े-मेढ़े दांत सीधे करने का उपचार करते हैं?",
     faq_dental_a5: "हाँ, हम फिक्स्ड डेंटल वायरिंग द्वारा दांतों के अलाइनमेंट के लिए ऑर्थोडोंटिक उपचार प्रदान करते हैं। हमारे विशेषज्ञ से परामर्श करके आप अपने मामले के लिए उपयुक्त उपचार जान सकते हैं।",
-
-    // Health Resources / Blog
-    blog_badge: "स्वास्थ्य संसाधन",
-    blog_title: "स्वास्थ्य एवं कल्याण संबंधी जानकारी",
-    blog_subtitle: "एक्यूपंक्चर और दंत स्वास्थ्य पर उपयोगी जानकारी।",
-    blog_cat_acu: "एक्यूपंक्चर",
-    blog_cat_dental: "दंत स्वास्थ्य",
-    blog_c1_title: "दर्द प्रबंधन में एक्यूपंक्चर का महत्व",
-    blog_c1_desc: "दीर्घकालिक दर्द से राहत के लिए एक्यूपंक्चर का समग्र एवं प्रभावी उपयोग।",
-    blog_c2_title: "दांत दर्द के प्रमुख कारण और बचाव",
-    blog_c2_desc: "दांत में दर्द क्यों होता है और समय पर डॉक्टर से परामर्श क्यों आवश्यक है।",
-    blog_c4_title: "एक्यूपंक्चर क्या है और कैसे काम करता है?",
-    blog_c4_desc: "एक्यूपंक्चर चिकित्सा का परिचय — इसके लाभ, सत्र की प्रक्रिया और सावधानियां।",
-    blog_c5_title: "मुख स्वच्छता के आसान और प्रभावी नियम",
-    blog_c5_desc: "दांतों और मसूड़ों को स्वस्थ रखने के लिए दैनिक जीवन में अपनाई जाने वाली अच्छी आदतें।",
-    btn_read_more: "और पढ़ें →",
-
-    // Gallery Section
-    gallery_badge: "गैलरी",
-    gallery_title: "अस्पताल की एक झलक",
-    gallery_subtitle: "हमारे क्लिनिकल वातावरण और अत्याधुनिक सुविधाओं की झलक।",
-    gallery_cap_1: "स्वागत कक्ष एवं प्रतीक्षालय",
-    gallery_cap_2: "एक्यूपंक्चर चिकित्सा कक्ष",
-    gallery_cap_3: "आधुनिक डेंटल क्लिनिक",
-    gallery_cap_4: "डॉक्टर परामर्श कक्ष",
-    gallery_cap_5: "अस्पताल क्लिनिकल परिसर",
 
     // Contact Section
     contact_badge: "संपर्क",
