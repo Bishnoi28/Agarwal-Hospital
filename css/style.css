@@ -2023,10 +2023,110 @@ body.lang-hi p {
 .reveal-delay-4 { transition-delay: 400ms; }
 .reveal-delay-5 { transition-delay: 500ms; }
 
+/* Above-the-fold hero content is visible immediately for optimal LCP and responsiveness */
+.hero-video-content .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 
 /* ============================================
-   RESPONSIVE — COMPACT TABLET & NARROW DESKTOP (≤1199px)
-   Automatically switches desktop nav to compact hamburger before wrapping
+   RESPONSIVE DESIGN SYSTEM — MULTI-DEVICE ARCHITECTURE
+   Covers:
+   - 4K / Ultra-wide (>1440px)
+   - Standard & Large Desktop (1200px - 1440px)
+   - Compact Desktop & Landscape Tablets (1024px - 1199px)
+   - Standard Portrait Tablets / iPad (768px - 1023px)
+   - Phablets / Foldables Unfolded / Large Phones (541px - 767px)
+   - Standard Smartphones (361px - 540px)
+   - Ultra-compact Smartphones / Fold Cover (≤360px)
+   - Landscape Orientation on Mobile Devices (max-height: 520px)
+   - Touchscreen Devices (hover: none / pointer: coarse)
+   - High Contrast & Reduced Motion Preferences
+   - Print Styles
+   ============================================ */
+
+/* Global Defensive Responsiveness & Viewport Inset Variables */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================
+   1. ULTRA-WIDE & 4K MONITORS (≥1440px)
+   ============================================ */
+@media (min-width: 1441px) {
+  :root {
+    --container-max: 1320px;
+    --container-wide: 1440px;
+    --section-padding: 84px;
+  }
+  .container {
+    max-width: 1320px;
+  }
+  .hero-video-section {
+    min-height: 540px;
+  }
+  .hero-video-title {
+    font-size: 3.5rem;
+  }
+  .doctors-grid {
+    max-width: 1040px;
+    gap: var(--space-10);
+  }
+}
+
+/* ============================================
+   2. DESKTOP & LARGE LAPTOPS (1200px – 1440px)
+   ============================================ */
+@media (min-width: 1200px) and (max-width: 1440px) {
+  .header-inner {
+    padding: 0 var(--space-6);
+  }
+  .header-nav {
+    margin: 0 10px;
+    gap: 3px;
+  }
+  .header-nav a {
+    padding: 7px 10px;
+    font-size: 14px;
+  }
+  .header-cta {
+    gap: 10px;
+  }
+  .header-cta .btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  /* Hindi desktop spacing adjustments */
+  body.lang-hi .header-nav a {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+  body.lang-hi .header-cta .btn {
+    padding: 8px 14px;
+    font-size: 12.5px;
+  }
+}
+
+/* ============================================
+   3. COMPACT DESKTOP & LANDSCAPE TABLETS (1024px – 1199px)
    ============================================ */
 @media (max-width: 1199px) {
   .header-nav {
@@ -2038,88 +2138,194 @@ body.lang-hi p {
   .header-inner {
     padding: 0 var(--space-6);
   }
-}
-
-/* Precise spacing on intermediate desktop screens (1200px - 1320px) */
-@media (min-width: 1200px) and (max-width: 1320px) {
-  .header-inner {
-    padding: 0 var(--space-4);
-  }
-  .header-nav {
-    margin: 0 8px;
-    gap: 2px;
-  }
-  .header-nav a {
-    padding: 6px 9px;
-    font-size: 13.5px;
-  }
-  .header-cta {
-    gap: 8px;
-  }
   .header-cta .btn {
-    padding: 8px 14px;
-    font-size: 13px;
+    display: none; /* Keep header clean; CTA is in mobile menu and bottom bar */
+  }
+  .doctors-grid {
+    gap: var(--space-6);
+    max-width: 860px;
+  }
+  .dental-categories {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+  .guidance-steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
   }
 }
-
 
 /* ============================================
-   RESPONSIVE — TABLET (≤1024px)
+   4. TABLETS PORTRAIT (768px – 1024px, e.g. iPad, iPad Air, Surface)
    ============================================ */
 @media (max-width: 1024px) {
   :root {
-    --section-padding: 56px;
-    --font-size-6xl: 2.5rem;
+    --section-padding: 60px;
+    --font-size-6xl: 2.6rem;
     --font-size-5xl: 2.25rem;
-    --font-size-4xl: 2rem;
+    --font-size-4xl: 1.95rem;
+    --topbar-height: 34px;
+    --nav-height: 60px;
+    --header-height: calc(var(--topbar-height) + var(--nav-height));
   }
 
-  .hero-video-section { min-height: 440px; }
-  .guidance-steps {
+  .container {
+    padding: 0 var(--space-6);
+  }
+
+  /* Hero Section on Tablets */
+  .hero-video-section {
+    min-height: 440px;
+    margin-top: var(--header-height);
+  }
+  .hero-video-content {
+    padding: var(--space-8) var(--space-6);
+    max-width: 760px;
+  }
+  .hero-video-title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.2;
+  }
+
+  /* Doctors: Keep 2 Symmetrical Columns on Tablet */
+  .doctors-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 780px;
+    margin: 0 auto;
+    gap: var(--space-6);
+  }
+  .doctor-card {
+    padding-top: var(--space-6);
+  }
+  .doctor-photo-wrapper {
+    width: 150px;
+    height: 150px;
+    margin-bottom: var(--space-4);
+  }
+  .doctor-photo {
+    width: 140px;
+    height: 140px;
+  }
+  .doctor-photo svg {
+    width: 70px;
+    height: 70px;
+  }
+  .doctor-info {
+    padding: var(--space-4) var(--space-4) var(--space-6);
+  }
+  .doctor-info h3 {
+    font-size: 1.35rem;
+  }
+  .doctor-specialization {
+    font-size: 0.95rem;
+  }
+  .doctor-intro {
+    font-size: 0.88rem;
+  }
+
+  /* Acupuncture Layout on Tablet */
+  .acu-layout {
     grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .acu-image-wrapper {
+    position: static;
     max-width: 520px;
-    margin: var(--space-6) auto 0;
+    margin: 0 auto;
+  }
+  .journey-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+  .journey-step::after {
+    display: none;
   }
 
+  /* Dental Section on Tablet */
+  .dental-header {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .dental-header-image-wrapper {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .dental-categories {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  /* About Section on Tablet */
   .about-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-10);
+    gap: var(--space-8);
   }
-  .about-image-wrapper { max-width: 520px; margin: 0 auto; }
-
-  .why-grid {
+  .about-image-wrapper {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .about-values {
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
   }
 
-  .dental-header { grid-template-columns: 1fr; }
-  .dental-header-image-wrapper { max-width: 520px; margin: 0 auto; }
-  .dental-categories { grid-template-columns: repeat(2, 1fr); }
+  /* Guidance steps on tablet: 3 clean columns */
+  .guidance-steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    max-width: 100%;
+    margin-top: var(--space-6);
+  }
 
-  .acu-layout { grid-template-columns: 1fr; }
-  .acu-image-wrapper { position: static; max-width: 520px; margin: 0 auto; }
+  /* Contact Section on Tablet */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .contact-map {
+    min-height: 320px;
+    height: 320px;
+  }
+  .contact-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .contact-actions .btn {
+    flex: 1 1 calc(33.333% - var(--space-3));
+    min-width: 160px;
+    justify-content: center;
+  }
 
-  .contact-grid { grid-template-columns: 1fr; }
-  .contact-map { min-height: 300px; }
-
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  /* Footer on Tablet */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
 }
 
-
 /* ============================================
-   RESPONSIVE — MOBILE (≤768px)
+   5. MOBILE & PHABLETS (≤768px)
    ============================================ */
 @media (max-width: 768px) {
   :root {
     --topbar-height: 32px;
     --nav-height: 56px;
-    --header-height: calc(var(--topbar-height) + var(--nav-height));
-    --section-padding: 44px;
+    --header-height: 88px; /* Accurate: 32px + 56px */
+    --section-padding: 48px;
     --font-size-6xl: 2rem;
     --font-size-5xl: 1.75rem;
     --font-size-4xl: 1.5rem;
     --font-size-3xl: 1.35rem;
   }
 
+  /* Add safe area bottom padding for mobile sticky bar */
+  body {
+    padding-bottom: calc(68px + var(--sab));
+  }
+
+  /* Top Contact Information Bar */
   .top-bar-inner {
     padding: 6px var(--space-4);
     font-size: 0.72rem;
@@ -2131,25 +2337,26 @@ body.lang-hi p {
     gap: var(--space-3);
   }
   .top-bar-address .tb-link {
-    max-width: 210px;
+    max-width: 220px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: inline-block;
   }
 
-  body {
-    padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); /* Space for mobile bottom bar */
-  }
-
-  /* Header */
+  /* Header Bar */
   .header-inner {
     padding: 0 var(--space-4);
+    height: var(--nav-height);
   }
-  .header-nav { display: none; }
-  .header-cta .btn { display: none; }
+  .header-nav {
+    display: none !important;
+  }
   .header-cta {
     gap: 8px;
+  }
+  .header-cta .btn {
+    display: none;
   }
   .lang-switch {
     padding: 3px;
@@ -2158,15 +2365,29 @@ body.lang-hi p {
   .lang-switch .lang-btn {
     padding: 4px 10px;
     font-size: 0.75rem;
+    min-height: 32px;
   }
   .menu-toggle {
-    display: flex;
-    padding: 6px 0;
+    display: flex !important;
+    width: 38px;
+    height: 38px;
+    padding: 6px;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* Mobile Navigation Drawer */
+  /* Mobile Full-Screen Navigation Drawer */
   .mobile-menu {
-    padding: calc(var(--header-height) + var(--space-4)) var(--space-5) calc(84px + env(safe-area-inset-bottom, 0px));
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: calc(var(--header-height) + 12px) var(--space-5) calc(84px + var(--sab));
+    flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .mobile-lang-drawer-section {
     background: rgba(10, 96, 110, 0.05);
@@ -2188,12 +2409,13 @@ body.lang-hi p {
     font-size: 0.88rem;
     min-height: 44px;
   }
-  .mobile-menu a {
-    padding: 12px 0;
+  .mobile-nav-link {
+    padding: 12px 6px;
     font-size: 1.05rem;
-    min-height: 44px;
+    min-height: 48px;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid var(--border-light);
   }
   .mobile-menu .mobile-menu-ctas {
     margin-top: var(--space-6);
@@ -2204,7 +2426,6 @@ body.lang-hi p {
     min-height: 48px;
   }
 
-
   /* Hero Video Section Mobile */
   .hero-video-section {
     min-height: 400px;
@@ -2213,101 +2434,115 @@ body.lang-hi p {
   .hero-video-content {
     padding: var(--space-6) var(--space-4);
   }
+  .hero-video-badge {
+    font-size: 0.76rem;
+    padding: 5px 14px;
+    margin-bottom: var(--space-4);
+  }
   .hero-video-title {
-    font-size: 1.85rem;
+    font-size: clamp(1.75rem, 6vw, 2.1rem);
     line-height: 1.22;
+    margin-bottom: var(--space-3);
   }
   .hero-video-subtitle {
     font-size: 0.95rem;
+    line-height: 1.55;
     margin-bottom: var(--space-5);
   }
   .hero-video-ctas {
     flex-direction: column;
     gap: 10px;
     width: 100%;
+    margin-bottom: var(--space-5);
   }
   .hero-video-ctas .btn {
     width: 100%;
-    min-height: 46px;
+    min-height: 48px;
   }
   .hero-video-trust {
     gap: var(--space-3);
     font-size: 0.75rem;
+    padding-top: var(--space-3);
   }
-  .guidance-steps {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
-
-  /* Trust Strip */
-  .trust-strip {
-    margin-top: var(--space-8);
-    padding: var(--space-4) 0;
-  }
-  .trust-strip-inner {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3);
-  }
-  .trust-item {
-    font-size: 0.8rem;
-    gap: 10px;
-  }
-  .trust-item-icon {
-    width: 32px;
-    height: 32px;
+  .hvt-item {
+    gap: 6px;
   }
 
   /* Section Headings */
   .section {
-    padding: 50px 0;
+    padding: 48px 0;
   }
   .section-heading {
     margin-bottom: var(--space-8);
   }
   .section-heading h2 {
-    font-size: 1.55rem;
-    line-height: 1.3;
+    font-size: 1.6rem;
+    line-height: 1.28;
   }
   .section-heading p {
     font-size: 0.92rem;
   }
-
-  /* About Section */
-  .about-values {
-    grid-template-columns: 1fr;
-    gap: var(--space-2);
-  }
-  .about-content h2 {
-    font-size: 1.55rem;
-  }
-  .about-content > p {
-    font-size: 0.95rem;
+  .section-label {
+    font-size: 0.75rem;
+    padding: 5px 14px;
+    margin-bottom: var(--space-3);
   }
 
-  /* Why Choose Us */
-  .why-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
-  .why-card {
-    padding: var(--space-6);
-  }
-
-  /* Specialities Section */
-  .specialities-cards {
+  /* Doctors Grid: Responsive Cards */
+  .doctors-grid {
     grid-template-columns: 1fr;
     max-width: 440px;
     margin: 0 auto;
     gap: var(--space-6);
   }
-  .spec-card-image {
-    height: 200px;
+  .doctor-card {
+    padding: var(--space-6) var(--space-5) var(--space-6);
+    border-radius: 24px;
   }
-  .spec-card-body {
-    padding: var(--space-5);
+  .doctor-photo-wrapper {
+    width: 145px;
+    height: 145px;
+    margin-bottom: var(--space-4);
   }
-  .spec-card h3 {
-    font-size: 1.3rem;
+  .doctor-photo {
+    width: 135px;
+    height: 135px;
+  }
+  .doctor-photo svg {
+    width: 68px;
+    height: 68px;
+  }
+  .doctor-badge-chip {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    bottom: -4px;
+  }
+  .doctor-info {
+    padding: var(--space-3) 0 0;
+  }
+  .doctor-info h3 {
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+  }
+  .doctor-specialization {
+    font-size: 0.92rem;
+    margin-bottom: var(--space-3);
+  }
+  .doctor-qualifications {
+    gap: 6px;
+    margin-bottom: var(--space-4);
+  }
+  .doctor-qualifications span {
+    font-size: 0.75rem;
+    padding: 3px 10px;
+  }
+  .doctor-intro {
+    font-size: 0.88rem;
+    margin-bottom: var(--space-5);
+  }
+  .doctor-info .btn {
+    width: 100%;
+    min-height: 44px;
   }
 
   /* Acupuncture Section */
@@ -2316,11 +2551,36 @@ body.lang-hi p {
     gap: var(--space-6);
     margin-bottom: var(--space-8);
   }
+  .acu-image-wrapper {
+    position: static;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 12px;
+  }
+  .acu-image {
+    border-radius: 24px 64px 24px 64px;
+  }
+  .speciality-floating-chip {
+    bottom: -8px;
+    left: 12px;
+    font-size: 0.74rem;
+    padding: 6px 14px;
+    max-width: calc(100% - 24px);
+    box-sizing: border-box;
+  }
   .acu-content h2 {
     font-size: 1.55rem;
   }
   .acu-content > p {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    margin-bottom: var(--space-6);
+  }
+  .acu-category {
+    margin-bottom: var(--space-6);
+  }
+  .acu-category h3 {
+    font-size: 1.05rem;
+    margin-bottom: var(--space-3);
   }
   .acu-conditions {
     gap: 6px;
@@ -2330,11 +2590,8 @@ body.lang-hi p {
     font-size: 0.82rem;
   }
   .journey-steps {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-4);
-  }
-  .journey-step::after {
-    display: none;
   }
   .journey-step-num {
     width: 46px;
@@ -2352,11 +2609,23 @@ body.lang-hi p {
     gap: var(--space-6);
     margin-bottom: var(--space-8);
   }
+  .dental-header-image-wrapper {
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 12px;
+  }
+  .dental-header-image {
+    border-radius: 40px 18px 60px 18px;
+  }
   .dental-header-text h2 {
     font-size: 1.55rem;
   }
   .dental-header-text p {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+  }
+  .dental-header-text .btn {
+    width: 100%;
+    min-height: 46px;
   }
   .dental-categories {
     grid-template-columns: 1fr;
@@ -2364,47 +2633,83 @@ body.lang-hi p {
   }
   .dental-cat-card {
     padding: var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+  .dental-cat-card h3 {
+    font-size: 1rem;
   }
 
-  /* Doctors Section */
-  .doctors-grid {
+  /* About Section */
+  .about-grid {
     grid-template-columns: 1fr;
-    max-width: 420px;
-    margin: 0 auto;
     gap: var(--space-6);
   }
-  .doctor-card {
-    padding: var(--space-6);
+  .about-image-wrapper {
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 12px;
   }
-  .doctor-image-wrapper {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto var(--space-4);
+  .about-image {
+    border-radius: 64px 24px 64px 24px;
   }
-  .doctor-card h3 {
-    font-size: 1.35rem;
+  .about-image-frame {
+    border-radius: 68px 28px 68px 28px;
+  }
+  .about-floating-badge {
+    bottom: -10px;
+    right: 12px;
+    padding: 8px 14px;
+    border-radius: var(--radius-lg);
+    max-width: calc(100% - 24px);
+  }
+  .about-floating-badge .afb-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .about-floating-badge .afb-title {
+    font-size: 0.82rem;
+  }
+  .about-content h2 {
+    font-size: 1.55rem;
+  }
+  .about-content > p {
+    font-size: 0.92rem;
+  }
+  .about-values {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+  .about-value {
+    padding: 8px 12px;
+    font-size: 0.85rem;
   }
 
-  /* FAQs Section */
-  .faq-tabs {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    justify-content: flex-start;
-    padding: 4px var(--space-2) 12px;
-    gap: 8px;
-    scrollbar-width: none;
+  /* Patient Journey Guidance */
+  .guidance-steps {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    max-width: 440px;
+    margin: var(--space-4) auto 0;
   }
-  .faq-tabs::-webkit-scrollbar {
-    display: none;
+  .guidance-card {
+    padding: var(--space-5);
+  }
+
+  /* FAQs Section — Segmented 2-Tab Layout */
+  .faq-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    max-width: 420px;
+    margin: 0 auto var(--space-6);
+    padding: 0;
   }
   .faq-tab {
-    white-space: nowrap;
-    flex-shrink: 0;
-    padding: 8px 16px;
-    font-size: 0.85rem;
-    min-height: 40px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 0.88rem;
+    min-height: 44px;
   }
   .faq-question {
     padding: 14px 16px;
@@ -2413,12 +2718,12 @@ body.lang-hi p {
     min-height: 52px;
   }
   .faq-item.active .faq-answer {
-    max-height: 800px;
+    max-height: 1000px;
   }
   .faq-answer-inner {
     padding: 0 16px 14px;
     font-size: 0.88rem;
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
   /* Contact Section */
@@ -2431,6 +2736,13 @@ body.lang-hi p {
   }
   .contact-card {
     padding: var(--space-4);
+  }
+  .contact-card h3 {
+    font-size: 0.95rem;
+  }
+  .contact-card p {
+    font-size: 0.86rem;
+    word-break: break-word;
   }
   .contact-map {
     min-height: 260px;
@@ -2469,32 +2781,50 @@ body.lang-hi p {
     gap: var(--space-4);
   }
 
-  /* Floating Elements & Mobile Bottom Bar */
-  .whatsapp-float { display: none; }
+  /* Floating Elements & Sticky Mobile Bottom Bar */
+  .whatsapp-float {
+    display: none; /* Replaced by persistent mobile bottom bar */
+  }
   .back-to-top {
     right: var(--space-4);
-    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    bottom: calc(76px + var(--sab));
   }
   .mobile-bottom-bar {
     display: block;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     background: rgba(255, 255, 255, 0.96);
-    padding-bottom: max(var(--space-2), env(safe-area-inset-bottom, 0px));
+    padding: 6px var(--space-3) max(6px, var(--sab));
+    border-top: 1px solid var(--border);
+  }
+  .mobile-bottom-bar-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+  .mobile-bottom-bar a {
+    min-height: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    padding: 4px;
+    border-radius: var(--radius-md);
   }
 
   /* Hindi Devanagari Typography on Mobile */
   body.lang-hi h1 {
-    font-size: 1.6rem;
-    line-height: 1.32;
-  }
-  body.lang-hi h2 {
-    font-size: 1.4rem;
+    font-size: 1.65rem;
     line-height: 1.35;
   }
-  body.lang-hi h3 {
-    font-size: 1.15rem;
+  body.lang-hi h2 {
+    font-size: 1.45rem;
     line-height: 1.38;
+  }
+  body.lang-hi h3 {
+    font-size: 1.18rem;
+    line-height: 1.4;
   }
   body.lang-hi .btn {
     letter-spacing: 0;
@@ -2502,36 +2832,70 @@ body.lang-hi p {
 }
 
 /* ============================================
-   RESPONSIVE — SMALL PHONES (≤480px)
+   6. INTERMEDIATE PHABLETS & FOLDABLES (541px – 768px)
+   Provides 2-column balance on larger mobile screens
+   ============================================ */
+@media (min-width: 541px) and (max-width: 768px) {
+  .dental-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-values {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contact-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .contact-actions .btn {
+    flex: 1 1 calc(50% - 10px);
+  }
+}
+
+/* ============================================
+   7. STANDARD & SMALL SMARTPHONES (≤480px)
    ============================================ */
 @media (max-width: 480px) {
   :root {
     --font-size-6xl: 1.7rem;
     --font-size-4xl: 1.35rem;
-    --header-height: 60px;
+    --topbar-height: 30px;
+    --nav-height: 54px;
+    --header-height: 84px; /* Accurate: 30px + 54px */
   }
 
   .container {
     padding: 0 14px;
   }
 
-  /* Compact header on small screens */
+  /* Clean header layout: Logo + Lang Toggle + Hamburger all on 1 row */
   .header-inner {
     padding: 0 12px;
   }
   .header-logo .logo-icon {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
+  }
+  .header-logo .logo-icon svg {
+    width: 18px;
+    height: 18px;
   }
   .header-logo .logo-name {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
   }
   .header-logo .logo-tagline {
-    display: none; /* Hide tagline so logo, lang toggle and hamburger fit without crunching */
+    display: none; /* Conceal tagline to prevent crunching against language switcher */
   }
   .lang-switch .lang-btn {
     padding: 3px 8px;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
+    min-height: 30px;
+  }
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
   }
 
   .top-bar-inner {
@@ -2539,8 +2903,10 @@ body.lang-hi p {
     font-size: 0.68rem;
   }
   .top-bar-address .tb-link {
-    max-width: 170px;
+    max-width: 160px;
   }
+
+  /* Hero adjustments for smaller phones */
   .hero-video-section {
     min-height: 360px;
   }
@@ -2548,20 +2914,10 @@ body.lang-hi p {
     font-size: 1.6rem;
   }
   .hero-video-trust {
-    display: none;
+    display: none; /* Hide trust icons on small screens to prioritize fast CTA access */
   }
 
-  /* Trust Strip */
-  .trust-strip-inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .trust-item {
-    font-size: 0.74rem;
-    gap: 8px;
-  }
-
-  /* Floating chips */
+  /* Floating chips on imagery */
   .speciality-floating-chip {
     left: 8px;
     bottom: -8px;
@@ -2570,7 +2926,34 @@ body.lang-hi p {
     gap: 6px;
   }
 
-  /* Acupuncture journey steps: vertical stack on phone */
+  /* Doctor card optimization for small screens */
+  .doctors-grid {
+    max-width: 360px;
+  }
+  .doctor-photo-wrapper {
+    width: 135px;
+    height: 135px;
+  }
+  .doctor-photo {
+    width: 125px;
+    height: 125px;
+  }
+  .doctor-photo svg {
+    width: 62px;
+    height: 62px;
+  }
+  .doctor-card {
+    padding: var(--space-5) var(--space-4) var(--space-5);
+  }
+  .doctor-info h3 {
+    font-size: 1.25rem;
+  }
+  .doctor-intro {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  /* Acupuncture journey steps: Vertical stacked cards */
   .journey-steps {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -2586,8 +2969,8 @@ body.lang-hi p {
     border: 1px solid var(--border);
   }
   .journey-step-num {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     font-size: 0.92rem;
     margin: 0;
     flex-shrink: 0;
@@ -2596,21 +2979,266 @@ body.lang-hi p {
     font-size: 0.88rem;
   }
 
+  /* Dental categories on small phones */
+  .dental-cat-card {
+    padding: 16px 14px;
+  }
+  .dental-cat-card ul {
+    gap: 6px;
+  }
+  .dental-cat-card li {
+    font-size: 0.84rem;
+  }
 }
 
 /* ============================================
-   RESPONSIVE — ULTRA-COMPACT PHONES (≤360px)
+   8. ULTRA-COMPACT PHONES (≤360px, e.g. iPhone SE 1st gen, Galaxy Fold cover)
    ============================================ */
 @media (max-width: 360px) {
+  :root {
+    --topbar-height: 28px;
+    --nav-height: 52px;
+    --header-height: 80px; /* Accurate: 28px + 52px */
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+  .header-inner {
+    padding: 0 8px;
+  }
+  .header-logo .logo-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .header-logo .logo-icon svg {
+    width: 16px;
+    height: 16px;
+  }
   .header-logo .logo-name {
     font-size: 0.88rem;
+  }
+  .lang-switch {
+    padding: 2px;
+    gap: 1px;
   }
   .lang-switch .lang-btn {
     padding: 2px 6px;
     font-size: 0.68rem;
   }
-  .trust-strip-inner {
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .menu-toggle {
+    width: 34px;
+    height: 34px;
+  }
+  .top-bar-inner {
+    padding: 4px 8px;
+    font-size: 0.65rem;
+  }
+  .top-bar-address .tb-link {
+    max-width: 130px;
+  }
+
+  .hero-video-section {
+    min-height: 330px;
+  }
+  .hero-video-title {
+    font-size: 1.45rem;
+  }
+  .hero-video-subtitle {
+    font-size: 0.88rem;
+  }
+
+  /* Doctors on ultra-compact */
+  .doctor-photo-wrapper {
+    width: 115px;
+    height: 115px;
+  }
+  .doctor-photo {
+    width: 108px;
+    height: 108px;
+  }
+  .doctor-photo svg {
+    width: 52px;
+    height: 52px;
+  }
+  .doctor-card {
+    padding: 16px 12px;
+  }
+  .doctor-qualifications span {
+    font-size: 0.68rem;
+    padding: 2px 7px;
+  }
+  .doctor-intro {
+    font-size: 0.82rem;
+  }
+
+  /* Tags & chips */
+  .acu-tag {
+    font-size: 0.78rem;
+    padding: 5px 10px;
+  }
+  .speciality-floating-chip {
+    font-size: 0.68rem;
+    padding: 4px 8px;
+  }
+
+  /* Mobile bottom bar on ultra compact */
+  .mobile-bottom-bar {
+    padding: 4px 2px max(6px, var(--sab));
+  }
+  .mobile-bottom-bar a {
+    font-size: 10px;
+    padding: 3px;
+  }
+}
+
+/* ============================================
+   9. MOBILE LANDSCAPE ORIENTATION (Short Screens ≤520px high)
+   ============================================ */
+@media (max-height: 520px) and (orientation: landscape) {
+  .top-bar {
+    display: none; /* Reclaim vertical space in landscape orientation */
+  }
+  :root {
+    --header-height: 50px;
+    --nav-height: 50px;
+    --section-padding: 36px;
+  }
+  .header-inner {
+    height: var(--nav-height);
+  }
+  .hero-video-section {
+    min-height: 280px;
+    margin-top: var(--header-height);
+    padding: var(--space-4) 0;
+  }
+  .hero-video-title {
+    font-size: 1.55rem;
+    line-height: 1.2;
+    margin-bottom: var(--space-2);
+  }
+  .hero-video-subtitle {
+    font-size: 0.88rem;
+    margin-bottom: var(--space-3);
+  }
+  .hero-video-ctas {
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: var(--space-3);
+  }
+  .hero-video-ctas .btn {
+    width: auto;
+    min-height: 40px;
+    padding: 8px 18px;
+    font-size: 0.88rem;
+  }
+  .hero-video-trust {
+    display: none;
+  }
+
+  /* Mobile navigation drawer in landscape: 2 columns */
+  .mobile-menu {
+    padding: 60px var(--space-6) 24px;
+    display: none;
+  }
+  .mobile-menu.active {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    align-content: start;
+  }
+  .mobile-lang-drawer-section {
+    grid-column: 1 / -1;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+  }
+  .mobile-menu .mobile-menu-ctas {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+}
+
+/* ============================================
+   10. TOUCHSCREEN & POINTER OPTIMIZATIONS
+   Prevents sticky hover states on mobile/tablet taps
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .doctor-card:hover {
+    transform: none;
+    box-shadow: 0 8px 24px rgba(10, 96, 110, 0.06);
+  }
+  .doctor-card:active {
+    transform: scale(0.99);
+  }
+  .doctor-card:hover .doctor-photo {
+    transform: none;
+  }
+  .why-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .dental-cat-card:hover {
+    box-shadow: none;
+  }
+  .acu-image-wrapper:hover .acu-image,
+  .dental-header-image-wrapper:hover .dental-header-image,
+  .about-image-wrapper:hover .about-image {
+    transform: none;
+  }
+
+  /* Minimum 44px touch targets for accessibility */
+  .btn,
+  .lang-btn,
+  .faq-question,
+  .faq-tab,
+  .mobile-nav-link,
+  .footer-col a {
+    min-height: 44px;
+  }
+}
+
+/* ============================================
+   11. ACCESSIBILITY — REDUCED MOTION PREFERENCE
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================
+   12. PRINT STYLES
+   ============================================ */
+@media print {
+  .top-bar,
+  .header,
+  .mobile-bottom-bar,
+  .whatsapp-float,
+  .back-to-top,
+  .hero-video-bg,
+  .hero-video-ctas,
+  .menu-toggle,
+  .mobile-menu {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+    padding-bottom: 0 !important;
+  }
+  .section {
+    padding: 20px 0 !important;
+    page-break-inside: avoid;
   }
 }

@@ -89,12 +89,19 @@
       applyLanguage(lang);
     }
 
-    // Check stored preference: use saved language if valid, otherwise default to English
+    // Check URL param first (e.g. ?lang=hi), then stored preference, otherwise default to English
     let currentLang = 'en';
     try {
-      const savedLang = localStorage.getItem(STORAGE_KEY);
-      if (savedLang === 'en' || savedLang === 'hi') {
-        currentLang = savedLang;
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+      if (urlLang === 'en' || urlLang === 'hi') {
+        currentLang = urlLang;
+        try { localStorage.setItem(STORAGE_KEY, urlLang); } catch (e) {}
+      } else {
+        const savedLang = localStorage.getItem(STORAGE_KEY);
+        if (savedLang === 'en' || savedLang === 'hi') {
+          currentLang = savedLang;
+        }
       }
     } catch (e) {
       currentLang = 'en';
